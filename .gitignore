@@ -1,0 +1,20 @@
+# Intellij IDEA
+.idea
+.gradle
+.svn
+.git
+*.iws
+*.ipr
+*.iml
+
+out/
+build/
+logs/
+/files/
+elasticsearch/
+gradle/deploy.gradle
+/release
+
+# OSX
+#
+.DS_Store
