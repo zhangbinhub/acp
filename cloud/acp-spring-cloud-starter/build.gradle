@@ -1,0 +1,35 @@
+group "${group}.cloud"
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$versions.spring_boot")
+    }
+}
+apply plugin: "io.spring.dependency-management"
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:$versions.spring_boot") {
+            bomProperty("kotlin.version", "${kotlinVersion}")
+        }
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$versions.spring_cloud"
+        mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:$versions.alibaba_cloud"
+    }
+}
+dependencies {
+    api project(":boot:acp-spring-boot-starter")
+    kapt "org.springframework.boot:spring-boot-configuration-processor"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    api "org.springframework.cloud:spring-cloud-starter-oauth2"
+    api "org.springframework.cloud:spring-cloud-starter-stream-kafka"
+    api "org.springframework.cloud:spring-cloud-starter-bus-kafka"
+    // monitor : 服务间调用、断路器、链路追踪
+    api "org.springframework.cloud:spring-cloud-starter-openfeign"
+    api "org.springframework.cloud:spring-cloud-starter-loadbalancer"
+    api "io.github.openfeign:feign-okhttp"
+    // 服务注册发现
+    api "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery"
+    // 配置中心
+    api "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config"
+    api "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel"
+    api "com.alibaba.csp:sentinel-datasource-nacos"
+}

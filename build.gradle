@@ -1,0 +1,231 @@
+ext {
+    println("Environment        : JAVA_HOME=$System.env.JAVA_HOME")
+    println("Gradle Version     : ${gradleVersion}")
+    println("Target JDK Version : ${javaVersion}")
+    println("Kotlin Version     : ${kotlinVersion}")
+    println("Encoding           : ${encoding}")
+}
+
+buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}"
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            url = "${mavenCentralUrl}"
+            allowInsecureProtocol = true
+        }
+        mavenCentral()
+        jcenter()
+    }
+}
+
+allprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'kotlin'
+    apply plugin: 'kotlin-kapt'
+    apply plugin: 'kotlin-spring'
+    apply plugin: 'kotlin-noarg'
+    apply plugin: 'idea'
+    apply plugin: 'maven-publish'
+
+    apply from: "$rootDir/gradle/dependencies.gradle"
+
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
+
+    buildscript {
+        repositories {
+            mavenLocal()
+            maven {
+                url = "${mavenCentralUrl}"
+                allowInsecureProtocol = true
+            }
+            mavenCentral()
+            jcenter()
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url = "${mavenCentralUrl}"
+            allowInsecureProtocol = true
+        }
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        testImplementation("org.junit.jupiter:junit-jupiter:$versions.jupiter")
+        testImplementation("org.junit.platform:junit-platform-launcher:$versions.junit_platform")
+        testImplementation "org.jetbrains.kotlin:kotlin-test"
+        testImplementation "org.jetbrains.kotlin:kotlin-test-junit5"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib"
+        implementation "org.jetbrains.kotlin:kotlin-reflect"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlin_coroutines"
+    }
+
+    task clearPj(type: Delete) {
+        delete 'release', 'build', 'target', 'out'
+    }
+
+    task copyJar(type: Copy) {
+        from(configurations.runtimeClasspath)
+        into('build/libs/dependencies')
+    }
+
+    task mapperFileCopy(type: Copy) {
+        copy {
+            from("src/main/java") {
+                include("**/*.xml")
+                include("**/*.json")
+                include("**/*.properties")
+            }
+            into("${buildDir}/classes/main")
+        }
+        copy {
+            from("src/test/java") {
+                include("**/*.xml")
+                include("**/*.json")
+                include("**/*.properties")
+            }
+            into("${buildDir}/classes/test")
+        }
+        copy {
+            from("src/main/kotlin") {
+                include("**/*.xml")
+                include("**/*.json")
+                include("**/*.properties")
+            }
+            into("${buildDir}/classes/main")
+        }
+        copy {
+            from("src/test/kotlin") {
+                include("**/*.xml")
+                include("**/*.json")
+                include("**/*.properties")
+            }
+            into("${buildDir}/classes/test")
+        }
+    }
+
+    jar {
+        dependsOn(copyJar)
+        manifest {
+            attributes('Version': "${project.version}", 'Provider': "Gradle ${gradleVersion}", 'JDK': "${javaVersion}", 'Kotlin': "${kotlinVersion}", 'Project': 'Acp')
+        }
+    }
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    javadoc {
+        options.charSet = "${encoding}"
+        options.docEncoding = "${encoding}"
+        options.encoding = "${encoding}"
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+
+    compileJava {
+        options.encoding = "${encoding}"
+    }
+    compileJava.dependsOn(processResources)
+    compileTestJava {
+        options.encoding = "${encoding}"
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "${javaVersion}"
+        }
+    }
+    compileKotlin.dependsOn(processResources)
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = "${javaVersion}"
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    def generateGroupId = {
+        def groupId = "$project.group"
+        if (project.parent != null) {
+            def parentPath = project.parent.path.substring(1)
+            if (!parentPath.isBlank()) {
+                groupId += "." + parentPath.replace(":", ".")
+            }
+        }
+        return groupId
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                //指定group/artifact/version信息
+                groupId generateGroupId()
+                artifactId project.name
+                version project.version
+                //打包类型 war: components.web jar: components.java
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                apply from: "$rootDir/gradle/deploy.gradle"
+                //指定要上传的maven私服仓库
+                url = "$mavenUploadUrl"
+                allowInsecureProtocol = true
+                //认证用户和密码
+                credentials {
+                    username "$mavenUserName"
+                    password "$mavenPassword"
+                }
+            }
+        }
+    }
+
+    task release(dependsOn: [build, copyJar]) {
+        doLast {
+            if (project.hasProperty("active") && project.active != null && project.active != "") {
+                println("$project.name release finished: active=$project.active")
+                File bootStrapFile = new File("$rootDir/release/$project.name/bootstrap.yaml")
+                if (bootStrapFile.exists()) {
+                    def text = bootStrapFile.text.replaceAll(" {4}active: (?!\\\$).*", "    active: $project.active")
+                    bootStrapFile.withPrintWriter { printWriter ->
+                        printWriter.println(text)
+                    }
+                }
+            }
+        }
+    }
+
+    def needUpLoadProject = {
+        return ["acp-core",
+                "acp-packet",
+                "acp-client",
+                "acp-file",
+                "acp-ftp",
+                "acp-message",
+                "acp-spring-boot-starter",
+                "acp-spring-boot-starter-ftp",
+                "acp-spring-cloud-starter"].toArray().contains("$project.name")
+    }
+
+    publish.onlyIf { needUpLoadProject() }
+    generateMetadataFileForMavenPublication.onlyIf { needUpLoadProject() }
+    generatePomFileForMavenPublication.onlyIf { needUpLoadProject() }
+    publishAllPublicationsToMavenRepository.onlyIf { needUpLoadProject() }
+    publishMavenPublicationToMavenLocal.onlyIf { needUpLoadProject() }
+    publishMavenPublicationToMavenRepository.onlyIf { needUpLoadProject() }
+    publishToMavenLocal.onlyIf { needUpLoadProject() }
+}

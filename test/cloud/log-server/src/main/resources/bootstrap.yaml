@@ -1,0 +1,61 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 1000
+spring:
+  profiles:
+    active: prod
+  application:
+    name: server-log
+  thymeleaf:
+    cache: false
+  cloud:
+    loadbalancer:
+      cache:
+        ttl: 5s
+      ribbon:
+        enabled: false
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 127.0.0.1:8848
+      discovery:
+        namespace: acp-test-cloud
+        cluster-name: ${spring.profiles.active}
+        group: ${spring.profiles.active}
+      config:
+        file-extension: yaml
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        cluster-name: ${spring.cloud.nacos.discovery.cluster-name}
+        group: ${spring.cloud.nacos.discovery.group}
+logging:
+  pattern:
+    file: '[%date{yyyy-MM-dd HH:mm:ss.SSS}] [ %-5level] [%thread] %logger{96} [%X{lineno}] - %msg%n'
+info:
+  version: 1.0.0
+  app-name: ${spring.application.name}
+  tags:
+    environment: ${spring.profiles.active}
+  build:
+    author: zhangbin
+    active: ${spring.profiles.active}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+# ===============================
+# = Security Config
+# ===============================
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://server-oauth2/open/inner/check-token
+acp:
+  cloud:
+    log-server:
+      enabled: true

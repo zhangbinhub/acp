@@ -1,0 +1,32 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$versions.spring_boot")
+    }
+}
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:$versions.spring_boot") {
+            bomProperty("kotlin.version", "${kotlinVersion}")
+        }
+    }
+}
+bootJar {
+    manifest {
+        attributes('Version': "${project.version}", 'Provider': "Gradle ${gradleVersion}", 'JDK': "${javaVersion}", 'Kotlin': "${kotlinVersion}", 'Project': 'Acp')
+    }
+}
+dependencies {
+    implementation project(":boot:acp-spring-boot-starter")
+    implementation project(":boot:acp-spring-boot-starter-ftp")
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "mysql:mysql-connector-java:8.0.20"
+    implementation "com.microsoft.sqlserver:mssql-jdbc:7.4.1.jre8"
+    implementation "com.oracle.ojdbc:ojdbc8:19.3.0.0"
+    implementation "org.postgresql:postgresql:42.2.12"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}

@@ -1,0 +1,11 @@
+group "${group}.core"
+versions += [
+        javax_mail: "1.4.7"
+]
+
+dependencies {
+    api project(":core:acp-core")
+
+    // email
+    api "javax.mail:mail:$versions.javax_mail"
+}

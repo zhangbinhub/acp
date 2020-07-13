@@ -1,0 +1,29 @@
+server:
+  address: 127.0.0.1
+  port: 8090
+# ===============================
+# = Log To File Config
+# ===============================
+logging:
+  file:
+    path: logs/admin-server
+    name: ${logging.file.path}/${spring.application.name}.log
+    max-size: 5MB
+    max-history: 30
+  level:
+    com.alibaba.nacos.client.naming: warn
+# ===============================
+# = Spring Config
+# ===============================
+spring:
+  security:
+    user:
+      name: admin
+      password: 888888
+  cloud:
+    nacos:
+      discovery:
+        ip: ${server.address}
+        metadata:
+          user.name: ${spring.security.user.name}
+          user.password: ${spring.security.user.password}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sftp-config>
+    <!-- name-服务名称，enabled-是否启用，port-端口号，hostKeyPath-服务器密钥文件地址，passwordAuth-是否进行密码登录
+        publicKeyAuth-是否进行证书登录（开启后仅支持证书验证），用户证书只支持openssh生成的密钥
+        keyAuthType-证书类型（der/pem/ssh）
+        keyAuthMode-证书验证模式（RSA/DSA）
+        defaultHomeDirectory-服务器默认路径，
+        userFactoryClass-用户工厂对象 -->
+    <!--<listen name="测试sftp服务器" enabled="true" port="4221" hostKeyPath="/files/resource/key/hostkey"-->
+            <!--passwordAuth="false" publicKeyAuth="true" keyAuthType="pem" keyAuthMode="RSA"-->
+            <!--defaultHomeDirectory="abs:c:\\WorkFile\\个人\\新建文件夹"-->
+            <!--userFactoryClass="pers.acp.ftp.test.TestUserFactory"/>-->
+</sftp-config>

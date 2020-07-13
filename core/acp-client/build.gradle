@@ -1,0 +1,14 @@
+group "${group}.core"
+versions += [
+        netty : "4.1.50.Final",
+        okhttp: "3.14.9"
+]
+dependencies {
+    api project(":core:acp-packet")
+
+    // tcp/udp
+    api "io.netty:netty-all:$versions.netty"
+
+    // http client
+    api "com.squareup.okhttp3:okhttp:$versions.okhttp"
+}

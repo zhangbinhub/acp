@@ -1,0 +1,47 @@
+server:
+  address: 127.0.0.1
+  port: 9090
+# ===============================
+# = Log To File Config
+# ===============================
+logging:
+  file:
+    path: logs/testkotlin
+    name: ${logging.file.path}/${spring.application.name}.log
+    max-size: 5MB
+    max-history: 30
+  level:
+    com.alibaba.nacos.client.naming: warn
+# ===============================
+# = Spring Config
+# ===============================
+spring:
+  # ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  # ===============================
+  # = DATA SOURCE
+  # ===============================
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+    username: root
+    password: test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #    max-idle: 10
+  #    max-wait: 10000
+  #    min-idle: 5
+  #    initial-size: 5
+  #    validation-query: SELECT 1
+  #    test-on-borrow: false
+  #    test-while-idle: false
+  #    time-between-eviction-runs-millis: 18800
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
