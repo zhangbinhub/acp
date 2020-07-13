@@ -1,0 +1,111 @@
+[
+  {
+    "sheetName": "string",
+    "printSetting": {
+      "isHorizontal": "boolean",
+      "pageWidth": "int",
+      "pageHeight": "int",
+      "topMargin": "double",
+      "bottomMargin": "double",
+      "leftMargin": "double",
+      "rightMargin": "double",
+      "horizontalCentre": "boolean",
+      "verticallyCenter": "boolean",
+      "printArea": {
+        "firstCol": "int",
+        "firstRow": "int",
+        "lastCol": "int",
+        "lastRow": "int"
+      },
+      "printTitles": {
+        "firstCol": "int",
+        "firstRow": "int",
+        "lastCol": "int",
+        "lastRow": "int"
+      }
+    },
+    "header": {
+      "left": "(string)***[pageNumber]***[pageTotal]***",
+      "center": "(string)***[pageNumber]***[pageTotal]***",
+      "right": "(string)***[pageNumber]***[pageTotal]***"
+    },
+    "footer": {
+      "left": "(string)***[pageNumber]***[pageTotal]***",
+      "center": "(string)***[pageNumber]***[pageTotal]***",
+      "right": "(string)***[pageNumber]***[pageTotal]***"
+    },
+    "data": {
+      "dataList": [
+        {
+          "name": "value"
+        }
+      ],
+      "names": "string",
+      "titleCtrl": [
+        {
+          "value": "string",
+          "row": "int",
+          "col": "int",
+          "colspan": "int",
+          "rowspan": "int",
+          "width": "int",
+          "height": "int",
+          "font": "int",
+          "bold": "boolean",
+          "underline": "boolean",
+          "align": "(string)center|left|right",
+          "color": "(string)black|blue|red|green",
+          "border": "(string)no|all|top|left|right|bottom"
+        }
+      ],
+      "bodyCtrl": [
+        {
+          "value": "string",
+          "colspan": "int",
+          "rowspan": "int",
+          "width": "int",
+          "height": "int",
+          "font": "int",
+          "bold": "boolean",
+          "underline": "boolean",
+          "align": "(string)center|left|right",
+          "color": "(string)black|blue|red|green",
+          "border": "(string)no|all|top|left|right|bottom"
+        }
+      ],
+      "footCtrl": [
+        {
+          "value": "string",
+          "row": "int",
+          "col": "int",
+          "paddingRow": "int",
+          "colspan": "int",
+          "rowspan": "int",
+          "width": "int",
+          "height": "int",
+          "font": "int",
+          "bold": "boolean",
+          "underline": "boolean",
+          "align": "(string)center|left|right",
+          "color": "(string)black|blue|red|green",
+          "border": "(string)no|all|top|left|right|bottom"
+        }
+      ],
+      "showBodyHead": "boolean",
+      "defaultRowIndex": "int",
+      "defaultCellIndex": "int"
+    },
+    "mergeCells": [
+      {
+        "firstCol": "int",
+        "firstRow": "int",
+        "lastCol": "int",
+        "lastRow": "int"
+      }
+    ],
+    "freeze": {
+      "row": "int",
+      "col": "int"
+    }
+  }
+]

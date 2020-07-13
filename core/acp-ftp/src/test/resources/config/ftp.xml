@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ftp-config>
+    <!-- name-服务名称，enabled-是否启用，port-端口号，anonymousLoginEnabled-是否允许匿名用户，
+    pwdEncryptMode-用户密码加密方式（支持MD5、SHA1），userFactoryClass-用户工厂对象 -->
+    <!--<listen name="测试ftp服务器" enabled="true" port="221" pwdEncryptMode="MD5" loginFailureDelay="30" maxLoginFailures="20"-->
+            <!--maxLogins="10" maxAnonymousLogins="20" maxThreads="10" defaultHomeDirectory="abs:c:\\WorkFile\\个人\\新建文件夹"-->
+            <!--anonymousLoginEnabled="false" anonymousWritePermission="false"-->
+            <!--userFactoryClass="pers.acp.ftp.test.TestUserFactory"/>-->
+</ftp-config>

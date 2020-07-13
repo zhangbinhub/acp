@@ -1,0 +1,57 @@
+server:
+  address: 127.0.0.1
+  port: 9090
+# ===============================
+# = Log To File Config
+# ===============================
+logging:
+  file:
+    path: logs/testspringboot
+    name: ${logging.file.path}/${spring.application.name}.log
+    max-size: 5MB
+    max-history: 30
+  level:
+    com.alibaba.nacos.client.naming: warn
+# ===============================
+# = Spring Config
+# ===============================
+spring:
+  # ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  # ===============================
+  # = DATA SOURCE
+  # ===============================
+  datasource:
+    primary:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+      username: root
+      password: test
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      maximum-pool-size: 5
+      minimum-idle: 5
+      pool-name: SpringBootHikariCPPrimary
+      max-lifetime: 1765000
+      read-only: false
+      data-source-properties.scanpackage: pers.acp.test.application.entity.primary
+    pg:
+      jdbc-url: jdbc:postgresql://localhost:5432/test?autoReconnect=true&zeroDateTimeBehavior=convertToNull
+      username: postgres
+      password: test
+      driver-class-name: org.postgresql.Driver
+      maximum-pool-size: 5
+      minimum-idle: 5
+      pool-name: SpringBootHikariCPPG
+      max-lifetime: 1765000
+      read-only: false
+      data-source-properties.scanpackage:
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred

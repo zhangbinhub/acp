@@ -1,0 +1,35 @@
+versions += [
+        boot_admin: "2.2.3"
+]
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$versions.spring_boot")
+    }
+}
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:$versions.spring_boot") {
+            bomProperty("kotlin.version", "${kotlinVersion}")
+        }
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$versions.spring_cloud"
+        mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:$versions.alibaba_cloud"
+    }
+}
+bootJar {
+    manifest {
+        attributes('Version': "${project.version}", 'Provider': "Gradle ${gradleVersion}", 'JDK': "${javaVersion}", 'Kotlin': "${kotlinVersion}", 'Project': 'Acp')
+    }
+}
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+
+    implementation "de.codecentric:spring-boot-admin-starter-server:$versions.boot_admin"
+    implementation "org.springframework.cloud:spring-cloud-starter-loadbalancer"
+    // 服务注册发现
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery"
+    implementation "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel"
+}

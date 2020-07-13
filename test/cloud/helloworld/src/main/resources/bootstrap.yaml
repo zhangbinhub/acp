@@ -1,0 +1,103 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 1000
+spring:
+  profiles:
+    active: prod
+  application:
+    name: atomic-helloworld
+  thymeleaf:
+    cache: false
+  cloud:
+    loadbalancer:
+      cache:
+        ttl: 5s
+      ribbon:
+        enabled: false
+    nacos:
+      username: nacos
+      password: nacos
+      server-addr: 127.0.0.1:8848
+      discovery:
+        namespace: acp-test-cloud
+        cluster-name: ${spring.profiles.active}
+        group: ${spring.profiles.active}
+      config:
+        file-extension: yaml
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        cluster-name: ${spring.cloud.nacos.discovery.cluster-name}
+        group: ${spring.cloud.nacos.discovery.group}
+#    sentinel:
+#      datasource:
+#        nacos-degrade:
+#          nacos:
+#            username: nacos
+#            password: nacos
+#            server-addr: ${spring.cloud.nacos.server-addr}
+#            data-id: ${spring.application.name}-${spring.profiles.active}-sentinel-degrade
+#            namespace: ${spring.cloud.nacos.discovery.namespace}
+#            group-id: ${spring.profiles.active}
+#            data-type: json
+#            rule-type: degrade
+logging:
+  pattern:
+    file: '[%date{yyyy-MM-dd HH:mm:ss.SSS}] [ %-5level] [%thread] %logger{96} [%X{lineno}] - %msg%n'
+info:
+  version: 1.0.0
+  app-name: ${spring.application.name}
+  tags:
+    environment: ${spring.profiles.active}
+  build:
+    author: zhangbin
+    active: ${spring.profiles.active}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+# ===============================
+# = Feign Config
+# ===============================
+feign:
+  httpclient:
+    enabled: false
+    max-connections: 1000
+    time-to-live: 900
+    time-to-live-unit: seconds
+    follow-redirects: true
+  okhttp:
+    enabled: true
+  sentinel:
+    enabled: true
+  client:
+    config:
+      default:
+        connect-timeout: 10000
+        read-timeout: 10000
+        loggerLevel: full
+# ===============================
+# = Security Config
+# ===============================
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://server-oauth2/open/inner/check-token
+# ===============================
+# = ACP Config
+# ===============================
+acp:
+  cloud:
+    log-server:
+      client:
+        enabled: true
+        log-type: HELLOWORLD
+    oauth:
+      auth-exception-entry-point: AuthExceptionEntryPoint
+      access-denied-handler: CustomAccessDeniedHandler
+      resource-server-permit-all-path:
+        - /customer

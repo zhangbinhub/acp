@@ -1,0 +1,18 @@
+group "${group}.core"
+versions += [
+        ftpserver  : "1.1.1",
+        sftp       : "2.4.0",
+        commons_net: "3.6",
+        jsch       : "0.1.54"
+]
+dependencies {
+    api project(":core:acp-core")
+    // ftp client
+    api "commons-net:commons-net:$versions.commons_net"
+    // sftp client
+    api "com.jcraft:jsch:$versions.jsch"
+    // ftp server
+    api "org.apache.ftpserver:ftpserver-core:$versions.ftpserver"
+    // sftp server
+    api "org.apache.sshd:sshd-sftp:$versions.sftp"
+}

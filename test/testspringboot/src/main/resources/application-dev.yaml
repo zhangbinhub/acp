@@ -1,0 +1,105 @@
+server:
+  address: 127.0.0.1
+  port: 9091
+# ===============================
+# = Log To File Config
+# ===============================
+logging:
+  file:
+    path: logs/testspringboot
+    name: ${logging.file.path}/${spring.application.name}.log
+    max-size: 5MB
+    max-history: 30
+  level:
+    com.alibaba.nacos.client.naming: warn
+# ===============================
+# = Spring Config
+# ===============================
+spring:
+  # ===============================
+  # = JPA / HIBERNATE
+  # ===============================
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+  # ===============================
+  # = DATA SOURCE
+  # ===============================
+  datasource:
+    primary:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+      username: root
+      password: test
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #      maximum-pool-size: 5
+      #      minimum-idle: 5
+      #      pool-name: SpringBootHikariCPPrimary
+      #      max-lifetime: 1765000
+      #      read-only: false
+      data-source-properties.scanpackage: pers.acp.test.application.entity.primary
+    pg:
+      jdbc-url: jdbc:postgresql://[::1]:5432/test?autoReconnect=true&zeroDateTimeBehavior=convertToNull
+      username: postgres
+      password: test
+      driver-class-name: org.postgresql.Driver
+      #      maximum-pool-size: 5
+      #      minimum-idle: 5
+      #      pool-name: SpringBootHikariCPPG
+      #      max-lifetime: 1765000
+      #      read-only: false
+      data-source-properties.scanpackage: pers.acp.test.application.entity.pg
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+acp:
+  swagger:
+    enabled: true
+  ####################################################### 定时任务 #####################################################
+  # 支持：cron字符串、none、不配置
+  schedule:
+    cron:
+      task1: 0 0/1 * * * ?
+  tcp-server:
+    listeners:
+      - name: testSocket                                                     #监听服务名称
+        enabled: true                                                        #是否启用，默认false
+        keepAlive: false                                                     #是否为长连接，默认false；TCP服务有效
+        idletime: 10000                                                      #连接进入空闲状态的等待时间单位毫秒，默认10000；TCP服务有效
+        messageDecoder: ""                                                   #粘包拆包解码器 Bean 名称，默认不设置；TCP服务有效
+        threadNumber: 100                                                    #接收报文处理的最大线程数，为0或不设置则使用系统默认线程数；TCP服务有效
+        hex: false                                                           #接收报文是否是十六进制机器码，默认false
+        port: 9999                                                           #监听端口号
+        handleBean: pers.acp.test.application.test.TestTcpHandle             #报文接收处理 Bean 的类名
+        responsable: true                                                    #报文是否需要进行原路响应，默认true
+        charset: gbk                                                         #服务使用字符集，为空或不设置则系统默认字符集
+  ftp-server:
+    listeners:
+      - name: "测试ftp服务器"                                                 #服务名车鞥
+        enabled: true                                                        #可空，是否启用，默认false
+        port: 221                                                            #服务端口号
+        pwd-encrypt-mode: MD5                                                #可空，用户密码加密方式（支持MD5、SHA1、SHA256），默认MD5
+        login-failure-delay: 30                                              #可空，默认30
+        max-login-failures: 20                                               #可空，默认20
+        max-logins: 10                                                       #可空，默认10
+        max-anonymous-logins: 20                                             #可空，默认20
+        max-threads: 10                                                      #可空，默认10
+        default-home-directory: "abs:D:\\个人\\测试ftp"                       #默认根路径
+        anonymous-login-enabled: false                                       #可空，是否允许匿名用户登录，默认false
+        anonymous-write-permission: false                                    #可空，是否允许匿名用户写操作，默认false
+        user-factory-class: pers.acp.test.application.test.TestUserFactory   #用户工厂类
+  sftp-server:
+    listeners:
+      - name: "测试sftp服务器"                                                #服务名称
+        enabled: true                                                        #可空，是否启用，默认false
+        port: 4221                                                           #服务端口号
+        host-key-path: "files/resource/key/hostkey"                          #服务器密钥文件路径
+        password-auth: true                                                  #可空，是否进行密码登录，默认true
+        public-key-auth: false                                               #可空，是否进行证书登录（开启后仅支持证书验证），用户证书只支持openssh生成的密钥，默认false
+        key-auth-type: pem                                                   #可空，证书类型（der/pem/ssh），默认pem
+        key-auth-mode: RSA                                                   #可空，证书验证模式（RSA/DSA），默认RSA
+        default-home-directory: "abs:D:\\个人\\测试ftp"                       #默认根路径
+        user-factory-class: pers.acp.test.application.test.TestUserFactory   #用户工厂类
