@@ -8,6 +8,7 @@ import pers.acp.ftp.client.FtpClient;
 import pers.acp.ftp.client.FtpConnectMode;
 import pers.acp.ftp.client.SftpClient;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -19,6 +20,12 @@ public class TestClient {
     @Test
     void testSftp() {
         SftpClient sftpClient = new SftpClient("127.0.0.1", 4221, "ftp", "1");
+//        SftpClient sftpClient = new SftpClient("D:\\test\\pgp\\test_rsa_secret.key",
+//                "test", "127.0.0.1", 4221, "test_user");
+//        sftpClient.setRemotePath("/usr");
+//        sftpClient.setFileName("测试.txt");
+//        sftpClient.doUploadForSFTP(new File("C:\\WorkFile\\工作资料\\区块链\\服务器信息.txt"));
+//        sftpClient.setRemotePath("/");
         List<ChannelSftp.LsEntry> sftpList = sftpClient.getFileEntityListForSFTP();
         System.out.println("----------------------sftp-----------------------");
         for (ChannelSftp.LsEntry entity : sftpList) {
