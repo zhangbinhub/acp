@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 import org.apache.commons.text.CharacterPredicates
 import org.apache.commons.text.RandomStringGenerator
 import org.springframework.expression.spel.standard.SpelExpressionParser
+import pers.acp.core.CommonTools
 import pers.acp.core.security.Md5Encrypt
 import java.io.File
 import java.util.*
@@ -44,11 +45,14 @@ fun main(args: Array<String>) {
 //    println(testKotlin())
 //    println("总耗时：" + (System.currentTimeMillis() - now))
 
-    var result = "肇牵车牛远服贾用孝养厥父母"
-    for (i in 1..100000000) {
-        result = Md5Encrypt.encrypt(result)
-    }
-    println(result)
+//    val regex = """127\.0\.0\..*"""
+//    println(CommonTools.regexPattern(regex,"127.0.0.12"))
+
+//    var result = "肇牵车牛远服贾用孝养厥父母"
+//    for (i in 1..100000000) {
+//        result = Md5Encrypt.encrypt(result)
+//    }
+//    println(result)
 }
 
 /**
