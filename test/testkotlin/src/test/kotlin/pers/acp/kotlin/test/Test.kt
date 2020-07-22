@@ -3,8 +3,9 @@ package pers.acp.kotlin.test
 import kotlinx.coroutines.*
 import org.apache.commons.text.CharacterPredicates
 import org.apache.commons.text.RandomStringGenerator
+import org.bouncycastle.crypto.digests.MD4Digest
+import org.bouncycastle.util.encoders.Hex
 import org.springframework.expression.spel.standard.SpelExpressionParser
-import pers.acp.core.CommonTools
 import pers.acp.core.security.Md5Encrypt
 import java.io.File
 import java.util.*
@@ -48,11 +49,16 @@ fun main(args: Array<String>) {
 //    val regex = """127\.0\.0\..*"""
 //    println(CommonTools.regexPattern(regex,"127.0.0.12"))
 
-//    var result = "肇牵车牛远服贾用孝养厥父母"
-//    for (i in 1..100000000) {
+    var result = ""
+    for (i in 1..100000000) {
 //        result = Md5Encrypt.encrypt(result)
-//    }
-//    println(result)
+        val digest = MD4Digest() //通过BC获得消息摘要MD4对象
+        digest.update(result.toByteArray(Charsets.UTF_8), 0, result.toByteArray(Charsets.UTF_8).size)
+        val md4Byte = ByteArray(digest.digestSize)
+        digest.doFinal(md4Byte, 0)
+        result = Hex.toHexString(md4Byte)
+    }
+    println(result)
 }
 
 /**
