@@ -24,7 +24,7 @@
 > - [Upgrade] 依赖降级
 >   - jsch 0.1.54
 > - [Upgrade] 升级依赖
->   - Spring Boot 2.3.1.RELEASE
+>   - Spring Boot 2.3.2.RELEASE
 >   - Spring Cloud Hoxton.SR6
 >   - jupiter 5.6.2
 >   - junit platform 1.6.2
@@ -34,7 +34,7 @@
 >   - hikaricp 3.4.5
 >   - zip4j 2.6.1
 >   - kotlin coroutines 1.3.7
->   - netty 4.1.50.Final
+>   - netty 4.1.51.Final
 >   - okhttp 3.14.9
 >   - knife4j 2.0.4
 ##### v6.4.4
