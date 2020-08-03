@@ -3,9 +3,15 @@ package pers.acp.kotlin.test
 import kotlinx.coroutines.*
 import org.apache.commons.text.CharacterPredicates
 import org.apache.commons.text.RandomStringGenerator
+import org.bouncycastle.crypto.digests.MD2Digest
+import org.bouncycastle.crypto.digests.MD4Digest
+import org.bouncycastle.util.encoders.Hex
 import org.springframework.expression.spel.standard.SpelExpressionParser
+import pers.acp.core.CommonTools
 import pers.acp.core.security.Md5Encrypt
+import pers.acp.core.security.SignatureEncrypt
 import java.io.File
+import java.math.BigDecimal
 import java.util.*
 
 
@@ -44,11 +50,31 @@ fun main(args: Array<String>) {
 //    println(testKotlin())
 //    println("总耗时：" + (System.currentTimeMillis() - now))
 
-    var result = "肇牵车牛远服贾用孝养厥父母"
+//    val regex = """127\.0\.0\..*"""
+//    println(CommonTools.regexPattern(regex,"127.0.0.12"))
+
+    var result = "73.25"
     for (i in 1..100000000) {
-        result = Md5Encrypt.encrypt(result)
+//        result = Md5Encrypt.encrypt(result)
+        result = SignatureEncrypt.encrypt(result, "MD2")
+//        val digest = MD4Digest() //通过BC获得消息摘要MD4对象
+//        val digest = MD2Digest() //通过BC获得消息摘要MD2对象
+//        digest.update(result.toByteArray(Charsets.UTF_8), 0, result.toByteArray(Charsets.UTF_8).size)
+//        val md4Byte = ByteArray(digest.digestSize)
+//        digest.doFinal(md4Byte, 0)
+//        result = Hex.toHexString(md4Byte)
     }
     println(result)
+
+//    val int = 12
+//    println(int)
+//    println(int.toString())
+//    println(CommonTools.getRandomString(18))
+//    println(CommonTools.getRandomString(18))
+//    println(CommonTools.getRandomString(18))
+//    val int = 1.8206778042E10
+//    println(BigDecimal(int).toPlainString())
+//    println(int.toString())
 }
 
 /**
@@ -85,8 +111,9 @@ fun testSpEL() {
         }
     }
     println(list)
-
-    println(Thread.currentThread().hashCode())
+    println(testData.toString())
+    val exp5 = parser.parseExpression("toString().contains('test1')")
+    println("Expression5 Value: ${exp5.getValue(testData, Boolean::class.java)}")
 }
 
 fun testKotlin() = runBlocking {
