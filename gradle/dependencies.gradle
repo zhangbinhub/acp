@@ -16,7 +16,7 @@ versions += [
         slf4j            : "1.7.30",
         logback          : "1.2.3",
         xstream          : "1.4.12",
-        jackson_databind : "2.11.0",
+        jackson_databind : "2.11.1",
         zip4j            : "2.6.1",
 
         hikaricp         : "3.4.5",
