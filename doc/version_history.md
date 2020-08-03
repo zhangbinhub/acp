@@ -30,7 +30,7 @@
 >   - junit platform 1.6.2
 >   - commons-codec 1.14
 >   - commons-lang3 3.10
->   - jackson 2.11.0
+>   - jackson 2.11.1
 >   - hikaricp 3.4.5
 >   - zip4j 2.6.1
 >   - kotlin coroutines 1.3.7
