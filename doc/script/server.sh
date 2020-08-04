@@ -3,15 +3,14 @@ APP_NAME=$(cd "$(dirname "$0")";pwd)/xxxx-1.0.0.jar
 JVM_PARAM='-server -XX:+UnlockExperimentalVMOptions -XX:+UseZGC -Xms256m -Xmx512m -Dfile.encoding=utf-8'
 
 usage() {
-    echo "Usage: sh 执行脚本.sh [start|stop|restart|status]"
-    exit 1
+  echo "Usage: sh 执行脚本.sh [start|stop|restart|status]"
+  exit 1
 }
 
 is_exist(){
   pid=`ps -ef|grep $APP_NAME|grep -v grep|awk '{print $2}' `
-  #如果不存在返回1，存在返回0
   if [ -z "${pid}" ]; then
-   return 1
+    return 1
   else
     return 0
   fi
@@ -35,6 +34,16 @@ stop(){
   fi
 }
 
+stopNow(){
+  is_exist
+  if [ $? -eq "0" ]; then
+    kill -9 $pid
+    sleep 1s
+  else
+    echo "${APP_NAME} is not running"
+  fi
+}
+
 status(){
   is_exist
   if [ $? -eq "0" ]; then
@@ -46,15 +55,20 @@ status(){
 
 restart(){
   stop
-  for i in $(seq 1 3600)
+  for i in $(seq 1 30)
   do
-    is_exist
-    if [ $? -eq "0" ]
-    then
-        sleep 1s
+    if [ $i -eq 30 ]; then
+      stopNow
+      start
+      break
     else
+      is_exist
+      if [ $? -eq "0" ]; then
+        sleep 1s
+      else
         start
         break
+      fi
     fi
   done
 }
@@ -65,6 +79,9 @@ case "$1" in
     ;;
   "stop")
     stop
+    ;;
+  "stopNow")
+    stopNow
     ;;
   "status")
     status
