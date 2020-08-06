@@ -53,18 +53,18 @@ fun main(args: Array<String>) {
 //    val regex = """127\.0\.0\..*"""
 //    println(CommonTools.regexPattern(regex,"127.0.0.12"))
 
-    var result = "73.25"
-    for (i in 1..100000000) {
+//    var result = "..."
+//    for (i in 1..100000000) {
 //        result = Md5Encrypt.encrypt(result)
-        result = SignatureEncrypt.encrypt(result, "MD2")
+//        result = SignatureEncrypt.encrypt(result, "MD2")
 //        val digest = MD4Digest() //通过BC获得消息摘要MD4对象
 //        val digest = MD2Digest() //通过BC获得消息摘要MD2对象
 //        digest.update(result.toByteArray(Charsets.UTF_8), 0, result.toByteArray(Charsets.UTF_8).size)
 //        val md4Byte = ByteArray(digest.digestSize)
 //        digest.doFinal(md4Byte, 0)
 //        result = Hex.toHexString(md4Byte)
-    }
-    println(result)
+//    }
+//    println(result)
 
 //    val int = 12
 //    println(int)
