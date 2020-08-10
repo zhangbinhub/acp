@@ -1,5 +1,5 @@
 versions += [
-        boot_admin: "2.2.4"
+        boot_admin: "2.3.0"
 ]
 buildscript {
     dependencies {
