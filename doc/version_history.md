@@ -25,7 +25,8 @@
 >   - jsch 0.1.54
 > - [Upgrade] 升级依赖
 >   - Spring Boot 2.3.2.RELEASE
->   - Spring Cloud Hoxton.SR6
+>   - Spring Cloud Hoxton.SR7
+>   - Spring Boot Admin 2.3.0
 >   - jupiter 5.6.2
 >   - junit platform 1.6.2
 >   - commons-codec 1.14
