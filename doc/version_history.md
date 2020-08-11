@@ -34,7 +34,7 @@
 >   - jackson 2.11.1
 >   - hikaricp 3.4.5
 >   - zip4j 2.6.1
->   - kotlin coroutines 1.3.7
+>   - kotlin coroutines 1.3.8
 >   - netty 4.1.51.Final
 >   - okhttp 3.14.9
 >   - knife4j 2.0.4
