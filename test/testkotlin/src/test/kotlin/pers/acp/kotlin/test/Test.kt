@@ -46,6 +46,12 @@ fun main(args: Array<String>) {
     println(file.length())
 
 //    testSpEL()
+    val map = mutableMapOf<String,String>()
+    map["test3"]="3yyyy"
+    map["test4"]="4xxx"
+    val template = "你好\${test3}\${test4}"
+    println(template)
+    println(CommonTools.replaceVar(template,map))
 //    val now = System.currentTimeMillis()
 //    println(testKotlin())
 //    println("总耗时：" + (System.currentTimeMillis() - now))
@@ -98,7 +104,7 @@ fun testSpEL() {
     println("Expression3 Value: ${exp3.getValue(number, String::class.java)}")
 
     testData.test1 = "T10"
-    val exp4 = parser.parseExpression("{'T1','T2','T3','T4'}.contains(test1)")
+    val exp4 = parser.parseExpression("{\"T10\",\"T2\",\"T3\",\"T4\"}.contains(test1)")
     println("Expression4 Value: ${exp4.getValue(testData, Boolean::class.java)}")
 
     val list = mutableListOf("1", "2", "3", "A", "B", "C")

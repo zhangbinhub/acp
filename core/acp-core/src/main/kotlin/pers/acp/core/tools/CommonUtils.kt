@@ -464,7 +464,7 @@ object CommonUtils {
                     if (tmpVar.contains("}")) {
                         val varKey = tmpVar.substring(0, tmpVar.indexOf("}"))
                         if (data.containsKey(varKey)) {
-                            formula = varFormula.replace("\${$varKey}", data.getOrElse(varKey) { "" })
+                            formula = formula.replace("\${$varKey}", data.getOrElse(varKey) { "" })
                         }
                         tmpVar = tmpVar.substring(tmpVar.indexOf("}") + 1)
                         begin = tmpVar.indexOf("\${")

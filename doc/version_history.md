@@ -9,6 +9,7 @@
 >   - [Upgrade] 优化异步任务异常处理
 >   - [Upgrade] 增加数字转中文大写方法，优化金额转中文大写代码规范
 >   - [Upgrade] 优化正则表达式匹配，使用Kotlin的Regex对象
+>   - [Fix] 修复CommonUtils.replaceVar只替换一个变量的BUG
 > - acp-ftp
 >   - [Upgrade] FtpClient 增加获取文件列表方法
 >   - [Upgrade] SftpClient 增加获取文件列表方法
