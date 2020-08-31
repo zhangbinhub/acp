@@ -13,6 +13,8 @@ import pers.acp.core.security.Md5Encrypt
 import pers.acp.spring.boot.exceptions.ServerException
 import pers.acp.spring.cloud.annotation.AcpCloudDuplicateSubmission
 import pers.acp.spring.cloud.lock.DistributedLock
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 /**
  * controller拦截器
@@ -45,7 +47,7 @@ class RestControllerRepeatAspect(private val distributedLock: DistributedLock, p
         val duplicateSubmission = method.getAnnotation(AcpCloudDuplicateSubmission::class.java)
         val key = getKey(signature.declaringTypeName + "." + method.name, duplicateSubmission.keyExpress, pjp.args)
         val expire = duplicateSubmission.expire
-        return if (distributedLock.getLock(key, key, expire)) {
+        return if (distributedLock.getLock(key, key, expire, false)) {
             try {
                 pjp.proceed()
             } finally {
@@ -59,18 +61,19 @@ class RestControllerRepeatAspect(private val distributedLock: DistributedLock, p
     private fun getKey(prefix: String, keyExpress: String, args: Array<Any>): String {
         val builder = StringBuilder()
         for (arg in args) {
-            builder.append(",")
-            if (arg is Int || arg is Long
-                    || arg is Float || arg is Double || arg is Boolean
-                    || arg is String || arg is Char || arg is Byte) {
-                builder.append(arg.toString())
-            } else {
-                try {
-                    builder.append(objectMapper.writeValueAsString(arg))
-                } catch (e: JsonProcessingException) {
+            if (arg !is HttpServletRequest && arg !is HttpServletResponse) {
+                builder.append(",")
+                if (arg is Int || arg is Long
+                        || arg is Float || arg is Double || arg is Boolean
+                        || arg is String || arg is Char || arg is Byte) {
                     builder.append(arg.toString())
+                } else {
+                    try {
+                        builder.append(objectMapper.writeValueAsString(arg))
+                    } catch (e: JsonProcessingException) {
+                        builder.append(arg.toString())
+                    }
                 }
-
             }
         }
         val keyValue = prefix + ":" + Md5Encrypt.encrypt(builder.toString())
