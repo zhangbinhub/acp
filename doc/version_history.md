@@ -22,6 +22,7 @@
 >   - [Upgrade] controller切面日志配置项变更，acp.controller-aspect变更为acp.controller-log
 > - acp-spring-cloud-starter
 >   - [Upgrade] 分布式锁接口增加是否可重入参数
+>   - [Upgrade] 优化重复提交拦截 RestControllerRepeatAspect
 > - [Upgrade] 依赖降级
 >   - jsch 0.1.54
 > - [Upgrade] 升级依赖
