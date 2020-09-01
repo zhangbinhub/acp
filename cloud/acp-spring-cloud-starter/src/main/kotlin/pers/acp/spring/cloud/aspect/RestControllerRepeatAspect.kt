@@ -41,7 +41,7 @@ class RestControllerRepeatAspect(private val distributedLock: DistributedLock, p
      */
     @Around("executeService()")
     @Throws(Throwable::class)
-    fun doAround(pjp: ProceedingJoinPoint): Any {
+    fun doAround(pjp: ProceedingJoinPoint): Any? {
         val signature = pjp.signature as MethodSignature
         val method = signature.method
         val duplicateSubmission = method.getAnnotation(AcpCloudDuplicateSubmission::class.java)
