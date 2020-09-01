@@ -23,6 +23,7 @@
 > - acp-spring-cloud-starter
 >   - [Upgrade] 分布式锁接口增加是否可重入参数
 >   - [Upgrade] 优化重复提交拦截 RestControllerRepeatAspect
+>   - [Upgrade] 远程日志收集对象取消Throwable属性
     - [Fix] 防重复提交，拦截方法没有返回值时报错
 > - [Upgrade] 依赖降级
 >   - jsch 0.1.54

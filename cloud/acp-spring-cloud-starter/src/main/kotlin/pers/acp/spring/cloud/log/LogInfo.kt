@@ -44,9 +44,6 @@ class LogInfo {
     var message: String? = null
         internal set
 
-    var throwable: Throwable? = null
-        internal set
-
     var params: List<Any?> = listOf()
         internal set
 

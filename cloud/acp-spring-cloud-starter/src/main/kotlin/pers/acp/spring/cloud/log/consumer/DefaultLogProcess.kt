@@ -52,35 +52,35 @@ class DefaultLogProcess : LogProcess {
                 if (logInfo.params.isNotEmpty()) {
                     logFactory.debug(message.toString(), *logInfo.params.toTypedArray())
                 } else {
-                    logFactory.debug(message.toString(), logInfo.throwable)
+                    logFactory.debug(message.toString())
                 }
             }
             LogLevel.Warn -> {
                 if (logInfo.params.isNotEmpty()) {
                     logFactory.warn(message.toString(), *logInfo.params.toTypedArray())
                 } else {
-                    logFactory.warn(message.toString(), logInfo.throwable)
+                    logFactory.warn(message.toString())
                 }
             }
             LogLevel.Error -> {
                 if (logInfo.params.isNotEmpty()) {
                     logFactory.error(message.toString(), *logInfo.params.toTypedArray())
                 } else {
-                    logFactory.error(message.toString(), logInfo.throwable)
+                    logFactory.error(message.toString())
                 }
             }
             LogLevel.Trace -> {
                 if (logInfo.params.isNotEmpty()) {
                     logFactory.trace(message.toString(), *logInfo.params.toTypedArray())
                 } else {
-                    logFactory.trace(message.toString(), logInfo.throwable)
+                    logFactory.trace(message.toString())
                 }
             }
             else -> {
                 if (logInfo.params.isNotEmpty()) {
                     logFactory.info(message.toString(), *logInfo.params.toTypedArray())
                 } else {
-                    logFactory.info(message.toString(), logInfo.throwable)
+                    logFactory.info(message.toString())
                 }
             }
         }

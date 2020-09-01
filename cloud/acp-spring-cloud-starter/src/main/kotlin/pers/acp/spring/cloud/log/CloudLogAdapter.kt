@@ -98,7 +98,6 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
             logInfo?.let {
                 it.logLevel = LogLevel.Info.name
                 it.message = message
-                it.throwable = t
                 sendToLogServer(it)
             }
         }
@@ -136,7 +135,6 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
             logInfo?.let {
                 it.logLevel = LogLevel.Debug.name
                 it.message = message
-                it.throwable = t
                 sendToLogServer(it)
             }
         }
@@ -174,7 +172,6 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
             logInfo?.let {
                 it.logLevel = LogLevel.Warn.name
                 it.message = message
-                it.throwable = t
                 sendToLogServer(it)
             }
         }
@@ -212,7 +209,6 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
             logInfo?.let {
                 it.logLevel = LogLevel.Error.name
                 it.message = message
-                it.throwable = t
                 sendToLogServer(it)
             }
         }
@@ -250,7 +246,6 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
             logInfo?.let {
                 it.logLevel = LogLevel.Trace.name
                 it.message = message
-                it.throwable = t
                 sendToLogServer(it)
             }
         }
