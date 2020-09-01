@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import pers.acp.spring.boot.enums.ResponseCode
 import pers.acp.spring.boot.tools.PackageTools
 import pers.acp.core.exceptions.EnumValueUndefinedException
+import pers.acp.spring.boot.component.BootLogAdapter
 import pers.acp.spring.boot.interfaces.LogAdapter
 
 import javax.validation.ConstraintViolationException
@@ -23,9 +24,10 @@ import javax.validation.ConstraintViolationException
  */
 @ControllerAdvice
 class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityExceptionHandler() {
-
+    private val bootLogAdapter = BootLogAdapter()
     private fun doLog(ex: Throwable) {
-        logAdapter.error(ex.message, ex)
+        logAdapter.error(ex.message)
+        bootLogAdapter.error(ex.message, ex)
     }
 
     /**
