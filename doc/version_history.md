@@ -20,7 +20,6 @@
 > - acp-spring-boot-starter
 >   - [Upgrade] controller切面强制使用BootLogAdapter进行日志记录
 >   - [Upgrade] controller切面日志配置项变更，acp.controller-aspect变更为acp.controller-log
->   - [Upgrade] 全局异常处理记录日志时，调用栈强制使用BootLogAdapter进行记录
 > - acp-spring-cloud-starter
 >   - [Upgrade] 分布式锁接口增加是否可重入参数
 >   - [Upgrade] 优化重复提交拦截 RestControllerRepeatAspect
