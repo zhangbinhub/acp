@@ -24,10 +24,12 @@ import javax.validation.ConstraintViolationException
  */
 @ControllerAdvice
 class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityExceptionHandler() {
-    private val bootLogAdapter = BootLogAdapter()
     private fun doLog(ex: Throwable) {
-        logAdapter.error(ex.message)
-        bootLogAdapter.error(ex.message, ex)
+        if (logAdapter is BootLogAdapter) {
+            logAdapter.error(ex.message, ex)
+        } else {
+            logAdapter.error(ex.message)
+        }
     }
 
     /**
