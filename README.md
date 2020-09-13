@@ -5,9 +5,9 @@
 - 使用该脚手架可快速搭建基于Kotlin或Java语言的普通应用、SpringBoot应用和SpringCloud应用。
 - 从v6.3.0开始，取消单独的jdk8分支，代码及工程配置统一，默认使用java11编译，如需编译java1.8版本，只需修改[gradle.properties](gradle.properties)中的javaVersion配置
 ## 相关组件版本及官方文档
-- [Spring Boot 2.3.2.RELEASE](https://projects.spring.io/spring-boot)
-- [Spring Cloud Hoxton.SR7](http://projects.spring.io/spring-cloud)
-- [Spring Cloud Alibaba 2.2.1.RELEASE](https://github.com/alibaba/spring-cloud-alibaba)
+- [Spring Boot 2.3.3.RELEASE](https://projects.spring.io/spring-boot)
+- [Spring Cloud Hoxton.SR8](http://projects.spring.io/spring-cloud)
+- [Spring Cloud Alibaba 2.2.2.RELEASE](https://github.com/alibaba/spring-cloud-alibaba)
 
 ## 技术栈
 - joda-time
@@ -42,8 +42,8 @@
     
 ## 一、环境要求及开发语言
 - java 1.8+
-- gradle 6.5
-- kotlin 1.3.72
+- gradle 6.5+
+- kotlin 1.4.10
 
 ## 二、gradle 脚本配置及使用
 ### （一）配置文件
@@ -87,7 +87,7 @@ ext {
 
 ### （三）升级命令
 ``
-    gradlew wrapper --gradle-version=6.5 --distribution-type=all
+    gradlew wrapper --gradle-version=6.6.1 --distribution-type=all
 ``
 
 ## 三、工程说明
@@ -430,4 +430,3 @@ http://127.0.0.1:5601
 自行编写 Dockerfile，使用命令单独执行或使用 docker-compose 批量执行，请自行百度
 
 ## 七、[Sentinel 动态数据源配置](doc/sentinel.md)
-注：目前 Spring Cloud Alibaba 还未支持 Nacos 1.2+ 用作 sentinel 的数据源，因此需要关闭feign的sentinel，并且注释sentinel的nacos数据源配置。但是已有 [pr](https://github.com/alibaba/spring-cloud-alibaba/pull/1354) 解决了这个问题，如果不想等下个版本发布，可以提前拉取源代码

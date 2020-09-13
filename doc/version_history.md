@@ -1,7 +1,7 @@
 ## 版本更新记录
 ##### v6.4.5
 > - Global
->   - [Upgrade] 升级 Gradle 至 6.5
+>   - [Upgrade] 升级 Gradle 至 6.6.1
 >   - [Upgrade] server.tomcat.max-threads 修改为 server.tomcat.threads.max
 >   - [Upgrade] 修改启动脚本
 > - acp-core
@@ -28,8 +28,10 @@
 > - [Upgrade] 依赖降级
 >   - jsch 0.1.54
 > - [Upgrade] 升级依赖
->   - Spring Boot 2.3.2.RELEASE
->   - Spring Cloud Hoxton.SR7
+>   - kotlin 1.4.10
+>   - Spring Boot 2.3.3.RELEASE
+>   - Spring Cloud Hoxton.SR8
+>   - Spring Cloud Alibaba 2.2.2.RELEASE
 >   - Spring Boot Admin 2.3.0
 >   - jupiter 5.6.2
 >   - junit platform 1.6.2

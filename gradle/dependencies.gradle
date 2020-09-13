@@ -16,13 +16,13 @@ versions += [
         slf4j            : "1.7.30",
         logback          : "1.2.3",
         xstream          : "1.4.12",
-        jackson_databind : "2.11.1",
+        jackson_databind : "2.11.2",
         zip4j            : "2.6.1",
 
         hikaricp         : "3.4.5",
 
-        spring_boot      : "2.3.2.RELEASE",
-        spring_cloud     : "Hoxton.SR7",
-        alibaba_cloud    : "2.2.1.RELEASE",
+        spring_boot      : "2.3.3.RELEASE",
+        spring_cloud     : "Hoxton.SR8",
+        alibaba_cloud    : "2.2.2.RELEASE",
         knife4j          : "2.0.4"
 ]
