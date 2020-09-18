@@ -29,7 +29,7 @@
 >   - jsch 0.1.54
 > - [Upgrade] 升级依赖
 >   - kotlin 1.4.10
->   - Spring Boot 2.3.3.RELEASE
+>   - Spring Boot 2.3.4.RELEASE
 >   - Spring Cloud Hoxton.SR8
 >   - Spring Cloud Alibaba 2.2.3.RELEASE
 >   - Spring Boot Admin 2.3.0
@@ -41,7 +41,7 @@
 >   - hikaricp 3.4.5
 >   - zip4j 2.6.1
 >   - kotlin coroutines 1.3.8
->   - netty 4.1.51.Final
+>   - netty 4.1.52.Final
 >   - okhttp 3.14.9
 >   - knife4j 2.0.4
 ##### v6.4.4

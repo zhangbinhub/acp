@@ -21,7 +21,7 @@ versions += [
 
         hikaricp         : "3.4.5",
 
-        spring_boot      : "2.3.3.RELEASE",
+        spring_boot      : "2.3.4.RELEASE",
         spring_cloud     : "Hoxton.SR8",
         alibaba_cloud    : "2.2.3.RELEASE",
         knife4j          : "2.0.4"
