@@ -31,7 +31,7 @@
 >   - kotlin 1.4.10
 >   - Spring Boot 2.3.3.RELEASE
 >   - Spring Cloud Hoxton.SR8
->   - Spring Cloud Alibaba 2.2.2.RELEASE
+>   - Spring Cloud Alibaba 2.2.3.RELEASE
 >   - Spring Boot Admin 2.3.0
 >   - jupiter 5.6.2
 >   - junit platform 1.6.2

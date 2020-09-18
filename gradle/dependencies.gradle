@@ -23,6 +23,6 @@ versions += [
 
         spring_boot      : "2.3.3.RELEASE",
         spring_cloud     : "Hoxton.SR8",
-        alibaba_cloud    : "2.2.2.RELEASE",
+        alibaba_cloud    : "2.2.3.RELEASE",
         knife4j          : "2.0.4"
 ]
