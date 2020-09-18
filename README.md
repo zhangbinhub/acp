@@ -7,7 +7,7 @@
 ## 相关组件版本及官方文档
 - [Spring Boot 2.3.3.RELEASE](https://projects.spring.io/spring-boot)
 - [Spring Cloud Hoxton.SR8](http://projects.spring.io/spring-cloud)
-- [Spring Cloud Alibaba 2.2.2.RELEASE](https://github.com/alibaba/spring-cloud-alibaba)
+- [Spring Cloud Alibaba 2.2.3.RELEASE](https://github.com/alibaba/spring-cloud-alibaba)
 
 ## 技术栈
 - joda-time
