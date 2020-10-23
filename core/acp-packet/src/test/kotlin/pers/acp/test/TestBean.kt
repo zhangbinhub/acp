@@ -10,7 +10,7 @@ data class TestBean(
         @XStreamAlias("fileFlag")
         var fileFlag: String? = null,
         @XStreamAlias("BODY")
-        var body: Body = Body()
+        var body: Body? = Body()
 ) {
     data class Body(
             /**
