@@ -1,4 +1,7 @@
 ## 版本更新记录
+##### v6.5.0
+> - Global
+>   - [Upgrade] 升级 Gradle 至 6.7.1
 ##### v6.4.5
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.6.1
