@@ -2,6 +2,8 @@
 ##### v6.5.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.7.1
+> - [Upgrade] 升级依赖
+>   - kotlin 1.4.20
 ##### v6.4.5
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.6.1
