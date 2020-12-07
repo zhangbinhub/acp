@@ -10,12 +10,11 @@
 > - acp-core
 >   - [Upgrade] bouncycastle 的组件由15on替换为15to18后缀
 > - [Upgrade] 升级依赖
->   - kotlin 1.4.20
 >   - kotlin coroutines 1.4.1
 >   - Spring Boot 2.4.0
 >   - knife4j 2.0.8
->   - jupiter 5.6.3
->   - junit-platform 1.6.3
+>   - jupiter 5.7.0
+>   - junit-platform 1.7.0
 >   - netty 4.1.54.Final
 >   - commons-net 3.7.2
 >   - jsch 0.1.55
