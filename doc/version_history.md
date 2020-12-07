@@ -9,10 +9,19 @@
 >     - $versions.alibaba_cloud replace to ${springCloudAlibabaVersion}
 > - acp-core
 >   - [Upgrade] bouncycastle 的组件由15on替换为15to18后缀
+> - acp-spring-boot-starter
+>   - [Upgrade] controller切面中，google ImmutableList替换为Kotlin的MutableList
+> - test
+>   - [Upgrade] logback 配置属性重命名
+>     - logging.pattern.rolling-file-name → logging.logback.rollingpolicy.file-name-pattern
+>     - logging.file.clean-history-on-start → logging.logback.rollingpolicy.clean-history-on-start
+>     - logging.file.max-size → logging.logback.rollingpolicy.max-file-size
+>     - logging.file.total-size-cap → logging.logback.rollingpolicy.total-size-cap
+>     - logging.file.max-history → logging.logback.rollingpolicy.max-history
 > - [Upgrade] 升级依赖
 >   - kotlin coroutines 1.4.1
 >   - Spring Boot 2.4.0
->   - knife4j 2.0.8
+>   - knife4j 3.0.2
 >   - jupiter 5.7.0
 >   - junit-platform 1.7.0
 >   - netty 4.1.54.Final
