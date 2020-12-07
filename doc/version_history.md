@@ -2,8 +2,36 @@
 ##### v6.5.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.7.1
+>   - [Upgrade] gradle/dependencies.gradle 中移除 spring_boot、spring_cloud、alibaba_cloud，gradle.properties 中增加 springBootVersion、springCloudVersion、springCloudAlibabaVersion
+>   - [Upgrade] 修改各模块build.gradle写法
+>     - $versions.spring_boot replace to ${springBootVersion}
+>     - $versions.spring_cloud replace to ${springCloudVersion}
+>     - $versions.alibaba_cloud replace to ${springCloudAlibabaVersion}
+> - acp-core
+>   - [Upgrade] bouncycastle 的组件由15on替换为15to18后缀
 > - [Upgrade] 升级依赖
->   - kotlin 1.4.20
+>   - kotlin coroutines 1.4.1
+>   - Spring Boot 2.4.0
+>   - knife4j 2.0.8
+>   - jupiter 5.7.0
+>   - junit-platform 1.7.0
+>   - netty 4.1.54.Final
+>   - commons-net 3.7.2
+>   - jsch 0.1.55
+>   - sshd-sftp 2.5.1
+>   - jackson 2.11.3
+>   - joda time 2.10.8
+>   - commons-codec 1.15
+>   - commons-text 1.9
+>   - commons-lang3 3.11
+>   - bouncycastle 1.67
+>   - xstream 1.4.14
+>   - jackson 2.11.3
+>   - zip4j 2.6.4
+>   - mysql 8.0.22
+>   - oracle 19.8.0.0
+>   - sqlserver 8.4.1.jre8
+>   - postgresql 42.2.18
 ##### v6.4.5
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.6.1
