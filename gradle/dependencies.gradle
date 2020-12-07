@@ -20,5 +20,5 @@ versions += [
         zip4j            : "2.6.4",
 
         hikaricp         : "3.4.5",
-        knife4j          : "2.0.8"
+        knife4j          : "3.0.2"
 ]
