@@ -1,7 +1,6 @@
 package pers.acp.spring.boot.aspect
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.collect.ImmutableList
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -27,23 +26,27 @@ import java.util.concurrent.Callable
  */
 @Aspect
 @Order(Ordered.LOWEST_PRECEDENCE)
-class RestControllerAspect(private val controllerLogConfiguration: ControllerLogConfiguration,
-                           private val objectMapper: ObjectMapper) {
+class RestControllerAspect(
+    private val controllerLogConfiguration: ControllerLogConfiguration,
+    private val objectMapper: ObjectMapper
+) {
     private val logAdapter = BootLogAdapter()
 
     /**
      * 定义拦截规则
      */
-    @Pointcut(value = "execution(public * *(..)) && (" +
-            "@within(org.springframework.web.bind.annotation.RestController) " +
-            "|| @within(org.springframework.stereotype.Controller)) && ( " +
-            "@annotation(org.springframework.web.bind.annotation.RequestMapping) " +
-            "|| @annotation(org.springframework.web.bind.annotation.GetMapping) " +
-            "|| @annotation(org.springframework.web.bind.annotation.PostMapping) " +
-            "|| @annotation(org.springframework.web.bind.annotation.PatchMapping) " +
-            "|| @annotation(org.springframework.web.bind.annotation.DeleteMapping) " +
-            "|| @annotation(org.springframework.web.bind.annotation.PutMapping) " +
-            "|| @annotation(org.springframework.web.bind.annotation.Mapping) ) ")
+    @Pointcut(
+        value = "execution(public * *(..)) && (" +
+                "@within(org.springframework.web.bind.annotation.RestController) " +
+                "|| @within(org.springframework.stereotype.Controller)) && ( " +
+                "@annotation(org.springframework.web.bind.annotation.RequestMapping) " +
+                "|| @annotation(org.springframework.web.bind.annotation.GetMapping) " +
+                "|| @annotation(org.springframework.web.bind.annotation.PostMapping) " +
+                "|| @annotation(org.springframework.web.bind.annotation.PatchMapping) " +
+                "|| @annotation(org.springframework.web.bind.annotation.DeleteMapping) " +
+                "|| @annotation(org.springframework.web.bind.annotation.PutMapping) " +
+                "|| @annotation(org.springframework.web.bind.annotation.Mapping) ) "
+    )
     fun executeService() {
     }
 
@@ -64,7 +67,8 @@ class RestControllerAspect(private val controllerLogConfiguration: ControllerLog
                 val method = request.method
                 val uri = request.requestURI
                 if (needLog(controllerLogConfiguration, uri)) {
-                    val startLog = StringBuilder("========== 请求开始, method: $method, Content-Type: ${request.contentType}, uri: $uri\n")
+                    val startLog =
+                        StringBuilder("========== 请求开始, method: $method, Content-Type: ${request.contentType}, uri: $uri\n")
                     startLog.append("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
                     startLog.append("target : ").append(pjp.signature.declaringTypeName).append("\n")
                     startLog.append("-----> request: ").append(method).append("\n")
@@ -74,11 +78,13 @@ class RestControllerAspect(private val controllerLogConfiguration: ControllerLog
                     }
                     while (headers.hasMoreElements()) {
                         val name = headers.nextElement()
-                        startLog.append("           - ").append(name).append("=").append(request.getHeader(name)).append("\n")
+                        startLog.append("           - ").append(name).append("=").append(request.getHeader(name))
+                            .append("\n")
                     }
                     val queryString = request.queryString
                     if (!CommonTools.isNullStr(queryString)) {
-                        startLog.append("      ┖---- query string: \n").append("           - ").append(queryString).append("\n")
+                        startLog.append("      ┖---- query string: \n").append("           - ").append(queryString)
+                            .append("\n")
                     }
                     val params = request.parameterNames
                     if (params.hasMoreElements()) {
@@ -86,7 +92,8 @@ class RestControllerAspect(private val controllerLogConfiguration: ControllerLog
                     }
                     while (params.hasMoreElements()) {
                         val name = params.nextElement()
-                        startLog.append("           - ").append(name).append("=").append(request.getParameter(name)).append("\n")
+                        startLog.append("           - ").append(name).append("=").append(request.getParameter(name))
+                            .append("\n")
                     }
                     startLog.append("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------")
                     logAdapter.info(startLog.toString())
@@ -98,7 +105,8 @@ class RestControllerAspect(private val controllerLogConfiguration: ControllerLog
                     if (needLog(controllerLogConfiguration, uri)) {
                         logAdapter.info(">>>>>>>>>> 处理结束! [method: $method, uri: $uri, 处理耗时: ${System.currentTimeMillis() - processBegin} 毫秒]")
                         response?.apply {
-                            val endLog = StringBuilder("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+                            val endLog =
+                                StringBuilder("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
                             endLog.append("-----> response: ").append(this.toString()).append("\n")
                             var responseInfo: String? = null
                             if (this is ResponseEntity<*>) {
@@ -153,6 +161,6 @@ class RestControllerAspect(private val controllerLogConfiguration: ControllerLog
         }
     }
 
-    private val noLogUriRegular = ImmutableList.of("/error")
+    private val noLogUriRegular = mutableListOf("/error")
 
 }
