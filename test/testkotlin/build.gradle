@@ -19,6 +19,9 @@ bootJar {
         attributes('Version': "${project.version}", 'Provider': "Gradle ${gradleVersion}", 'JDK': "${javaVersion}", 'Kotlin': "${kotlinVersion}", 'Project': 'Acp')
     }
 }
+test {
+    exclude '**/*nobuild**'
+}
 dependencies {
     implementation project(":boot:acp-spring-boot-starter")
 

@@ -1,4 +1,7 @@
 group "${group}.core"
+test {
+    exclude '**/*nobuild**'
+}
 dependencies {
     api "joda-time:joda-time:$versions.joda_time"
     api "commons-codec:commons-codec:$versions.commons_codec"

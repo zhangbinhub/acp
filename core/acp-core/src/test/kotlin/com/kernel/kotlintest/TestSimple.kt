@@ -12,7 +12,7 @@ import java.math.RoundingMode
 class TestSimple {
 
     @Test
-    fun main(args: Array<String>) {
+    fun main() {
         val dataBean1 = DataBean1(
                 "你好123", 1, 0.34
         )
