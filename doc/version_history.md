@@ -7,6 +7,7 @@
 >     - $versions.spring_boot replace to ${springBootVersion}
 >     - $versions.spring_cloud replace to ${springCloudVersion}
 >     - $versions.alibaba_cloud replace to ${springCloudAlibabaVersion}
+>   - [Upgrade] 优化junit测试代码
 > - acp-core
 >   - [Upgrade] bouncycastle 的组件由15on替换为15to18后缀
 > - acp-spring-boot-starter
