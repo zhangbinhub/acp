@@ -20,12 +20,12 @@
 >     - logging.file.total-size-cap → logging.logback.rollingpolicy.total-size-cap
 >     - logging.file.max-history → logging.logback.rollingpolicy.max-history
 > - [Upgrade] 升级依赖
->   - kotlin coroutines 1.4.1
->   - Spring Boot 2.4.0
+>   - kotlin coroutines 1.4.2
+>   - Spring Boot 2.4.1
 >   - knife4j 3.0.2
 >   - jupiter 5.7.0
 >   - junit-platform 1.7.0
->   - netty 4.1.54.Final
+>   - netty 4.1.55.Final
 >   - commons-net 3.7.2
 >   - jsch 0.1.55
 >   - sshd-sftp 2.5.1
