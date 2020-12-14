@@ -6,7 +6,7 @@ versions += [
         jupiter          : "5.7.0",
         junit_platform   : "1.7.0",
 
-        kotlin_coroutines: "1.4.1",
+        kotlin_coroutines: "1.4.2",
         joda_time        : "2.10.8",
         commons_codec    : "1.15",
         commons_text     : "1.9",
