@@ -21,6 +21,7 @@
 >     - logging.file.max-history → logging.logback.rollingpolicy.max-history
 > - [Upgrade] 升级依赖
 >   - kotlin coroutines 1.4.2
+>   - kotlin 1.4.21
 >   - Spring Boot 2.4.1
 >   - knife4j 3.0.2
 >   - jupiter 5.7.0
