@@ -12,6 +12,8 @@
 >   - [Upgrade] bouncycastle 的组件由15on替换为15to18后缀
 > - acp-spring-boot-starter
 >   - [Upgrade] controller切面中，google ImmutableList替换为Kotlin的MutableList
+> - acp-spring-cloud-starter
+>   - [Upgrade] AcpCloudResourceServerAutoConfiguration 中关闭 formLogin 登录界面
 > - test
 >   - [Upgrade] logback 配置属性重命名
 >     - logging.pattern.rolling-file-name → logging.logback.rollingpolicy.file-name-pattern
