@@ -43,18 +43,21 @@ import java.util.*
 @EnableResourceServer
 @Order(CloudConfigurationOrder.resourceServerConfiguration)
 class AcpCloudResourceServerAutoConfiguration @Autowired
-constructor(private val acpCloudOauthConfiguration: AcpCloudOauthConfiguration,
-            private val entryPointMap: Map<String, AuthenticationEntryPoint>,
-            private val accessDeniedHandlerMap: Map<String, AccessDeniedHandler>,
-            private val clientProperties: OAuth2ClientProperties,
-            private val resourceServerProperties: ResourceServerProperties,
-            private val feignHttpClientProperties: FeignHttpClientProperties,
-            private val objectMapper: ObjectMapper,
-            serverProperties: ServerProperties) : ResourceServerConfigurerAdapter() {
+constructor(
+    private val acpCloudOauthConfiguration: AcpCloudOauthConfiguration,
+    private val entryPointMap: Map<String, AuthenticationEntryPoint>,
+    private val accessDeniedHandlerMap: Map<String, AccessDeniedHandler>,
+    private val clientProperties: OAuth2ClientProperties,
+    private val resourceServerProperties: ResourceServerProperties,
+    private val feignHttpClientProperties: FeignHttpClientProperties,
+    private val objectMapper: ObjectMapper,
+    serverProperties: ServerProperties
+) : ResourceServerConfigurerAdapter() {
 
     private val log = LogFactory.getInstance(this.javaClass)
 
-    private val contextPath: String = if (CommonTools.isNullStr(serverProperties.servlet.contextPath)) "" else serverProperties.servlet.contextPath
+    private val contextPath: String =
+        if (CommonTools.isNullStr(serverProperties.servlet.contextPath)) "" else serverProperties.servlet.contextPath
 
     /**
      * 自定义负载均衡客户端
@@ -66,16 +69,19 @@ constructor(private val acpCloudOauthConfiguration: AcpCloudOauthConfiguration,
     @Bean("acpSpringCloudOauth2ClientRestTemplate")
     @Throws(HttpException::class)
     fun acpSpringCloudOauth2ClientRestTemplate(): RestTemplate =
-            RestTemplate(OkHttp3ClientHttpRequestFactory(
-                    HttpClientBuilder().maxTotalConn(feignHttpClientProperties.maxConnections)
-                            .connectTimeOut(feignHttpClientProperties.connectionTimeout)
-                            .timeToLive(feignHttpClientProperties.timeToLive)
-                            .timeToLiveTimeUnit(feignHttpClientProperties.timeToLiveUnit)
-                            .followRedirects(feignHttpClientProperties.isFollowRedirects)
-                            .disableSslValidation(feignHttpClientProperties.isDisableSslValidation)
-                            .build().builder.build())).apply {
-                this.messageConverters.add(MappingJackson2HttpMessageConverter(objectMapper))
-            }
+        RestTemplate(
+            OkHttp3ClientHttpRequestFactory(
+                HttpClientBuilder().maxTotalConn(feignHttpClientProperties.maxConnections)
+                    .connectTimeOut(feignHttpClientProperties.connectionTimeout)
+                    .timeToLive(feignHttpClientProperties.timeToLive)
+                    .timeToLiveTimeUnit(feignHttpClientProperties.timeToLiveUnit)
+                    .followRedirects(feignHttpClientProperties.isFollowRedirects)
+                    .disableSslValidation(feignHttpClientProperties.isDisableSslValidation)
+                    .build().builder.build()
+            )
+        ).apply {
+            this.messageConverters.add(MappingJackson2HttpMessageConverter(objectMapper))
+        }
 
     /**
      * 自定义权限验证服务，远程调用认证服务进行验证
@@ -183,10 +189,9 @@ constructor(private val acpCloudOauthConfiguration: AcpCloudOauthConfiguration,
         log.info("security uri: other any")
         // match 匹配的url，赋予全部权限（不进行拦截）
         http.csrf().disable().authorizeRequests()
-                .antMatchers(*security.toTypedArray()).authenticated()
-                .antMatchers(*permitAll.toTypedArray()).permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().permitAll()
+            .antMatchers(*security.toTypedArray()).authenticated()
+            .antMatchers(*permitAll.toTypedArray()).permitAll()
+            .anyRequest().authenticated()
     }
 
 }
