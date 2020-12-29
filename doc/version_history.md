@@ -15,7 +15,6 @@
 >   - [Upgrade] 增加依赖 org.springframework.cloud:spring-cloud-starter-bootstrap
 >   - [Upgrade] 去除ribbon依赖
 >   - [Upgrade] 更换security依赖
->   - [Upgrade] 修改feign FallbackFactory，不再使用netflix-hystrix
 > - test
 >   - [Upgrade] logback 配置属性重命名
 >     - logging.pattern.rolling-file-name → logging.logback.rollingpolicy.file-name-pattern
@@ -23,6 +22,7 @@
 >     - logging.file.max-size → logging.logback.rollingpolicy.max-file-size
 >     - logging.file.total-size-cap → logging.logback.rollingpolicy.total-size-cap
 >     - logging.file.max-history → logging.logback.rollingpolicy.max-history
+>   - [Upgrade] 修改feign FallbackFactory，不再使用netflix-hystrix
 >   [Upgrade] admin-server、gateway-server 去除 ribbon 依赖
 > - [Upgrade] 升级依赖
 >   - kotlin coroutines 1.4.2
