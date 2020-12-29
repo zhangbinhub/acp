@@ -6,7 +6,7 @@
 - 从v6.3.0开始，取消单独的jdk8分支，代码及工程配置统一，默认使用java11编译，如需编译java1.8版本，只需修改[gradle.properties](gradle.properties)中的javaVersion配置
 ## 相关组件版本及官方文档
 - [Spring Boot 2.4.1](https://projects.spring.io/spring-boot)
-- [Spring Cloud Hoxton.SR8](http://projects.spring.io/spring-cloud)
+- [Spring Cloud 2020.0.0](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2.2.3.RELEASE](https://github.com/alibaba/spring-cloud-alibaba)
 
 ## 技术栈
@@ -34,7 +34,6 @@
         - spring-boot-actuator
     - spring-data-redis-reactive
     - spring-boot-admin-server
-    - spring-cloud-netflix-hystrix
     - spring-cloud-gateway
     - spring-cloud-stream-binder-kafka
     - spring-cloud-openfeign
