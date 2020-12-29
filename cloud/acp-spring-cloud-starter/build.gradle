@@ -19,6 +19,7 @@ dependencies {
     kapt "org.springframework.boot:spring-boot-configuration-processor"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
+    api "org.springframework.cloud:spring-cloud-starter-bootstrap"
     api "org.springframework.cloud:spring-cloud-starter-oauth2"
     api "org.springframework.cloud:spring-cloud-starter-stream-kafka"
     api "org.springframework.cloud:spring-cloud-starter-bus-kafka"

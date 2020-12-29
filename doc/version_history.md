@@ -8,12 +8,11 @@
 >     - $versions.spring_cloud replace to ${springCloudVersion}
 >     - $versions.alibaba_cloud replace to ${springCloudAlibabaVersion}
 >   - [Upgrade] 优化junit测试代码
-> - acp-core
->   - [Upgrade] bouncycastle 的组件由15on替换为15to18后缀
 > - acp-spring-boot-starter
 >   - [Upgrade] controller切面中，google ImmutableList替换为Kotlin的MutableList
 > - acp-spring-cloud-starter
 >   - [Upgrade] AcpCloudResourceServerAutoConfiguration 中关闭 formLogin 登录界面
+>   - [Upgrade] 增加依赖 org.springframework.cloud:spring-cloud-starter-bootstrap
 > - test
 >   - [Upgrade] logback 配置属性重命名
 >     - logging.pattern.rolling-file-name → logging.logback.rollingpolicy.file-name-pattern
@@ -25,6 +24,7 @@
 >   - kotlin coroutines 1.4.2
 >   - kotlin 1.4.21
 >   - Spring Boot 2.4.1
+>   - Spring Cloud 2020.0.0
 >   - knife4j 3.0.2
 >   - jupiter 5.7.0
 >   - junit-platform 1.7.0
@@ -37,7 +37,6 @@
 >   - commons-codec 1.15
 >   - commons-text 1.9
 >   - commons-lang3 3.11
->   - bouncycastle 1.67
 >   - xstream 1.4.14
 >   - jackson 2.11.3
 >   - zip4j 2.6.4
