@@ -23,6 +23,7 @@ dependencies {
     api "org.springframework.boot:spring-boot-starter-security"
     api "org.springframework.cloud:spring-cloud-starter-bootstrap"
     api "org.springframework.cloud:spring-cloud-starter-stream-kafka"
+    api "org.springframework.cloud:spring-cloud-stream-binder-kafka-streams"
     api "org.springframework.cloud:spring-cloud-starter-bus-kafka"
     // monitor : 服务间调用、断路器、链路追踪
     api "org.springframework.cloud:spring-cloud-starter-openfeign"

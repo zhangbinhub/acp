@@ -10,6 +10,7 @@ import pers.acp.spring.boot.AcpBootLogAutoConfiguration
 import pers.acp.spring.boot.interfaces.LogAdapter
 import pers.acp.spring.cloud.conf.AcpCloudLogServerClientConfiguration
 import pers.acp.spring.cloud.log.CloudLogAdapter
+import pers.acp.spring.cloud.log.producer.LogBridge
 
 /**
  * @author zhang by 30/07/2019
@@ -22,7 +23,6 @@ class AcpCloudLogAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(LogAdapter::class)
-    fun logAdapter(acpCloudLogServerClientConfiguration: AcpCloudLogServerClientConfiguration, objectMapper: ObjectMapper) =
-            CloudLogAdapter(acpCloudLogServerClientConfiguration, objectMapper)
-
+    fun logAdapter(acpCloudLogServerClientConfiguration: AcpCloudLogServerClientConfiguration, logBridge: LogBridge) =
+        CloudLogAdapter(acpCloudLogServerClientConfiguration, logBridge)
 }

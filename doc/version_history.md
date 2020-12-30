@@ -15,6 +15,7 @@
 >   - [Upgrade] 增加依赖 org.springframework.cloud:spring-cloud-starter-bootstrap
 >   - [Upgrade] 去除ribbon依赖
 >   - [Upgrade] 更换security依赖
+>   - [Upgrade] kafka stream 使用函数式风格改写
 > - test
 >   - [Upgrade] logback 配置属性重命名
 >     - logging.pattern.rolling-file-name → logging.logback.rollingpolicy.file-name-pattern
@@ -29,6 +30,7 @@
 >   - kotlin 1.4.21
 >   - Spring Boot 2.4.1
 >   - Spring Cloud 2020.0.0
+>   - Spring Boot Admin 2.3.1
 >   - knife4j 3.0.2
 >   - jupiter 5.7.0
 >   - junit-platform 1.7.0

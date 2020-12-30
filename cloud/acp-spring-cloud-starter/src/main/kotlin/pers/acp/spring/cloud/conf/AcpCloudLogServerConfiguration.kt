@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
  * @since JDK 11
  */
 @ConfigurationProperties(prefix = "acp.cloud.log-server")
-class AcoCloudLogServerConfiguration {
+class AcpCloudLogServerConfiguration {
 
     /**
      * 消费日志消息的组id，多个日志服务使用相同的组id，能够保证日志消息不被重复消费，默认："acp_cloud_log_server_group_id"

@@ -1,8 +1,6 @@
 package pers.acp.spring.cloud.log
 
 import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.messaging.support.MessageBuilder
 import pers.acp.core.CommonTools
 import pers.acp.core.log.LogFactory
 import pers.acp.core.task.BaseAsyncTask
@@ -10,8 +8,8 @@ import pers.acp.core.task.threadpool.ThreadPoolService
 import pers.acp.spring.boot.interfaces.LogAdapter
 import pers.acp.spring.boot.tools.SpringBeanFactory
 import pers.acp.spring.cloud.enums.LogLevel
-import pers.acp.spring.cloud.log.producer.LogProducer
 import pers.acp.spring.cloud.conf.AcpCloudLogServerClientConfiguration
+import pers.acp.spring.cloud.log.producer.LogBridge
 
 /**
  * 日志实例
@@ -19,8 +17,10 @@ import pers.acp.spring.cloud.conf.AcpCloudLogServerClientConfiguration
  * @author zhangbin by 11/07/2018 13:36
  * @since JDK 11
  */
-class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloudLogServerClientConfiguration,
-                      private val objectMapper: ObjectMapper) : LogAdapter {
+class CloudLogAdapter(
+    private val acpCloudLogServerClientConfiguration: AcpCloudLogServerClientConfiguration,
+    private val logBridge: LogBridge
+) : LogAdapter {
 
     private val log = LogFactory.getInstance(this.javaClass, 4)
 
@@ -43,7 +43,7 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
         threadPoolService.addTask(object : BaseAsyncTask("cloud_log_adapter_thread_task", false) {
             override fun beforeExecuteFun(): Boolean = true
             override fun afterExecuteFun(result: Any) {}
-            override fun executeFun(): Any? {
+            override fun executeFun(): Any {
                 logInfo.serverTime = CommonTools.getNowDateTime().toDate().time
                 var lineno = 0
                 var className = ""
@@ -55,8 +55,7 @@ class CloudLogAdapter(private val acpCloudLogServerClientConfiguration: AcpCloud
                 logInfo.className = className
                 try {
                     if (acpCloudLogServerClientConfiguration.enabled) {
-                        val logProducer = SpringBeanFactory.getBean(LogProducer::class.java)
-                        logProducer?.logOutput?.sendMessage()?.send(MessageBuilder.withPayload(objectMapper.writeValueAsString(logInfo)).build())
+                        logBridge.send(logInfo)
                     }
                 } catch (e: JsonProcessingException) {
                     log.error(e.message, e)
