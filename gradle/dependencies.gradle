@@ -12,7 +12,7 @@ versions += [
         commons_text     : "1.9",
         commons_lang3    : "3.11",
         dom4j            : "1.6.1",
-        bouncycastle     : "1.67",
+        bouncycastle     : "1.64",
         slf4j            : "1.7.30",
         logback          : "1.2.3",
         xstream          : "1.4.14",

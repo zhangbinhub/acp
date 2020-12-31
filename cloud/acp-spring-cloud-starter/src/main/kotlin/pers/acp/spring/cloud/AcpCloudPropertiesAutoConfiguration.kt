@@ -18,7 +18,7 @@ import pers.acp.spring.cloud.conf.*
  */
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(
-        AcoCloudLogServerConfiguration::class,
+        AcpCloudLogServerConfiguration::class,
         AcpCloudLogServerClientConfiguration::class,
         AcpCloudOauthConfiguration::class)
 @AutoConfigureAfter(OAuth2AutoConfiguration::class, FeignAutoConfiguration::class)

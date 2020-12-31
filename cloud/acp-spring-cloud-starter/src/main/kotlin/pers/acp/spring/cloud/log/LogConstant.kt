@@ -6,6 +6,6 @@ package pers.acp.spring.cloud.log
  */
 object LogConstant {
     const val DEFAULT_TYPE = "ALL"
-    const val INPUT = "acp_cloud_log_server_input"
-    const val OUTPUT = "acp_cloud_log_server_output"
+    const val INPUT = "logConsumer"
+    const val OUTPUT = "logProducer"
 }
