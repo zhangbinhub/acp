@@ -25,7 +25,7 @@ class SystemInitialization(private val logAdapter: LogAdapter,
         initServer.start()
         /* 启动 listener 及定时任务 */
         systemControl.initialization()
-        Runtime.getRuntime().addShutdownHook(Thread(Runnable { DaemonServiceManager.stopAllService() }))
+        Runtime.getRuntime().addShutdownHook(Thread { DaemonServiceManager.stopAllService() })
         logAdapter.info(">>>>>>>>>>>>>>>>>>>> system start finished!")
     }
 

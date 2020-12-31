@@ -22,7 +22,7 @@ class DocToHtml {
 
     private static final LogFactory log = LogFactory.getInstance(DocToHtml.class);
 
-    private static String encoding = CommonTools.getDefaultCharset();
+    private static final String encoding = CommonTools.getDefaultCharset();
 
     private static String basePath = "";
 

@@ -55,7 +55,7 @@ class TimerTaskContainer(
      *
      * @return 任务名称
      */
-    fun getTaskName(): String? = task.taskName
+    fun getTaskName(): String = task.taskName
 
     /**
      * 判断当前时间是否符合执行条件

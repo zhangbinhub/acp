@@ -33,11 +33,11 @@ public final class ConnectionFactory {
      */
     private static int DEFAULT_CONNECTION_NO = 0;
 
-    private int connectionNo;
+    private final int connectionNo;
 
     private DbType dbType;
 
-    private static ConcurrentHashMap<String, HikariDataSource> dsMap = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, HikariDataSource> dsMap = new ConcurrentHashMap<>();
 
     private HikariDataSource ds = null;
 

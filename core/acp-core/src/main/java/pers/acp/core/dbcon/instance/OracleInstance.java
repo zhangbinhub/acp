@@ -25,7 +25,7 @@ public class OracleInstance extends BaseDBInstance {
      */
     private void writeBLOB(Blob blob, InputStream input) throws SQLException, IOException {
         OutputStream out = blob.setBinaryStream(1L);
-        byte buffer[] = new byte[1024];
+        byte[] buffer = new byte[1024];
         int len;
         while ((len = input.read(buffer)) > 0) {
             out.write(buffer, 0, len);

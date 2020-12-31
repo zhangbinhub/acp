@@ -16,13 +16,13 @@ public enum ExcelDataType {
 
     Date("Date");
 
-    private String name;
+    private final String name;
 
     public String getName() {
         return name;
     }
 
-    private ExcelDataType(String name) {
+    ExcelDataType(String name) {
         this.name = name;
     }
 

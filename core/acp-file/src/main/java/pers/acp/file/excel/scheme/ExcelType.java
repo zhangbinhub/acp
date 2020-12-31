@@ -6,7 +6,7 @@ public enum ExcelType {
 
     EXCEL_TYPE_XLSX("xlsx");
 
-    private String name;
+    private final String name;
 
     ExcelType(String name) {
         this.name = name.toLowerCase();

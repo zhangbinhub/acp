@@ -24,11 +24,11 @@ public enum PermissionType {
 
     ALLOW_SCREENREADERS("ALLOW_SCREENREADERS", PdfWriter.ALLOW_SCREENREADERS);
 
-    private String name;
+    private final String name;
 
-    private Integer value;
+    private final Integer value;
 
-    private static Map<Integer, PermissionType> map;
+    private static final Map<Integer, PermissionType> map;
 
     static {
         map = new HashMap<>();
