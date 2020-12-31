@@ -11,11 +11,11 @@ public enum WordType {
 
     WORD_TYPE_DOCX(".docx", 1);
 
-    private String name;
+    private final String name;
 
-    private Integer value;
+    private final Integer value;
 
-    private static Map<Integer, WordType> map;
+    private static final Map<Integer, WordType> map;
 
     static {
         map = new HashMap<>();

@@ -47,7 +47,7 @@ class TimerTaskSchedulerCtrl(private val logAdapter: LogAdapter,
             if (cronMap.isNotEmpty() && cronMap.containsKey(key) && !CommonTools.isNullStr(cronMap[key]) && !"none".equals(cronMap[key], ignoreCase = true)) {
                 cronMap[key]?.apply {
                     scheduledTaskMap[key] = scheduledTask
-                    threadPoolTaskScheduler.schedule(Runnable { scheduledTask.executeScheduledTask() }, CronTrigger(this))?.let {
+                    threadPoolTaskScheduler.schedule({ scheduledTask.executeScheduledTask() }, CronTrigger(this))?.let {
                         futureMap[key] = it
                         logAdapter.info("启动定时任务：" + scheduledTask.taskName + " 【" + this + "】 【" + scheduledTask.javaClass.canonicalName + "】")
                     }

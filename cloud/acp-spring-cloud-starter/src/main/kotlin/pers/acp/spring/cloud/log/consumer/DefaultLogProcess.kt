@@ -22,7 +22,7 @@ class DefaultLogProcess : LogProcess {
         val threadPoolService = ThreadPoolService.getInstance(1, 1, Int.MAX_VALUE, logInfo.logType + "_log")
         threadPoolService.addTask(object : BaseAsyncTask(logInfo.logType + "_log", false) {
             override fun beforeExecuteFun(): Boolean = true
-            override fun executeFun(): Any? {
+            override fun executeFun(): Any {
                 doLog(logInfo)
                 return true
             }

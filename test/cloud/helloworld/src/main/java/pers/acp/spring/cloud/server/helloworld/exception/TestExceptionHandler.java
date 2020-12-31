@@ -24,7 +24,7 @@ import javax.validation.ConstraintViolationException;
 @ControllerAdvice
 public class TestExceptionHandler extends RestExceptionHandler {
 
-    private LogAdapter logAdapter;
+    private final LogAdapter logAdapter;
 
     @Autowired
     public TestExceptionHandler(LogAdapter logAdapter) {

@@ -16,7 +16,6 @@ import pers.acp.client.socket.base.SocketClient
 import pers.acp.core.CommonTools
 import pers.acp.core.log.LogFactory
 import java.nio.CharBuffer
-import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
 
 /**

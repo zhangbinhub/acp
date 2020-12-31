@@ -16,7 +16,7 @@ public final class DBConTools {
 
     private static final LogFactory log = LogFactory.getInstance(DBConTools.class);
 
-    private ConnectionFactory dbCon;
+    private final ConnectionFactory dbCon;
 
     /**
      * 默认构造函数

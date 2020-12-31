@@ -17,7 +17,7 @@ final class SheetData {
 
     private final LogFactory log = LogFactory.getInstance(this.getClass());// 日志对象
 
-    private static short FONT_SIZE = 11;
+    private static final short FONT_SIZE = 11;
 
     /**
      * 生成sheet内数据
@@ -255,11 +255,7 @@ final class SheetData {
             ExcelPrintSetting excelPrintSetting = sheetSetting.getPrintSetting();
             PrintSetup printSetup = sheet.getPrintSetup();
             printSetup.setPaperSize(PrintSetup.A4_PAPERSIZE);
-            if (excelPrintSetting.isHorizontal()) {
-                printSetup.setLandscape(true);
-            } else {
-                printSetup.setLandscape(false);
-            }
+            printSetup.setLandscape(excelPrintSetting.isHorizontal());
             if (excelPrintSetting.getPageWidth() > -1) {
                 printSetup.setFitWidth((short) excelPrintSetting.getPageWidth());
             }
@@ -393,17 +389,9 @@ final class SheetData {
         /* 设置字体加粗 */
         String boldConfig = style.getOrDefault("bold", "");
         if (flag == 0) {
-            if (boldConfig.equals("false")) {
-                font.setBold(false);
-            } else {
-                font.setBold(true);
-            }
+            font.setBold(!boldConfig.equals("false"));
         } else {
-            if (boldConfig.equals("true")) {
-                font.setBold(true);
-            } else {
-                font.setBold(false);
-            }
+            font.setBold(boldConfig.equals("true"));
         }
         /* 设置字体下划线 */
         String underlineConfig = style.getOrDefault("underline", "");
