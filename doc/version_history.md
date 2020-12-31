@@ -16,6 +16,7 @@
 >   - [Upgrade] 去除ribbon依赖
 >   - [Upgrade] 更换security依赖
 >   - [Upgrade] kafka stream 使用函数式风格改写
+>   - [Upgrade] 增加 AcpCloudFeignAutoConfiguration，重写 SentinelFeign 和 SentinelInvocationHandler
 > - test
 >   - [Upgrade] logback 配置属性重命名
 >     - logging.pattern.rolling-file-name → logging.logback.rollingpolicy.file-name-pattern
