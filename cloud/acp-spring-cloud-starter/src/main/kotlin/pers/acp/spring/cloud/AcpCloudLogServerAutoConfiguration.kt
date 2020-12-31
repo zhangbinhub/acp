@@ -33,7 +33,7 @@ class AcpCloudLogServerAutoConfiguration @Autowired
 constructor(
     private val acpCloudLogServerConfiguration: AcpCloudLogServerConfiguration,
     private val bindingServiceProperties: BindingServiceProperties,
-    private val streamFunctionProperties: StreamFunctionProperties,
+    private val streamFunctionProperties: StreamFunctionProperties
 ) {
     private val logConsumerBindName = "${LogConstant.INPUT}-in-0"
 
