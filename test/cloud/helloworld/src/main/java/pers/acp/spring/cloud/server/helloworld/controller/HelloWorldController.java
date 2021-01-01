@@ -46,7 +46,8 @@ public class HelloWorldController {
     @PostMapping(value = "/helloworld", produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<Object> helloWorld(@RequestBody String content) throws ServerException {
 //        throw new ServerException("测试异常");
-        String respon = helloServer.fromClient(content) + ";" + worldServer.fromClient(content) + "; properties=" + properties;
+//        String respon = helloServer.fromClient(content) + ";" + worldServer.fromClient(content) + "; properties=" + properties;
+        String respon = helloServer.fromClient(content) + ";" + worldServer.fromClientTest() + "; properties=" + properties;
         logAdapter.info(respon);
         return ResponseEntity.ok(respon);
     }

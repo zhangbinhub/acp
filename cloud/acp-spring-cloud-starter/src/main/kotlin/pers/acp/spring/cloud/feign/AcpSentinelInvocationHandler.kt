@@ -61,80 +61,83 @@ class AcpSentinelInvocationHandler : InvocationHandler {
     override fun invoke(
         proxy: Any?,
         method: Method,
-        args: Array<Any?>
-    ): Any {// other target type using default strategy
+        parameters: Array<Any?>?
+    ): Any {
+        // other target type using default strategy
         // throw exception if fallbackFactory is null
         // shouldn't happen as method is public due to being an
         // interface
         // fallback handle
         // resource default is HttpMethod:protocol://url
-        when (method.name) {
-            "equals" -> {
-                return try {
-                    val otherHandler: Any? = if (args.isNotEmpty() && args[0] != null) Proxy.getInvocationHandler(
-                        args[0]
-                    ) else null
-                    equals(otherHandler)
-                } catch (e: IllegalArgumentException) {
-                    false
-                }
-            }
-            "hashCode" -> {
-                return hashCode()
-            }
-            "toString" -> {
-                return toString()
-            }
-            // only handle by HardCodedTarget
-            else -> {
-                val result: Any
-                val methodHandler = dispatch!![method]
-                // only handle by HardCodedTarget
-                if (target is HardCodedTarget) {
-                    val hardCodedTarget = target
-                    val methodMetadata = SentinelContractHolder.METADATA_MAP[hardCodedTarget!!.type().name
-                            + Feign.configKey(hardCodedTarget.type(), method)]
-                    // resource default is HttpMethod:protocol://url
-                    if (methodMetadata == null) {
-                        result = methodHandler!!.invoke(args)
-                    } else {
-                        val resourceName = (methodMetadata.template().method().toUpperCase()
-                                + ":" + hardCodedTarget.url() + methodMetadata.template().path())
-                        var entry: Entry? = null
-                        try {
-                            ContextUtil.enter(resourceName)
-                            entry = SphU.entry(resourceName, EntryType.OUT, 1, *args)
-                            result = methodHandler!!.invoke(args)
-                        } catch (ex: Throwable) {
-                            // fallback handle
-                            if (!BlockException.isBlockException(ex)) {
-                                Tracer.trace(ex)
-                            }
-                            return if (fallbackFactory != null) {
-                                try {
-                                    fallbackMethodMap!![method]?.invoke(fallbackFactory!!.create(ex), *args)
-                                        ?: throw IllegalAccessException("not find method: $method")
-                                } catch (e: IllegalAccessException) {
-                                    // shouldn't happen as method is public due to being an
-                                    // interface
-                                    throw AssertionError(e)
-                                } catch (e: InvocationTargetException) {
-                                    throw AssertionError(e.cause)
-                                }
-                            } else {
-                                // throw exception if fallbackFactory is null
-                                throw ex
-                            }
-                        } finally {
-                            entry?.exit(1, *args)
-                            ContextUtil.exit()
-                        }
+        (parameters ?: emptyArray<Any>()).let { args ->
+            when (method.name) {
+                "equals" -> {
+                    return try {
+                        val otherHandler: Any? = if (args.isNotEmpty() && args[0] != null) Proxy.getInvocationHandler(
+                            args[0]
+                        ) else null
+                        equals(otherHandler)
+                    } catch (e: IllegalArgumentException) {
+                        false
                     }
-                } else {
-                    // other target type using default strategy
-                    result = methodHandler!!.invoke(args)
                 }
-                return result
+                "hashCode" -> {
+                    return hashCode()
+                }
+                "toString" -> {
+                    return toString()
+                }
+                // only handle by HardCodedTarget
+                else -> {
+                    val result: Any
+                    val methodHandler = dispatch!![method]
+                    // only handle by HardCodedTarget
+                    if (target is HardCodedTarget) {
+                        val hardCodedTarget = target
+                        val methodMetadata = SentinelContractHolder.METADATA_MAP[hardCodedTarget!!.type().name
+                                + Feign.configKey(hardCodedTarget.type(), method)]
+                        // resource default is HttpMethod:protocol://url
+                        if (methodMetadata == null) {
+                            result = methodHandler!!.invoke(args)
+                        } else {
+                            val resourceName = (methodMetadata.template().method().toUpperCase()
+                                    + ":" + hardCodedTarget.url() + methodMetadata.template().path())
+                            var entry: Entry? = null
+                            try {
+                                ContextUtil.enter(resourceName)
+                                entry = SphU.entry(resourceName, EntryType.OUT, 1, *args)
+                                result = methodHandler!!.invoke(args)
+                            } catch (ex: Throwable) {
+                                // fallback handle
+                                if (!BlockException.isBlockException(ex)) {
+                                    Tracer.trace(ex)
+                                }
+                                return if (fallbackFactory != null) {
+                                    try {
+                                        fallbackMethodMap!![method]?.invoke(fallbackFactory!!.create(ex), *args)
+                                            ?: throw IllegalAccessException("not find method: $method")
+                                    } catch (e: IllegalAccessException) {
+                                        // shouldn't happen as method is public due to being an
+                                        // interface
+                                        throw AssertionError(e)
+                                    } catch (e: InvocationTargetException) {
+                                        throw AssertionError(e.cause)
+                                    }
+                                } else {
+                                    // throw exception if fallbackFactory is null
+                                    throw ex
+                                }
+                            } finally {
+                                entry?.exit(1, *args)
+                                ContextUtil.exit()
+                            }
+                        }
+                    } else {
+                        // other target type using default strategy
+                        result = methodHandler!!.invoke(args)
+                    }
+                    return result
+                }
             }
         }
     }

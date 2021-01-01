@@ -16,4 +16,7 @@ public interface WorldServer {
     @RequestMapping(value = "/world", method = RequestMethod.GET)
     String fromClient(@RequestParam(value = "name") String name);
 
+    @RequestMapping(value = "/world-test", method = RequestMethod.GET)
+    String fromClientTest();
+
 }

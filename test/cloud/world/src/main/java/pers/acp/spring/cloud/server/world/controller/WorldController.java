@@ -18,4 +18,9 @@ public class WorldController {
         return ResponseEntity.ok("world response: name=" + name);
     }
 
+    @GetMapping(value = "/world-test", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<Object> worldTest() {
+        return ResponseEntity.ok("world response: test");
+    }
+
 }
