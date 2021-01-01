@@ -23,7 +23,18 @@ public class WorldServerHystrix implements FallbackFactory<WorldServer> {
     @Override
     public WorldServer create(Throwable cause) {
         log.error("WorldServerHystrix hystrix caused by: " + cause.getMessage(), cause);
-        return name -> "World service Hystrix[" + name + "]";
+        return new WorldServer() {
+
+            @Override
+            public String fromClient(String name) {
+                return "World service Hystrix[" + name + "]";
+            }
+
+            @Override
+            public String fromClientTest() {
+                return "World service Hystrix";
+            }
+        };
     }
 
 }
