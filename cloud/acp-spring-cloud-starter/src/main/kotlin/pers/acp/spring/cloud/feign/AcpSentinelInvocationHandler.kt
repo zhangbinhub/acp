@@ -69,7 +69,7 @@ class AcpSentinelInvocationHandler : InvocationHandler {
         // interface
         // fallback handle
         // resource default is HttpMethod:protocol://url
-        (parameters ?: emptyArray<Any>()).let { args ->
+        (parameters ?: emptyArray()).let { args ->
             when (method.name) {
                 "equals" -> {
                     return try {
