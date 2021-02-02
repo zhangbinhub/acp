@@ -1,7 +1,7 @@
 package pers.acp.spring.cloud.annotation
 
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j
-import org.springframework.cloud.client.SpringCloudApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.cloud.openfeign.EnableFeignClients
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 import java.lang.annotation.Inherited
@@ -16,7 +16,7 @@ import java.lang.annotation.Inherited
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 @Inherited
-@SpringCloudApplication
+@SpringBootApplication
 @EnableFeignClients
 @EnableSwagger2
 @EnableKnife4j

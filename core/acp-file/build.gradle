@@ -4,7 +4,7 @@ versions += [
         flying_saucer: "9.1.20",
         jsoup        : "1.13.1",
         batik        : "1.13",
-        poi          : "4.1.2"
+        poi          : "5.0.0"
 ]
 
 dependencies {

@@ -2,12 +2,18 @@
 ##### v6.5.1
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.8.1
+> - acp-spring-cloud-starter
+>   - [Upgrade] 取消 SpringCloudApplication 注解
 > - [Upgrade] 升级依赖
 >   - Spring Boot 2.4.2
 >   - Spring Cloud 2020.0.1
 >   - Spring Cloud Alibaba 2.2.5.RELEASE
 >   - jackson 2.11.4
+>   - joda time 2.10.9
+>   - bouncycastle 1.68
+>   - xstream 1.4.15
 >   - netty 4.1.58.Final
+>   - poi 5.0.0
 ##### v6.5.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.7.1

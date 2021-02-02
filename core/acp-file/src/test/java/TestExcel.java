@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.junit.jupiter.api.Test;
 import pers.acp.file.excel.ExcelService;
 import pers.acp.file.excel.data.ExcelCellData;
 import pers.acp.file.excel.scheme.ExcelDataSetting;
@@ -15,14 +16,8 @@ import java.util.Map;
  */
 public class TestExcel {
 
-    public static void main(String[] args) throws JsonProcessingException {
-        testRead();
-//        testCreateExcel1();
-//        testCreateExcel2();
-//        testCreateExcel3();
-    }
-
-    private static void testRead() throws JsonProcessingException {
+    @Test
+    void testRead() throws JsonProcessingException {
         String fileName = "D:\\工作资料\\a\\CY工作流\\需求\\测试数据.xls";
 //        String fileName = "D:\\工作资料\\a\\CY工作流\\需求\\测试数据.xlsx";
         ObjectMapper objectMapper = new ObjectMapper();
@@ -42,7 +37,8 @@ public class TestExcel {
 //        }
     }
 
-    private static void testCreateExcel1() {
+    @Test
+    void testCreateExcel1() {
 //        String fileName = "D:\\test\\out1.xlsx";
         String fileName = "D:\\test\\out1.xls";
 //        String template = "D:\\test\\测试1.xlsx";
@@ -57,7 +53,8 @@ public class TestExcel {
         excelService.createExcelFile(fileName, template, params);
     }
 
-    private static void testCreateExcel2() {
+    @Test
+    void testCreateExcel2() {
         String fileName = "D:\\test\\out2.xlsx";
 //        String fileName = "D:\\test\\out2.xls";
         String template = "D:\\test\\测试2.xlsx";
@@ -76,7 +73,8 @@ public class TestExcel {
         excelService.createExcelFile(fileName, template, "row", dataSetting);
     }
 
-    private static void testCreateExcel3() {
+    @Test
+    void testCreateExcel3() {
         String fileName = "D:\\test\\out3.xlsx";
         ExcelDataSetting dataSetting = new ExcelDataSetting();
         Map<String, String> body1 = new HashMap<>();
