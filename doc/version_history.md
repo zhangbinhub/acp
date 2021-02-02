@@ -1,10 +1,11 @@
 ## 版本更新记录
 ##### v6.5.1
 > - Global
->   - [Upgrade] 升级 Gradle 至 6.8
+>   - [Upgrade] 升级 Gradle 至 6.8.1
 > - [Upgrade] 升级依赖
 >   - Spring Boot 2.4.2
->   - Spring Cloud Alibaba 2.2.4.RELEASE
+>   - Spring Cloud 2020.0.1
+>   - Spring Cloud Alibaba 2.2.5.RELEASE
 >   - jackson 2.11.4
 >   - netty 4.1.58.Final
 ##### v6.5.0
