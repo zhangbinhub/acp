@@ -1,5 +1,6 @@
 package pers.acp.test.kotlin.test
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import kotlinx.coroutines.*
 import org.apache.commons.text.CharacterPredicates
 import org.apache.commons.text.RandomStringGenerator
@@ -13,6 +14,7 @@ import pers.acp.core.security.SignatureEncrypt
 import java.io.File
 import java.math.BigDecimal
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -81,6 +83,24 @@ fun main(args: Array<String>) {
 //    val int = 1.8206778042E10
 //    println(BigDecimal(int).toPlainString())
 //    println(int.toString())
+
+    testJson()
+}
+
+fun testJson(){
+    val testString = """
+        {
+            "test1":"123",
+            "test2":123,
+            "test3":[null]
+        }
+    """.trimIndent()
+    val mapper = ObjectMapper()
+    val testData = mapper.readValue(testString,TestData::class.java)
+    println(testData)
+    println(testData.test3 is List<*>)
+    println(testData.test3 is ArrayList<*>)
+    println(testData.test3 is MutableList<*>)
 }
 
 /**
