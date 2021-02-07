@@ -7,10 +7,10 @@ import feign.InvocationHandlerFactory
 import feign.Target
 import org.springframework.beans.BeansException
 import org.springframework.cloud.openfeign.FallbackFactory
+import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.cloud.openfeign.FeignContext
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
-import org.springframework.util.ReflectionUtils
 import org.springframework.util.StringUtils
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
@@ -51,43 +51,35 @@ class AcpSentinelFeign {
                     // using reflect get fallback and fallbackFactory properties from
                     // FeignClientFactoryBean because FeignClientFactoryBean is a package
                     // level class, we can not use it in our package
-                    val feignClientFactoryBean = applicationContext!!.getBean("&" + target.type().name)
-                    val fallback = getFieldValue(
-                        feignClientFactoryBean,
-                        "fallback"
-                    ) as Class<*>
-                    val fallbackFactory = getFieldValue(
-                        feignClientFactoryBean,
-                        "fallbackFactory"
-                    ) as Class<*>
-                    var beanName = getFieldValue(
-                        feignClientFactoryBean,
-                        "contextId"
-                    ) as String?
+                    val feignClientAnnotation = target.type().getAnnotation(FeignClient::class.java)
+                    var beanName = feignClientAnnotation.contextId
                     if (!StringUtils.hasText(beanName)) {
-                        beanName = getFieldValue(feignClientFactoryBean, "name") as String?
+                        beanName = feignClientAnnotation.name
                     }
-                    val fallbackInstance: Any
                     // check fallback and fallbackFactory properties
-                    if (Void.TYPE != fallback) {
-                        fallbackInstance = getFromContext(
-                            beanName, "fallback", fallback,
-                            target.type()
-                        )
-                        return AcpSentinelInvocationHandler(
-                            target, dispatch,
-                            FallbackFactory.Default(fallbackInstance)
-                        )
+                    feignClientAnnotation.fallback.also { fallback ->
+                        if (fallback.javaObjectType != Void::class.java) {
+                            val fallbackInstance = getFromContext(
+                                beanName, "fallback", fallback.javaObjectType,
+                                target.type()
+                            )
+                            return AcpSentinelInvocationHandler(
+                                target, dispatch,
+                                FallbackFactory.Default(fallbackInstance)
+                            )
+                        }
                     }
-                    if (Void.TYPE != fallbackFactory) {
-                        val fallbackFactoryInstance = getFromContext(
-                            beanName, "fallbackFactory", fallbackFactory,
-                            FallbackFactory::class.java
-                        ) as FallbackFactory<*>
-                        return AcpSentinelInvocationHandler(
-                            target, dispatch,
-                            fallbackFactoryInstance
-                        )
+                    feignClientAnnotation.fallbackFactory.also { fallbackFactory ->
+                        if (fallbackFactory.javaObjectType != Void::class.java) {
+                            val fallbackFactoryInstance = getFromContext(
+                                beanName, "fallbackFactory", fallbackFactory.javaObjectType,
+                                FallbackFactory::class.java
+                            ) as FallbackFactory<*>
+                            return AcpSentinelInvocationHandler(
+                                target, dispatch,
+                                fallbackFactoryInstance
+                            )
+                        }
                     }
                     return AcpSentinelInvocationHandler(target, dispatch)
                 }
@@ -118,18 +110,6 @@ class AcpSentinelFeign {
             })
             super.contract(SentinelContractHolder(contract))
             return super.build()
-        }
-
-        private fun getFieldValue(instance: Any, fieldName: String): Any? {
-            ReflectionUtils.findField(instance.javaClass, fieldName)?.let {
-                it.isAccessible = true
-                try {
-                    return it[instance]
-                } catch (e: IllegalAccessException) {
-                    // ignore
-                }
-            }
-            return null
         }
 
         @Throws(BeansException::class)
