@@ -4,6 +4,7 @@
 >   - [Upgrade] 升级 Gradle 至 6.8.2
 > - acp-spring-cloud-starter
 >   - [Upgrade] 取消 SpringCloudApplication 注解
+>   - [Upgrade] 优化 AcpSentinelFeign，由于feignClient的bean使用懒加载模式，于是在配置fallback和fallbackFactory不能获取bean实例，只能从类型中获取
 > - [Upgrade] 升级依赖
 >   - kotlin 1.4.30
 >   - Spring Boot 2.4.2
