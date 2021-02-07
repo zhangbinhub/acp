@@ -1,7 +1,7 @@
 ## 版本更新记录
 ##### v6.5.1
 > - Global
->   - [Upgrade] 升级 Gradle 至 6.8.1
+>   - [Upgrade] 升级 Gradle 至 6.8.2
 > - acp-spring-cloud-starter
 >   - [Upgrade] 取消 SpringCloudApplication 注解
 > - [Upgrade] 升级依赖
