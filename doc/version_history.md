@@ -5,6 +5,7 @@
 > - acp-spring-cloud-starter
 >   - [Upgrade] 取消 SpringCloudApplication 注解
 > - [Upgrade] 升级依赖
+>   - kotlin 1.4.30
 >   - Spring Boot 2.4.2
 >   - Spring Cloud 2020.0.1
 >   - Spring Cloud Alibaba 2.2.5.RELEASE
