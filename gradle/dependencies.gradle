@@ -3,8 +3,8 @@ ext {
 }
 
 versions += [
-        jupiter          : "5.7.0",
-        junit_platform   : "1.7.0",
+        jupiter          : "5.7.1",
+        junit_platform   : "1.7.1",
 
         kotlin_coroutines: "1.4.2",
         joda_time        : "2.10.9",

@@ -1,4 +1,15 @@
 ## 版本更新记录
+##### v6.5.2
+> - Global
+>   - [Upgrade] 升级 Gradle 至 6.8.3
+> - [Upgrade] 升级依赖
+>   - kotlin 1.4.31
+>   - Spring Boot 2.4.3
+>   - Spring Boot Admin 2.4.0
+>   - jupiter 5.7.1
+>   - junit-platform 1.7.1
+>   - netty 4.1.59.Final
+>   - FreeMarker 2.3.31
 ##### v6.5.1
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.8.2
