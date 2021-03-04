@@ -3,8 +3,8 @@ ext {
 }
 
 versions += [
-        jupiter          : "5.7.0",
-        junit_platform   : "1.7.0",
+        jupiter          : "5.7.1",
+        junit_platform   : "1.7.1",
 
         kotlin_coroutines: "1.4.2",
         joda_time        : "2.10.9",
@@ -19,6 +19,8 @@ versions += [
         jackson_databind : "2.11.4",
         zip4j            : "2.6.4",
 
+        curator          : "5.1.0",
+        liquibase        : "4.3.1",
         hikaricp         : "3.4.5",
         knife4j          : "3.0.2"
 ]

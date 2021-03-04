@@ -1,0 +1,43 @@
+def coreGroup = "${group}.core"
+def bootGroup = "${group}.boot"
+def cloudGroup = "${group}.cloud"
+group "${group}.dependency"
+apply plugin: "io.spring.dependency-management"
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") {
+            bomProperty("kotlin.version", "${kotlinVersion}")
+            bomProperty("liquibase.version", "$versions.liquibase")
+        }
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}") {
+            bomProperty("curator.version", "$versions.curator")
+        }
+        mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
+    }
+    dependencies {
+        dependency "$coreGroup:acp-core:${version}"
+        dependency "$coreGroup:acp-client:${version}"
+        dependency "$coreGroup:acp-file:${version}"
+        dependency "$coreGroup:acp-ftp:${version}"
+        dependency "$coreGroup:acp-message:${version}"
+        dependency "$coreGroup:acp-packet:${version}"
+        dependency "$bootGroup:acp-spring-boot-starter:${version}"
+        dependency "$bootGroup:acp-spring-boot-starter-ftp:${version}"
+        dependency "$cloudGroup:acp-spring-cloud-starter:${version}"
+
+        dependency "org.liquibase:liquibase-core:$versions.liquibase"
+    }
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            pom {
+                properties = [
+                        "kotlin.version"   : "${kotlinVersion}",
+                        "curator.version"  : "$versions.curator",
+                        "liquibase.version": "$versions.liquibase",
+                ]
+            }
+        }
+    }
+}

@@ -1,9 +1,4 @@
 group "${group}.boot"
-buildscript {
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
 apply plugin: "io.spring.dependency-management"
 dependencyManagement {
     imports {

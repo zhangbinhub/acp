@@ -1,9 +1,13 @@
 ext {
-    println("Environment        : JAVA_HOME=$System.env.JAVA_HOME")
-    println("Gradle Version     : ${gradleVersion}")
-    println("Target JDK Version : ${javaVersion}")
-    println("Kotlin Version     : ${kotlinVersion}")
-    println("Encoding           : ${encoding}")
+    println("Environment                 : JAVA_HOME=$System.env.JAVA_HOME")
+    println("Gradle Version              : ${gradleVersion}")
+    println("Target JDK Version          : ${javaVersion}")
+    println("Kotlin Version              : ${kotlinVersion}")
+    println("Spring Boot Version         : ${springBootVersion}")
+    println("Spring Cloud Version        : ${springCloudVersion}")
+    println("Spring Cloud Alibaba Version: ${springCloudAlibabaVersion}")
+    println("Encoding                    : ${encoding}")
+    println("Build Version               : ${version}")
 }
 
 buildscript {
@@ -11,6 +15,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
         classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}"
         classpath "org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
     repositories {
         mavenLocal()
@@ -216,6 +221,7 @@ allprojects {
                 "acp-file",
                 "acp-ftp",
                 "acp-message",
+                "acp-dependency",
                 "acp-spring-boot-starter",
                 "acp-spring-boot-starter-ftp",
                 "acp-spring-cloud-starter"].toArray().contains("$project.name")

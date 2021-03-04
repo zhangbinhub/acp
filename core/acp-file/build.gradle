@@ -1,6 +1,6 @@
 group "${group}.core"
 versions += [
-        freemarker   : "2.3.30",
+        freemarker   : "2.3.31",
         flying_saucer: "9.1.20",
         jsoup        : "1.13.1",
         batik        : "1.13",

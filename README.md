@@ -1,11 +1,11 @@
 # acp 
-###### v6.5.1 [版本更新日志](doc/version_history.md)
+###### v6.5.2 [版本更新日志](doc/version_history.md)
 - Application Construction Platform 应用构建平台
 - 该项目是用Kotlin和Java语言混编封装的脚手架。本人会密切关注业界最新动态，并使用最新技术持续更新优化。
 - 使用该脚手架可快速搭建基于Kotlin或Java语言的普通应用、SpringBoot应用和SpringCloud应用。
 - 从v6.3.0开始，取消单独的jdk8分支，代码及工程配置统一，默认使用java11编译，如需编译java1.8版本，只需修改[gradle.properties](gradle.properties)中的javaVersion配置
 ## 相关组件版本及官方文档
-- [Spring Boot 2.4.2](https://projects.spring.io/spring-boot)
+- [Spring Boot 2.4.3](https://projects.spring.io/spring-boot)
 - [Spring Cloud 2020.0.1](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2.2.5.RELEASE](https://github.com/alibaba/spring-cloud-alibaba)
 
@@ -86,12 +86,13 @@ ext {
 
 ### （三）升级命令
 ``
-    gradlew wrapper --gradle-version=6.8.2 --distribution-type=all
+    gradlew wrapper --gradle-version=6.8.3 --distribution-type=all
 ``
 
 ## 三、工程说明
 - doc目录下的files文件夹，当需要用到时放到打包后的jar同目录下即可
 - 工程全局默认使用 UTF-8 字符集
+- dependency 目录下为 acp-dependency 依赖管理组件
 - core 目录下为核心组件模块
 - boot 目录下为基于 Spring Boot 的自动配置组件模块
 - cloud 目录下为基于 Spring Cloud 的自动配置组件模块
@@ -100,7 +101,14 @@ ext {
 - api document url : /doc.html
 
 ## 四、开发 SpringBoot 应用
-引入 acp 下相应模块包
+引入 acp 下相应模块包，使用 acp-dependency 进行版本管理，例如：
+```groovy
+dependencyManagement {
+    imports {
+        mavenBom("pers.acp.dependency:acp-dependency:6.5.2")
+    }
+}
+```
 ### （一）模块说明，具体API文档请查看各模块 javadoc
 ##### 1. acp:acp-core 
 > - 核心包
@@ -258,7 +266,14 @@ acp:
 | ./server.sh restart   | 重启应用                |
 
 ## 五、开发 SpringCloud 应用
-引入 cloud 下相应模块包，demo 位于 cloud 下
+引入 cloud 下相应模块包，demo 位于 cloud 下，使用 acp-dependency 进行版本管理，例如：
+```groovy
+dependencyManagement {
+    imports {
+        mavenBom("pers.acp.dependency:acp-dependency:6.5.2")
+    }
+}
+```
 ### （一）模块说明
 ##### 1. cloud:acp-spring-cloud-starter
 原子服务公共模块：

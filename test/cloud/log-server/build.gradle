@@ -1,12 +1,6 @@
 versions += [
         logstash: "5.3"
 ]
-buildscript {
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
-}
-
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 dependencyManagement {
