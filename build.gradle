@@ -1,9 +1,13 @@
 ext {
-    println("Environment        : JAVA_HOME=$System.env.JAVA_HOME")
-    println("Gradle Version     : ${gradleVersion}")
-    println("Target JDK Version : ${javaVersion}")
-    println("Kotlin Version     : ${kotlinVersion}")
-    println("Encoding           : ${encoding}")
+    println("Environment                 : JAVA_HOME=$System.env.JAVA_HOME")
+    println("Gradle Version              : ${gradleVersion}")
+    println("Target JDK Version          : ${javaVersion}")
+    println("Kotlin Version              : ${kotlinVersion}")
+    println("Spring Boot Version         : ${springBootVersion}")
+    println("Spring Cloud Version        : ${springCloudVersion}")
+    println("Spring Cloud Alibaba Version: ${springCloudAlibabaVersion}")
+    println("Encoding                    : ${encoding}")
+    println("Build Version               : ${version}")
 }
 
 buildscript {

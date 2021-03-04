@@ -92,6 +92,7 @@ ext {
 ## 三、工程说明
 - doc目录下的files文件夹，当需要用到时放到打包后的jar同目录下即可
 - 工程全局默认使用 UTF-8 字符集
+- dependency 目录下为 acp-dependency 依赖管理组件
 - core 目录下为核心组件模块
 - boot 目录下为基于 Spring Boot 的自动配置组件模块
 - cloud 目录下为基于 Spring Cloud 的自动配置组件模块
@@ -100,7 +101,14 @@ ext {
 - api document url : /doc.html
 
 ## 四、开发 SpringBoot 应用
-引入 acp 下相应模块包
+引入 acp 下相应模块包，使用 acp-dependency 进行版本管理，例如：
+```groovy
+dependencyManagement {
+    imports {
+        mavenBom("pers.acp.dependency:acp-dependency:6.5.2")
+    }
+}
+```
 ### （一）模块说明，具体API文档请查看各模块 javadoc
 ##### 1. acp:acp-core 
 > - 核心包
@@ -258,7 +266,14 @@ acp:
 | ./server.sh restart   | 重启应用                |
 
 ## 五、开发 SpringCloud 应用
-引入 cloud 下相应模块包，demo 位于 cloud 下
+引入 cloud 下相应模块包，demo 位于 cloud 下，使用 acp-dependency 进行版本管理，例如：
+```groovy
+dependencyManagement {
+    imports {
+        mavenBom("pers.acp.dependency:acp-dependency:6.5.2")
+    }
+}
+```
 ### （一）模块说明
 ##### 1. cloud:acp-spring-cloud-starter
 原子服务公共模块：
