@@ -13,6 +13,7 @@
 >   - netty 4.1.59.Final
 >   - FreeMarker 2.3.31
 >   - curator 5.1.0
+>   - liquibase 4.3.1
 ##### v6.5.1
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.8.2
