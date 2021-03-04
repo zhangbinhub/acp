@@ -19,6 +19,7 @@ versions += [
         jackson_databind : "2.11.4",
         zip4j            : "2.6.4",
 
+        curator          : "5.1.0",
         hikaricp         : "3.4.5",
         knife4j          : "3.0.2"
 ]

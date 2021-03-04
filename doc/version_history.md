@@ -2,6 +2,8 @@
 ##### v6.5.2
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.8.3
+> - acp-dependency
+>   - [Add] 新增 acp-dependency 模块，统一管理依赖版本
 > - [Upgrade] 升级依赖
 >   - kotlin 1.4.31
 >   - Spring Boot 2.4.3
@@ -10,6 +12,7 @@
 >   - junit-platform 1.7.1
 >   - netty 4.1.59.Final
 >   - FreeMarker 2.3.31
+>   - curator 5.1.0
 ##### v6.5.1
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.8.2

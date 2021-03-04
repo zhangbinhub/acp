@@ -1,4 +1,6 @@
 rootProject.name = 'acp'
+include 'dependency:acp-dependency'
+findProject(':dependency:acp-dependency')?.name = 'acp-dependency'
 include 'core:acp-client'
 findProject(':core:acp-client')?.name = 'acp-client'
 include 'core:acp-message'
