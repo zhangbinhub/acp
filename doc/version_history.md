@@ -7,7 +7,6 @@
 > - [Upgrade] 升级依赖
 >   - kotlin 1.4.31
 >   - Spring Boot 2.4.3
->   - Spring Boot Admin 2.4.0
 >   - jupiter 5.7.1
 >   - junit-platform 1.7.1
 >   - netty 4.1.59.Final
