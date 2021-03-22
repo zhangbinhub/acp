@@ -1,4 +1,10 @@
 ## 版本更新记录
+##### v6.5.3
+> - [Upgrade] 升级依赖
+>   - kotlin coroutines 1.4.3
+>   - Spring Boot 2.4.4
+>   - Spring Cloud 2020.0.2
+>   - netty 4.1.60.Final
 ##### v6.5.2
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.8.3
