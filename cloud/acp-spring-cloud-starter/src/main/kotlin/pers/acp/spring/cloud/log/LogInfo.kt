@@ -1,7 +1,6 @@
 package pers.acp.spring.cloud.log
 
 import org.springframework.beans.factory.annotation.Value
-import pers.acp.spring.cloud.component.CloudTools
 
 /**
  * 日志消息实体
@@ -9,9 +8,11 @@ import pers.acp.spring.cloud.component.CloudTools
  * @author zhangbin by 11/07/2018 13:34
  * @since JDK 11
  */
-class LogInfo(private val cloudTools: CloudTools) {
+class LogInfo {
     @Value("\${spring.application.name}")
     val serverName: String? = null
+    var serverIp: String? = null
+    var serverPort: Int? = null
 
     /**
      * 日志类型字符串
@@ -36,8 +37,4 @@ class LogInfo(private val cloudTools: CloudTools) {
 
     var params: List<Any?> = listOf()
         internal set
-
-    fun getServerIp(): String = cloudTools.getServerIp()
-    fun getServerPort(): Int = cloudTools.getServerPort()
-
 }

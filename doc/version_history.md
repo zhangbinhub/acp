@@ -4,6 +4,7 @@
 >   - [Add] 新增ServerTools
 > - acp-spring-cloud-starter
 >   - [Add] 新增CloudTools
+>   - [Add] 新增AcpCloudToolsAutoConfiguration工具类自动配置
 >   - [Upgrade] 修改LogInfo本地IP获取逻辑
 >   - [Upgrade] 修改LogInfo本地端口获取逻辑
 > - test
