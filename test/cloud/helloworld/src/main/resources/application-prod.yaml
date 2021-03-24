@@ -1,6 +1,5 @@
 server:
-  address: 127.0.0.1
-  port: 9003
+  port: 0
 # ===============================
 # = Log To File Config
 # ===============================
@@ -19,11 +18,6 @@ logging:
 # ===============================
 spring:
   cloud:
-    nacos:
-      discovery:
-        ip: ${server.address}
-    bus:
-      id: ${spring.application.name}:${server.address}:${server.port}:v${info.version}:${spring.profiles.active}
     stream:
       kafka:
         binder:

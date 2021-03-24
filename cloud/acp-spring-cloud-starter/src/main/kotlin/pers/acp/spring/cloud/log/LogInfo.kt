@@ -1,10 +1,7 @@
 package pers.acp.spring.cloud.log
 
 import org.springframework.beans.factory.annotation.Value
-import pers.acp.core.CommonTools
-
-import java.net.InetAddress
-import java.net.UnknownHostException
+import pers.acp.spring.cloud.component.CloudTools
 
 /**
  * 日志消息实体
@@ -12,11 +9,7 @@ import java.net.UnknownHostException
  * @author zhangbin by 11/07/2018 13:34
  * @since JDK 11
  */
-class LogInfo {
-
-    @Value("\${server.address}")
-    private val serverIp: String? = null
-
+class LogInfo(private val cloudTools: CloudTools) {
     @Value("\${spring.application.name}")
     val serverName: String? = null
 
@@ -47,17 +40,6 @@ class LogInfo {
     var params: List<Any?> = listOf()
         internal set
 
-    fun getServerIp(): String? {
-        return if (CommonTools.isNullStr(serverIp)) {
-            try {
-                InetAddress.getLocalHost().hostAddress
-            } catch (e: UnknownHostException) {
-                e.printStackTrace()
-                ""
-            }
-        } else {
-            serverIp
-        }
-    }
+    fun getServerIp(): String? = cloudTools.getServerIp()
 
 }

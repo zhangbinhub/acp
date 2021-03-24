@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.ConfigurableBeanFactory
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
+import org.springframework.cloud.commons.util.InetUtils
 import org.springframework.context.annotation.*
 import pers.acp.spring.cloud.aspect.RestControllerRepeatAspect
+import pers.acp.spring.cloud.component.CloudTools
 import pers.acp.spring.cloud.error.AuthAccessDeniedHandler
 import pers.acp.spring.cloud.error.AuthExceptionEntryPoint
 import pers.acp.spring.cloud.lock.DistributedLock
@@ -32,6 +34,9 @@ class AcpCloudComponentAutoConfiguration {
     fun authExceptionEntryPoint(objectMapper: ObjectMapper) = AuthExceptionEntryPoint(objectMapper)
 
     @Bean
+    fun cloudIpTools(inetUtils: InetUtils) = CloudTools(inetUtils)
+
+    @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    fun logInfo() = LogInfo()
+    fun logInfo(cloudTools: CloudTools) = LogInfo(cloudTools)
 }
