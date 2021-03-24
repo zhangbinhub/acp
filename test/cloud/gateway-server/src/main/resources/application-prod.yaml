@@ -1,5 +1,4 @@
 server:
-  address: 127.0.0.1
   port: 8770
 # ===============================
 # = Log To File Config
@@ -20,7 +19,3 @@ logging:
 spring:
   redis:
     url: redis://127.0.0.1:6379
-  cloud:
-    nacos:
-      discovery:
-        ip: ${server.address}

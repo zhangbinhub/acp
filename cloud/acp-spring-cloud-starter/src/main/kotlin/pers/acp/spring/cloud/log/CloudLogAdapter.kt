@@ -7,6 +7,7 @@ import pers.acp.core.task.BaseAsyncTask
 import pers.acp.core.task.threadpool.ThreadPoolService
 import pers.acp.spring.boot.interfaces.LogAdapter
 import pers.acp.spring.boot.tools.SpringBeanFactory
+import pers.acp.spring.cloud.component.CloudTools
 import pers.acp.spring.cloud.enums.LogLevel
 import pers.acp.spring.cloud.conf.AcpCloudLogServerClientConfiguration
 import pers.acp.spring.cloud.log.producer.LogBridge
@@ -18,6 +19,7 @@ import pers.acp.spring.cloud.log.producer.LogBridge
  * @since JDK 11
  */
 class CloudLogAdapter(
+    private val cloudTools: CloudTools,
     private val acpCloudLogServerClientConfiguration: AcpCloudLogServerClientConfiguration,
     private val logBridge: LogBridge
 ) : LogAdapter {
@@ -32,6 +34,8 @@ class CloudLogAdapter(
                 logType = LogConstant.DEFAULT_TYPE
             }
             it.logType = logType
+            it.serverIp = cloudTools.getServerIp()
+            it.serverPort = cloudTools.getServerPort()
         }
         return logInfo
     }
@@ -45,13 +49,13 @@ class CloudLogAdapter(
             override fun afterExecuteFun(result: Any) {}
             override fun executeFun(): Any {
                 logInfo.serverTime = CommonTools.getNowDateTime().toDate().time
-                var lineno = 0
+                var lineNo = 0
                 var className = ""
                 if (stacks.size >= log.stackIndex + 1) {
-                    lineno = stacks[log.stackIndex].lineNumber
+                    lineNo = stacks[log.stackIndex].lineNumber
                     className = stacks[log.stackIndex].className
                 }
-                logInfo.lineno = lineno
+                logInfo.lineNo = lineNo
                 logInfo.className = className
                 try {
                     if (acpCloudLogServerClientConfiguration.enabled) {
