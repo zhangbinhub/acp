@@ -1,8 +1,11 @@
 ## 版本更新记录
 ##### v6.5.4
+> - acp-spring-boot-starter
+>   - [Add] 新增ServerTools
 > - acp-spring-cloud-starter
 >   - [Add] 新增CloudTools
 >   - [Upgrade] 修改LogInfo本地IP获取逻辑
+>   - [Upgrade] 修改LogInfo本地端口获取逻辑
 > - test
 >   - [Upgrade] 取消静态ip配置 server.address
 >   - [Upgrade] 除 admin-server、gateway-server 以外均使用动态端口

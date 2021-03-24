@@ -45,13 +45,13 @@ class CloudLogAdapter(
             override fun afterExecuteFun(result: Any) {}
             override fun executeFun(): Any {
                 logInfo.serverTime = CommonTools.getNowDateTime().toDate().time
-                var lineno = 0
+                var lineNo = 0
                 var className = ""
                 if (stacks.size >= log.stackIndex + 1) {
-                    lineno = stacks[log.stackIndex].lineNumber
+                    lineNo = stacks[log.stackIndex].lineNumber
                     className = stacks[log.stackIndex].className
                 }
-                logInfo.lineno = lineno
+                logInfo.lineNo = lineNo
                 logInfo.className = className
                 try {
                     if (acpCloudLogServerClientConfiguration.enabled) {

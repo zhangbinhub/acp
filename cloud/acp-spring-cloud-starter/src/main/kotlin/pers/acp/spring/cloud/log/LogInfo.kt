@@ -13,9 +13,6 @@ class LogInfo(private val cloudTools: CloudTools) {
     @Value("\${spring.application.name}")
     val serverName: String? = null
 
-    @Value("\${server.port}")
-    val serverPort: Int = 0
-
     /**
      * 日志类型字符串
      * 在 log-server 的 logback.xml 中对应配置日志规则，可实现不同类型的日志记录到的文件
@@ -32,7 +29,7 @@ class LogInfo(private val cloudTools: CloudTools) {
 
     var className: String? = null
 
-    var lineno: Int = 0
+    var lineNo: Int = 0
 
     var message: String? = null
         internal set
@@ -40,6 +37,7 @@ class LogInfo(private val cloudTools: CloudTools) {
     var params: List<Any?> = listOf()
         internal set
 
-    fun getServerIp(): String? = cloudTools.getServerIp()
+    fun getServerIp(): String = cloudTools.getServerIp()
+    fun getServerPort(): Int = cloudTools.getServerPort()
 
 }

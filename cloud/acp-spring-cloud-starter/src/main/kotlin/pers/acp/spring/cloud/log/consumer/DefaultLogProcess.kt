@@ -40,13 +40,13 @@ class DefaultLogProcess : LogProcess {
             LogLevel.Other
         }
         val message = StringBuilder()
-                .append("[ ").append(CommonTools.strFillIn(logLevel.name, 5, 1, " ")).append(" ] ")
-                .append("[").append(logInfo.serverName).append("] ")
-                .append("[").append(logInfo.getServerIp()).append("] ")
-                .append("[").append(logInfo.serverPort).append("] ")
-                .append("[").append(logInfo.className).append("] ")
-                .append("[ ").append(logInfo.lineno).append(" ] - ")
-                .append(logInfo.message)
+            .append("[ ").append(CommonTools.strFillIn(logLevel.name, 5, 1, " ")).append(" ] ")
+            .append("[").append(logInfo.serverName).append("] ")
+            .append("[").append(logInfo.getServerIp()).append("] ")
+            .append("[").append(logInfo.getServerPort()).append("] ")
+            .append("[").append(logInfo.className).append("] ")
+            .append("[ ").append(logInfo.lineNo).append(" ] - ")
+            .append(logInfo.message)
         when (logLevel) {
             LogLevel.Debug -> {
                 if (logInfo.params.isNotEmpty()) {

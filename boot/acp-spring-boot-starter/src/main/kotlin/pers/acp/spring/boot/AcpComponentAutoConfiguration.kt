@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
 import pers.acp.spring.boot.aspect.RestControllerAspect
 import pers.acp.spring.boot.component.FileDownLoadHandle
+import pers.acp.spring.boot.component.ServerTools
 import pers.acp.spring.boot.conf.ControllerLogConfiguration
 import pers.acp.spring.boot.interfaces.LogAdapter
 import pers.acp.spring.boot.tools.PackageTools
@@ -47,5 +48,8 @@ class AcpComponentAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(FileDownLoadHandle::class)
     fun fileDownLoadHandle(logAdapter: LogAdapter) = FileDownLoadHandle(logAdapter)
+
+    @Bean
+    fun serverTools() = ServerTools()
 
 }
