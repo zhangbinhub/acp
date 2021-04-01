@@ -12,5 +12,5 @@ import pers.acp.spring.cloud.component.CloudTools
 @Configuration(proxyBeanMethods = false)
 class AcpCloudToolsAutoConfiguration {
     @Bean
-    fun cloudIpTools(serverTools: ServerTools, inetUtils: InetUtils) = CloudTools(serverTools, inetUtils)
+    fun cloudTools(serverTools: ServerTools, inetUtils: InetUtils) = CloudTools(serverTools, inetUtils)
 }
