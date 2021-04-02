@@ -11,6 +11,8 @@ import java.net.UnknownHostException
 import java.util.concurrent.atomic.AtomicInteger
 
 class ServerTools : ApplicationListener<WebServerInitializedEvent> {
+    private val logAdapter = BootLogAdapter()
+
     @Value("\${server.address:}")
     private var ip: String? = null
     private val port = AtomicInteger(0)
@@ -22,6 +24,7 @@ class ServerTools : ApplicationListener<WebServerInitializedEvent> {
             }
         }
         this.port.compareAndSet(0, event.webServer.port)
+        logAdapter.info("Application was started, listener port: ${port.get()}")
     }
 
     fun getServerPort(): Int = port.get()
