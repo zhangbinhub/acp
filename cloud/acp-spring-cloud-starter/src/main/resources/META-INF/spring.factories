@@ -1,5 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   pers.acp.spring.cloud.AcpCloudPropertiesAutoConfiguration,\
+  pers.acp.spring.cloud.AcpCloudBusAutoConfiguration,\
   pers.acp.spring.cloud.AcpCloudFeignAutoConfiguration,\
   pers.acp.spring.cloud.AcpCloudToolsAutoConfiguration,\
   pers.acp.spring.cloud.AcpCloudComponentAutoConfiguration,\
