@@ -5,6 +5,7 @@
 > - acp-spring-cloud-starter
 >   - [Add] 新增CloudTools
 >   - [Add] 新增AcpCloudToolsAutoConfiguration工具类自动配置
+>   - [Add] 新增AcpCloudBusAutoConfiguration，重写PathServiceMatcherAutoConfiguration，解决动态端口时 spring.cloud.bus.id 无法识别是自身的问题
 >   - [Upgrade] 修改LogInfo本地IP获取逻辑
 >   - [Upgrade] 修改LogInfo本地端口获取逻辑
 > - test
