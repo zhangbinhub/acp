@@ -24,7 +24,7 @@ class ServerTools : ApplicationListener<WebServerInitializedEvent> {
             }
         }
         this.port.compareAndSet(0, event.webServer.port)
-        logAdapter.info("Application was started, listener port: ${port.get()}")
+        logAdapter.info("Web Server has started, listening to port: ${port.get()}")
     }
 
     fun getServerPort(): Int = port.get()
