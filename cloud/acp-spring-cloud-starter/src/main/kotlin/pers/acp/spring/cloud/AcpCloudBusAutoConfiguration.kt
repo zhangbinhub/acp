@@ -1,6 +1,5 @@
 package pers.acp.spring.cloud
 
-import pers.acp.spring.boot.component.ServerTools
 import org.springframework.boot.autoconfigure.AutoConfigureBefore
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -14,15 +13,17 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
 import org.springframework.util.AntPathMatcher
 import org.springframework.util.PathMatcher
+import pers.acp.spring.boot.component.BootLogAdapter
 
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnBusEnabled
 @EnableConfigurationProperties(BusProperties::class)
 @AutoConfigureBefore(PathServiceMatcherAutoConfiguration::class)
 class AcpCloudBusAutoConfiguration(
-    private val contextRefresher: ContextRefresher,
-    private val serverTools: ServerTools
+    private val contextRefresher: ContextRefresher
 ) : ApplicationListener<WebServerInitializedEvent> {
+    private val logAdapter = BootLogAdapter()
+
     @BusPathMatcher // There is a @Bean of type PathMatcher coming from Spring MVC
     @ConditionalOnMissingBean(name = [BUS_PATH_MATCHER_NAME])
     @Bean(name = [BUS_PATH_MATCHER_NAME])
@@ -45,7 +46,7 @@ class AcpCloudBusAutoConfiguration(
     }
 
     override fun onApplicationEvent(event: WebServerInitializedEvent) {
-        serverTools.onApplicationEvent(event)
+        logAdapter.info("Web Server has started, reload the properties and refresh the bus id with server port: ${event.webServer.port}")
         contextRefresher.refresh()
     }
 
