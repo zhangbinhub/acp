@@ -6,8 +6,16 @@
 >   - [Add] 新增CloudTools
 >   - [Add] 新增AcpCloudToolsAutoConfiguration工具类自动配置
 >   - [Add] 新增AcpCloudBusAutoConfiguration，重写PathServiceMatcherAutoConfiguration，解决动态端口时 spring.cloud.bus.id 无法识别是自身的问题
+>   - [Delete] AcpCloudFeignAutoConfiguration 中去除自定义 Feign.Builder
 >   - [Upgrade] 修改LogInfo本地IP获取逻辑
 >   - [Upgrade] 修改LogInfo本地端口获取逻辑
+> - [Upgrade] 升级依赖
+>   - kotlin 1.4.32
+>   - Spring Boot 2.4.5
+>   - Spring Cloud Alibaba 2021.1
+>   - Spring Boot Admin 2.4.1
+>   - netty 4.1.63.Final
+>   - xstream 1.4.16
 > - test
 >   - [Upgrade] 取消静态ip配置 server.address
 >   - [Upgrade] 除 admin-server、gateway-server 以外均使用动态端口

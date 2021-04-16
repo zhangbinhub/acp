@@ -1,27 +1,20 @@
 package pers.acp.spring.cloud
 
-import com.alibaba.cloud.sentinel.feign.SentinelFeignAutoConfiguration
-import com.alibaba.csp.sentinel.SphU
 import feign.Feign
 import feign.RequestInterceptor
-import org.springframework.boot.autoconfigure.AutoConfigureBefore
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.*
 import org.springframework.http.HttpHeaders
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
 import pers.acp.core.CommonTools
-import pers.acp.spring.cloud.feign.AcpSentinelFeign
 
 /**
  * @author zhangbin
  * @date 2020-12-31
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnClass(SphU::class, Feign::class)
-@AutoConfigureBefore(SentinelFeignAutoConfiguration::class)
+@ConditionalOnClass(Feign::class)
 class AcpCloudFeignAutoConfiguration {
 
     /**
@@ -44,13 +37,5 @@ class AcpCloudFeignAutoConfiguration {
                 }
             }
         }
-    }
-
-    @Bean
-    @Scope("prototype")
-    @ConditionalOnMissingBean
-    @ConditionalOnProperty(name = ["feign.sentinel.enabled"])
-    fun feignSentinelBuilder(): Feign.Builder {
-        return AcpSentinelFeign.builder()
     }
 }
