@@ -20,7 +20,7 @@ buildscript {
     repositories {
         mavenLocal()
         maven {
-            url = new URI(mavenCentralUrl)
+            url = new URI("${mavenCentralUrl}")
             allowInsecureProtocol = true
         }
         mavenCentral()
@@ -46,7 +46,7 @@ allprojects {
         repositories {
             mavenLocal()
             maven {
-                url = new URI(mavenCentralUrl)
+                url = new URI("${mavenCentralUrl}")
                 allowInsecureProtocol = true
             }
             mavenCentral()
@@ -56,7 +56,7 @@ allprojects {
     repositories {
         mavenLocal()
         maven {
-            url = new URI(mavenCentralUrl)
+            url = new URI("${mavenCentralUrl}")
             allowInsecureProtocol = true
         }
         mavenCentral()
@@ -185,7 +185,7 @@ allprojects {
             maven {
                 apply from: "$rootDir/gradle/deploy.gradle"
                 //指定要上传的maven私服仓库
-                url = new URI(mavenUploadUrl)
+                url = new URI("${mavenUploadUrl}")
                 allowInsecureProtocol = true
                 //认证用户和密码
                 credentials {
