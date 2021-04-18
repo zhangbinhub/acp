@@ -1,5 +1,7 @@
 ## 版本更新记录
 ##### v6.5.4
+> - Global
+>   - [Upgrade] 升级 Gradle 至 7.0
 > - acp-spring-boot-starter
 >   - [Add] 新增ServerTools
 > - acp-spring-cloud-starter
