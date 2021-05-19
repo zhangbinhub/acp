@@ -1,6 +1,11 @@
 #!/bin/bash
-APP_NAME=$(cd "$(dirname "$0")";pwd)/xxxx-1.0.0.jar
+WORK_PATH=$(cd "$(dirname "$0")";pwd)
+APP_NAME=$WORK_PATH/xxxx-1.0.0.jar
 JVM_PARAM='-server -XX:+UnlockExperimentalVMOptions -XX:+UseZGC -Xms256m -Xmx512m -Dfile.encoding=utf-8'
+JVM_EXT_PARAM=@jvmExtParam@
+cd $WORK_PATH
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$WORK_PATH/libs
 
 usage() {
   echo "Usage: sh 执行脚本.sh [start|stop|restart|status]"
