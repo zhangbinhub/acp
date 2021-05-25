@@ -181,6 +181,28 @@ internal class JpaTest : BaseTest() {
     }
 
     /**
+     * Hibernate: insert into table2_member (login_no, group_id, id) values (?, ?, ?)
+     * Hibernate: update table2 set name=?, value=? where id=?
+     * Hibernate: update table2_member set login_no=?, group_id=? where id=?
+     */
+    @Test
+    @Transactional
+    @Rollback(false)
+    fun testUpdateTwo3() {
+        tableTwoRepository.getOne(9).let {
+            it.name = "b333333"
+            it.memberSet = it.memberSet.filter { member ->
+                member.loginNo.endsWith("3")
+            }.toMutableSet()
+            it.memberSet.forEach { member ->
+                member.loginNo += "_updated"
+            }
+            it.memberSet.add(MemberTwo(loginNo = "memberTwo4").apply { this.two = it })
+            tableTwoRepository.save(it)
+        }
+    }
+
+    /**
      * Hibernate: update table1_member set group_id=null where group_id=?
      * Hibernate: delete from table1_member where id=?
      * Hibernate: delete from table1_member where id=?
