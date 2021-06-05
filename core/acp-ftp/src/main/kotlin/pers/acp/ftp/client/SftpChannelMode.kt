@@ -18,15 +18,15 @@ enum class SftpChannelMode(val value: Int) {
 
         init {
             for (type in values()) {
-                map[type.name.toUpperCase()] = type
+                map[type.name.uppercase()] = type
             }
         }
 
         @JvmStatic
         @Throws(EnumValueUndefinedException::class)
         fun getEnum(name: String): SftpChannelMode {
-            if (map.containsKey(name.toUpperCase())) {
-                return map.getValue(name.toUpperCase())
+            if (map.containsKey(name.uppercase())) {
+                return map.getValue(name.uppercase())
             }
             throw EnumValueUndefinedException(SftpChannelMode::class.java, name)
         }

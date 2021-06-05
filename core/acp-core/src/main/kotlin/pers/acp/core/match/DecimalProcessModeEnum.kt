@@ -29,15 +29,15 @@ enum class DecimalProcessModeEnum(val mode: RoundingMode, val description: Strin
 
         init {
             for (type in values()) {
-                nameMap[type.name.toUpperCase()] = type
+                nameMap[type.name.uppercase()] = type
             }
         }
 
         @JvmStatic
         @Throws(EnumValueUndefinedException::class)
         fun getEnum(name: String): DecimalProcessModeEnum {
-            if (nameMap.containsKey(name.toLowerCase())) {
-                return nameMap.getValue(name.toLowerCase())
+            if (nameMap.containsKey(name.lowercase())) {
+                return nameMap.getValue(name.lowercase())
             }
             throw EnumValueUndefinedException(DecimalProcessModeEnum::class.java, name)
         }

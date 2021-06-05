@@ -196,7 +196,7 @@ object IpTools {
                                     .append(parseByte(it[5]))
                         }
                     }
-                    result = sb.toString().toUpperCase()
+                    result = sb.toString().uppercase()
                 }
             }
         } catch (e: Exception) {

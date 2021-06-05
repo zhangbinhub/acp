@@ -9,3 +9,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   pers.acp.spring.cloud.AcpCloudLogAutoConfiguration,\
   pers.acp.spring.cloud.AcpCloudResourceServerAutoConfiguration,\
   pers.acp.spring.cloud.AcpCloudMethodSecurityAutoConfiguration
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  pers.acp.spring.cloud.AcpCloudLogServerEnvironmentPostProcessor

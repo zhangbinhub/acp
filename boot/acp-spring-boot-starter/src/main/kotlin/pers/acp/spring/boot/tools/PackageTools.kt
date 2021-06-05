@@ -2,6 +2,7 @@ package pers.acp.spring.boot.tools
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
 import org.springframework.core.env.Environment
@@ -25,8 +26,9 @@ object PackageTools {
     @JvmStatic
     fun buildJacksonObjectMapper(environment: Environment): ObjectMapper {
         val jacksonProperties = JacksonProperties()
-        jacksonProperties.propertyNamingStrategy = environment.getProperty("spring.jackson.property-naming-strategy", "")
-        if ("non_null" == environment.getProperty("spring.jackson.default-property-inclusion", "").toLowerCase()) {
+        jacksonProperties.propertyNamingStrategy =
+            environment.getProperty("spring.jackson.property-naming-strategy", "")
+        if ("non_null" == environment.getProperty("spring.jackson.default-property-inclusion", "").lowercase()) {
             jacksonProperties.defaultPropertyInclusion = JsonInclude.Include.NON_NULL
         }
         return buildJacksonObjectMapper(jacksonProperties)
@@ -42,8 +44,8 @@ object PackageTools {
     fun buildJacksonObjectMapper(jacksonProperties: JacksonProperties): ObjectMapper {
         val builder = Jackson2ObjectMapperBuilder.json()
         var propertyNamingStrategyDefault = PropertyNamingStrategy()
-        if ("SNAKE_CASE" == jacksonProperties.propertyNamingStrategy.toUpperCase()) {
-            propertyNamingStrategyDefault = PropertyNamingStrategy.SnakeCaseStrategy()
+        if ("SNAKE_CASE" == jacksonProperties.propertyNamingStrategy.uppercase()) {
+            propertyNamingStrategyDefault = PropertyNamingStrategies.SnakeCaseStrategy()
         }
         builder.propertyNamingStrategy(propertyNamingStrategyDefault)
         if (jacksonProperties.defaultPropertyInclusion != null) {

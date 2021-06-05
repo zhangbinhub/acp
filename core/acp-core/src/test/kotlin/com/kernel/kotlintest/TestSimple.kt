@@ -1,5 +1,7 @@
 package com.kernel.kotlintest
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import pers.acp.core.CommonTools
 import java.io.File
@@ -88,4 +90,18 @@ class TestSimple {
         println("$number6 ----> ${CommonTools.numberToCn(number6.toDouble(),2)}")
     }
 
+    @Test
+    fun testDelete(){
+        CommonTools.doDeleteFile(File("D:\\test\\file\\新建文本文档.bat"),true,5000)
+        runBlocking {
+            delay(10000)
+        }
+    }
+
+    @Test
+    fun testByte(){
+        println('s'.toByte())
+        println('s'.code)
+        println('s'.code.toByte())
+    }
 }

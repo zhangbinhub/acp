@@ -70,8 +70,11 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doGet(requestParam: RequestParam): ResponseResult =
-            doRequest(requestParam,
-                    Request.Builder().url(HttpPacket.buildGetParam(requestParam.url, requestParam.params, requestParam.clientCharset)))
+        doRequest(
+            requestParam,
+            Request.Builder()
+                .url(HttpPacket.buildGetParam(requestParam.url, requestParam.params, requestParam.clientCharset))
+        )
 
     /**
      * GET请求
@@ -81,9 +84,12 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doGetAsync(requestParam: RequestParam, httpCallBack: HttpCallBack) =
-            doRequestAsync(requestParam,
-                    Request.Builder().url(HttpPacket.buildGetParam(requestParam.url, requestParam.params, requestParam.clientCharset))
-                    , httpCallBack)
+        doRequestAsync(
+            requestParam,
+            Request.Builder()
+                .url(HttpPacket.buildGetParam(requestParam.url, requestParam.params, requestParam.clientCharset)),
+            httpCallBack
+        )
 
     /**
      * POST请求
@@ -123,8 +129,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doPostXml(requestParam: RequestParam): ResponseResult {
-        val body = RequestBody.create(MediaType.parse("application/xml;charset=" + requestParam.clientCharset),
-                requestParam.bodyString)
+        val body = RequestBody.create(
+            MediaType.parse("application/xml;charset=" + requestParam.clientCharset),
+            requestParam.bodyString
+        )
         return doRequest(requestParam, Request.Builder().url(requestParam.url).post(body))
     }
 
@@ -136,8 +144,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doPostXmlAsync(requestParam: RequestParam, httpCallBack: HttpCallBack) {
-        val body = RequestBody.create(MediaType.parse("application/xml;charset=" + requestParam.clientCharset),
-                requestParam.bodyString)
+        val body = RequestBody.create(
+            MediaType.parse("application/xml;charset=" + requestParam.clientCharset),
+            requestParam.bodyString
+        )
         doRequestAsync(requestParam, Request.Builder().url(requestParam.url).post(body), httpCallBack)
     }
 
@@ -149,8 +159,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doPostJson(requestParam: RequestParam): ResponseResult {
-        val body = RequestBody.create(MediaType.parse("application/json;charset=" + requestParam.clientCharset),
-                requestParam.bodyString)
+        val body = RequestBody.create(
+            MediaType.parse("application/json;charset=" + requestParam.clientCharset),
+            requestParam.bodyString
+        )
         return doRequest(requestParam, Request.Builder().url(requestParam.url).post(body))
     }
 
@@ -162,8 +174,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doPostJsonAsync(requestParam: RequestParam, httpCallBack: HttpCallBack) {
-        val body = RequestBody.create(MediaType.parse("application/json;charset=" + requestParam.clientCharset),
-                requestParam.bodyString)
+        val body = RequestBody.create(
+            MediaType.parse("application/json;charset=" + requestParam.clientCharset),
+            requestParam.bodyString
+        )
         doRequestAsync(requestParam, Request.Builder().url(requestParam.url).post(body), httpCallBack)
     }
 
@@ -175,8 +189,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doPostSoap(requestParam: RequestParam): ResponseResult {
-        val body = RequestBody.create(MediaType.parse("application/soap+xml;charset=" + requestParam.clientCharset),
-                requestParam.bodyString)
+        val body = RequestBody.create(
+            MediaType.parse("application/soap+xml;charset=" + requestParam.clientCharset),
+            requestParam.bodyString
+        )
         return doRequest(requestParam, Request.Builder().url(requestParam.url).post(body))
     }
 
@@ -188,8 +204,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      */
     @Throws(HttpException::class)
     fun doPostSoapAsync(requestParam: RequestParam, httpCallBack: HttpCallBack) {
-        val body = RequestBody.create(MediaType.parse("application/soap+xml;charset=" + requestParam.clientCharset),
-                requestParam.bodyString)
+        val body = RequestBody.create(
+            MediaType.parse("application/soap+xml;charset=" + requestParam.clientCharset),
+            requestParam.bodyString
+        )
         doRequestAsync(requestParam, Request.Builder().url(requestParam.url).post(body), httpCallBack)
     }
 
@@ -204,8 +222,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
         if (requestParam.bodyBytes == null) {
             throw HttpException("the bodyBytes is null")
         }
-        val body = RequestBody.create(MediaType.parse("application/octet-stream"),
-                requestParam.bodyBytes!!)
+        val body = RequestBody.create(
+            MediaType.parse("application/octet-stream"),
+            requestParam.bodyBytes!!
+        )
         return doRequest(requestParam, Request.Builder().url(requestParam.url).post(body))
     }
 
@@ -220,8 +240,10 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
         if (requestParam.bodyBytes == null) {
             throw HttpException("the bodyBytes is null")
         }
-        val body = RequestBody.create(MediaType.parse("application/octet-stream"),
-                requestParam.bodyBytes!!)
+        val body = RequestBody.create(
+            MediaType.parse("application/octet-stream"),
+            requestParam.bodyBytes!!
+        )
         doRequestAsync(requestParam, Request.Builder().url(requestParam.url).post(body), httpCallBack)
     }
 
@@ -252,7 +274,11 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
         if (requestParam.body == null) {
             throw HttpException("the body is null")
         }
-        doRequestAsync(requestParam, Request.Builder().url(requestParam.url).method(method.toUpperCase(), requestParam.body), httpCallBack)
+        doRequestAsync(
+            requestParam,
+            Request.Builder().url(requestParam.url).method(method.uppercase(), requestParam.body),
+            httpCallBack
+        )
     }
 
     /**
@@ -287,7 +313,11 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
      * @param httpCallBack   回调对象
      */
     @Throws(HttpException::class)
-    private fun doRequestAsync(requestParam: RequestParam, requestBuilder: Request.Builder, httpCallBack: HttpCallBack) {
+    private fun doRequestAsync(
+        requestParam: RequestParam,
+        requestBuilder: Request.Builder,
+        httpCallBack: HttpCallBack
+    ) {
         try {
             if (client == null) {
                 basicAuth(requestParam)
@@ -313,13 +343,13 @@ constructor(val builder: OkHttpClient.Builder, disableSslValidation: Boolean, ss
          */
         @Throws(IOException::class)
         internal fun parseResponseResult(response: Response): ResponseResult =
-                ResponseResultBuilder(response)
-                        .headers(response.headers())
-                        .status(response.code()).also {
-                            response.body()?.apply {
-                                it.bodyString(this.string())
-                            }
-                        }.build()
+            ResponseResultBuilder(response)
+                .headers(response.headers())
+                .status(response.code()).also {
+                    response.body()?.apply {
+                        it.bodyString(this.string())
+                    }
+                }.build()
     }
 
 }

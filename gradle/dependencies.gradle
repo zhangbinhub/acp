@@ -6,8 +6,8 @@ versions += [
         jupiter          : "5.7.1",
         junit_platform   : "1.7.1",
 
-        kotlin_coroutines: "1.4.3",
-        joda_time        : "2.10.9",
+        kotlin_coroutines: "1.5.0",
+        joda_time        : "2.10.10",
         commons_codec    : "1.15",
         commons_text     : "1.9",
         commons_lang3    : "3.11",
@@ -15,12 +15,12 @@ versions += [
         bouncycastle     : "1.68",
         slf4j            : "1.7.30",
         logback          : "1.2.3",
-        xstream          : "1.4.16",
-        jackson_databind : "2.11.4",
-        zip4j            : "2.6.4",
+        xstream          : "1.4.17",
+        jackson_databind : "2.12.3",
+        zip4j            : "2.8.0",
 
         curator          : "5.1.0",
         liquibase        : "4.3.1",
-        hikaricp         : "3.4.5",
+        hikaricp         : "4.0.3",
         knife4j          : "3.0.2"
 ]
