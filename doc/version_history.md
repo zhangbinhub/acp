@@ -6,6 +6,7 @@
 >   - [Upgrade] CommonTools中去除executeTaskAsync和executeTaskLazyAsync两个方法
 > - acp-spring-cloud-starter
 >   - [Add] 新增AcpCloudLogServerEnvironmentPostProcessor，初始化环境配置
+>   - [Upgrade] 日志服务consumer和producer配置移入
 >   - [Upgrade] CommonTools中去除executeTaskAsync和executeTaskLazyAsync两个方法
 > - [Upgrade] 升级依赖
 >   - kotlin 1.5.10
