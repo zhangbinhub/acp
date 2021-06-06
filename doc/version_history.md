@@ -19,6 +19,8 @@
 >   - zip4j 2.8.0
 >   - hikaricp 4.0.3
 >   - netty 4.1.65.Final
+> - test
+>   - [Upgrade] 开启http2
 ##### v6.5.4
 > - Global
 >   - [Upgrade] 升级 Gradle 至 7.0
