@@ -2,10 +2,7 @@ package pers.acp.core.tools
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonProcessingException
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import com.fasterxml.jackson.databind.*
 import com.fasterxml.jackson.databind.node.JsonNodeFactory
 import kotlinx.coroutines.*
 import net.lingala.zip4j.ZipFile
@@ -20,7 +17,6 @@ import org.apache.commons.text.RandomStringGenerator
 import org.joda.time.DateTime
 import pers.acp.core.conf.AcpProperties
 import pers.acp.core.log.LogFactory
-import pers.acp.core.task.BaseAsyncTask
 import pers.acp.core.task.timer.Calculation
 import java.io.*
 import java.net.URLDecoder
@@ -138,9 +134,9 @@ object CommonUtils {
      * @return 内容
      */
     fun getFileContent(filePath: String, charset: String): String? =
-            getFileContentForByte(filePath)?.let {
-                String(it, Charset.forName(charset))
-            }
+        getFileContentForByte(filePath)?.let {
+            String(it, Charset.forName(charset))
+        }
 
     /**
      * 获取文件中的内容
@@ -215,11 +211,11 @@ object CommonUtils {
      * @return 扩展名（小写）
      */
     fun getFileExt(fileName: String): String =
-            if (fileName.lastIndexOf(".") > -1) {
-                fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase()
-            } else {
-                ""
-            }
+        if (fileName.lastIndexOf(".") > -1) {
+            fileName.substring(fileName.lastIndexOf(".") + 1).lowercase()
+        } else {
+            ""
+        }
 
     /**
      * 获取 WebRoot 绝对路径
@@ -227,7 +223,7 @@ object CommonUtils {
      * @return WebRoot 绝对路径
      */
     fun getWebRootAbsPath(): String = try {
-        var classPath = URLDecoder.decode(CommonUtils::class.java.getResource("/").path, defaultCharset)
+        var classPath = URLDecoder.decode(CommonUtils::class.java.getResource("/")?.path ?: "", defaultCharset)
         var indexWebInf = classPath.indexOf("WEB-INF")
         if (indexWebInf == -1) {
             indexWebInf = classPath.indexOf("bin")
@@ -287,7 +283,7 @@ object CommonUtils {
      *
      * @return 结果
      */
-    fun getUuid(): String = UUID.randomUUID().toString().toUpperCase()
+    fun getUuid(): String = UUID.randomUUID().toString().uppercase()
 
     /**
      * 获取uuid
@@ -296,9 +292,9 @@ object CommonUtils {
      * @return 结果
      */
     private fun getUuid(length: Int): String = RandomStringGenerator.Builder()
-            .withinRange(33, 126)
-            .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
-            .build().generate(length)
+        .withinRange(33, 126)
+        .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
+        .build().generate(length)
 
     /**
      * 获取32位全球唯一的字符串
@@ -415,7 +411,9 @@ object CommonUtils {
         val path = srcPath.replace("\\", File.separator).replace("/", File.separator)
         return when {
             isAbsPath(path) && path.startsWith(absPathPrefix) -> path.substring(absPathPrefix.length)
-            !isAbsPath(path) && path.startsWith(userPathPrefix) -> System.getProperty("user.home") + path.substring(userPathPrefix.length)
+            !isAbsPath(path) && path.startsWith(userPathPrefix) -> System.getProperty("user.home") + path.substring(
+                userPathPrefix.length
+            )
             !isAbsPath(path) -> formatAbsPath(path)
             else -> path
         }
@@ -499,8 +497,8 @@ object CommonUtils {
      */
     fun autoInsertString(src: String, length: Int, insertString: String): String {
         var result = src
-        val maxlength = src.length
-        for (i in 0 until maxlength / length) {
+        val maxLength = src.length
+        for (i in 0 until maxLength / length) {
             val endIndex = (i + 1) * length + i * insertString.length
             result = result.substring(0, endIndex) + insertString + result.substring(endIndex)
         }
@@ -540,10 +538,11 @@ object CommonUtils {
     fun strInArray(str: String, array: Array<String>, ignoreCase: Boolean = false): Boolean {
         for (anArray in array) {
             if (when {
-                        ignoreCase && str.equals(anArray, ignoreCase = true) -> true
-                        !ignoreCase && str == anArray -> true
-                        else -> false
-                    }) {
+                    ignoreCase && str.equals(anArray, ignoreCase = true) -> true
+                    !ignoreCase && str == anArray -> true
+                    else -> false
+                }
+            ) {
                 return true
             }
         }
@@ -559,11 +558,11 @@ object CommonUtils {
      * @return 是否存在
      */
     fun strInList(str: String, arrayList: List<String>, ignoreCase: Boolean = false): Boolean =
-            if (ignoreCase) {
-                arrayList.stream().filter { anArrayList -> anArrayList.equals(str, ignoreCase = true) }.count() > 0
-            } else {
-                arrayList.stream().filter { anArrayList -> anArrayList == str }.count() > 0
-            }
+        if (ignoreCase) {
+            arrayList.stream().filter { anArrayList -> anArrayList.equals(str, ignoreCase = true) }.count() > 0
+        } else {
+            arrayList.stream().filter { anArrayList -> anArrayList == str }.count() > 0
+        }
 
 
     /**
@@ -591,7 +590,11 @@ object CommonUtils {
      * @param propertyNamingStrategy 名称处理规则
      * @return 目标对象
      */
-    fun <T> jsonToObject(jsonObj: JsonNode, cls: Class<T>, propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE): T? {
+    fun <T> jsonToObject(
+        jsonObj: JsonNode,
+        cls: Class<T>,
+        propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
+    ): T? {
         val mapper = ObjectMapper()
         var instance: T? = null
         try {
@@ -611,7 +614,10 @@ object CommonUtils {
      * @param propertyNamingStrategy 名称处理规则
      * @return json对象
      */
-    fun objectToJson(instance: Any, propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE): JsonNode {
+    fun objectToJson(
+        instance: Any,
+        propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
+    ): JsonNode {
         val jsonNodeFactory = JsonNodeFactory(true)
         val mapper = ObjectMapper()
         mapper.nodeFactory = jsonNodeFactory
@@ -643,7 +649,7 @@ object CommonUtils {
             sb = StringBuffer()
             //将当前匹配子串替换为指定字符串，并且将替换后的子串以及其之前到上次匹配子串之后的字符串段添加到一个StringBuffer对象里。
             //正则之前的字符和被替换的字符
-            matcher.appendReplacement(sb, matcher.group(1).toUpperCase())
+            matcher.appendReplacement(sb, matcher.group(1).uppercase())
             //把之后的也添加到StringBuffer对象里
             matcher.appendTail(sb)
         } else {
@@ -667,7 +673,7 @@ object CommonUtils {
             sb = StringBuffer()
             //将当前匹配子串替换为指定字符串，并且将替换后的子串以及其之前到上次匹配子串之后的字符串段添加到一个StringBuffer对象里。
             //正则之前的字符和被替换的字符
-            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase())
+            matcher.appendReplacement(sb, "_" + matcher.group(0).lowercase())
             //把之后的也添加到StringBuffer对象里
             matcher.appendTail(sb)
         } else {
@@ -675,28 +681,6 @@ object CommonUtils {
         }
         return toUnderline(sb.toString())
     }
-
-    /**
-     * 异步执行任务，立即执行
-     *
-     * @param task     异步任务
-     * @return 协程任务 Deferred
-     */
-    fun executeTaskAsync(task: BaseAsyncTask) =
-            GlobalScope.async(Dispatchers.Unconfined) {
-                task.doExecute()
-            }
-
-    /**
-     * 异步执行任务，不立即执行
-     *
-     * @param task     异步任务
-     * @return 协程任务 Deferred
-     */
-    fun executeTaskLazyAsync(task: BaseAsyncTask) =
-            GlobalScope.async(context = Dispatchers.Unconfined, start = CoroutineStart.LAZY) {
-                task.doExecute()
-            }
 
     /**
      * 压缩文件
@@ -708,7 +692,13 @@ object CommonUtils {
      * @param zipParameters  压缩参数
      * @return 目标文件绝对路径
      */
-    fun filesToZip(fileNames: List<String>, resultFileName: String, deleteFile: Boolean = false, password: String? = null, zipParameters: ZipParameters? = null): String {
+    fun filesToZip(
+        fileNames: List<String>,
+        resultFileName: String,
+        deleteFile: Boolean = false,
+        password: String? = null,
+        zipParameters: ZipParameters? = null
+    ): String {
         val startTime = System.currentTimeMillis()
         var endTime: Long = 0
         try {
@@ -813,11 +803,13 @@ object CommonUtils {
             if (waitTime != null) {
                 time = waitTime
             }
-            GlobalScope.launch(Dispatchers.Unconfined) {
-                log.info("ready delete file [" + file.canonicalPath + "],waiting " + time / 1000 + " seconds")
-                delay(deleteFileWaitTime)
-                doDeleteFileOrDir(file)
-            }
+            Thread {
+                runBlocking(Dispatchers.Unconfined) {
+                    log.info("ready delete file [" + file.canonicalPath + "],waiting " + time / 1000 + " seconds")
+                    delay(time)
+                    doDeleteFileOrDir(file)
+                }
+            }.start()
         } else {
             doDeleteFileOrDir(file)
         }

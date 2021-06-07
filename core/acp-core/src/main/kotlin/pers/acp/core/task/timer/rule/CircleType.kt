@@ -21,15 +21,15 @@ enum class CircleType {
 
         init {
             for (type in values()) {
-                nameMap[type.name.toUpperCase()] = type
+                nameMap[type.name.uppercase()] = type
             }
         }
 
         @JvmStatic
         @Throws(EnumValueUndefinedException::class)
         fun getEnum(name: String): CircleType {
-            if (nameMap.containsKey(name.toLowerCase())) {
-                return nameMap.getValue(name.toLowerCase())
+            if (nameMap.containsKey(name.lowercase())) {
+                return nameMap.getValue(name.lowercase())
             }
             throw EnumValueUndefinedException(CircleType::class.java, name)
         }

@@ -1,6 +1,7 @@
 package pers.acp.core
 
 import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import net.lingala.zip4j.model.ZipParameters
@@ -10,7 +11,6 @@ import pers.acp.core.match.MoneyToCN
 import pers.acp.core.match.NumberToCN
 import pers.acp.core.match.Operate
 import pers.acp.core.security.key.KeyManagement
-import pers.acp.core.task.BaseAsyncTask
 import pers.acp.core.tools.CommonUtils
 
 import java.io.File
@@ -28,43 +28,55 @@ object CommonTools {
 
     @JvmStatic
     fun initTools(deleteFileWaitTime: Long, absPathPrefix: String, userPathPrefix: String, fontPath: String) =
-            CommonUtils.init(deleteFileWaitTime, absPathPrefix, userPathPrefix, fontPath)
+        CommonUtils.init(deleteFileWaitTime, absPathPrefix, userPathPrefix, fontPath)
 
     @JvmStatic
     fun getFileContentForByte(filePath: String): ByteArray? =
-            CommonUtils.getFileContentForByte(filePath)
+        CommonUtils.getFileContentForByte(filePath)
 
     @JvmStatic
     @JvmOverloads
     fun getFileContent(filePath: String, charset: String? = null): String? =
-            CommonUtils.getFileContent(filePath, charset ?: getDefaultCharset())
+        CommonUtils.getFileContent(filePath, charset ?: getDefaultCharset())
 
     @JvmStatic
     @JvmOverloads
     fun getFileContentForText(filePath: String, charset: String? = null): String? =
-            CommonUtils.getFileContentForText(filePath, charset ?: getDefaultCharset())
+        CommonUtils.getFileContentForText(filePath, charset ?: getDefaultCharset())
 
     @JvmStatic
     @JvmOverloads
     fun contentWriteToFile(filePath: String, content: String, charset: String? = null, append: Boolean = false): File? =
-            CommonUtils.contentWriteToFile(filePath, content.toByteArray(Charset.forName(charset
-                    ?: getDefaultCharset())), append)
+        CommonUtils.contentWriteToFile(
+            filePath, content.toByteArray(
+                Charset.forName(
+                    charset
+                        ?: getDefaultCharset()
+                )
+            ), append
+        )
 
     @JvmStatic
     @JvmOverloads
     fun contentWriteToFile(filePath: String, content: ByteArray, append: Boolean = false): File? =
-            CommonUtils.contentWriteToFile(filePath, content, append)
+        CommonUtils.contentWriteToFile(filePath, content, append)
 
     @JvmStatic
     @JvmOverloads
     fun contentWriteToFile(file: File, content: String, charset: String? = null, append: Boolean = false) =
-            CommonUtils.contentWriteToFile(file, content.toByteArray(Charset.forName(charset
-                    ?: getDefaultCharset())), append)
+        CommonUtils.contentWriteToFile(
+            file, content.toByteArray(
+                Charset.forName(
+                    charset
+                        ?: getDefaultCharset()
+                )
+            ), append
+        )
 
     @JvmStatic
     @JvmOverloads
     fun contentWriteToFile(file: File, content: ByteArray, append: Boolean = false) =
-            CommonUtils.contentWriteToFile(file, content, append)
+        CommonUtils.contentWriteToFile(file, content, append)
 
     @JvmStatic
     fun getFileExt(fileName: String): String {
@@ -216,7 +228,8 @@ object CommonTools {
      * @return 目标字符串
      */
     @JvmStatic
-    fun autoInsertString(src: String, length: Int, insertString: String): String = CommonUtils.autoInsertString(src, length, insertString)
+    fun autoInsertString(src: String, length: Int, insertString: String): String =
+        CommonUtils.autoInsertString(src, length, insertString)
 
     /**
      * 字符串填充函数
@@ -228,7 +241,8 @@ object CommonTools {
      * @return 填充后的字符串
      */
     @JvmStatic
-    fun strFillIn(str: String, number: Int, flag: Int, string: String): String = CommonUtils.strFillIn(str, number, flag, string)
+    fun strFillIn(str: String, number: Int, flag: Int, string: String): String =
+        CommonUtils.strFillIn(str, number, flag, string)
 
     /**
      * 判断字符串是否在数组中
@@ -240,7 +254,8 @@ object CommonTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun strInArray(str: String, array: Array<String>, ignoreCase: Boolean = false): Boolean = CommonUtils.strInArray(str, array, ignoreCase)
+    fun strInArray(str: String, array: Array<String>, ignoreCase: Boolean = false): Boolean =
+        CommonUtils.strInArray(str, array, ignoreCase)
 
     /**
      * 判断字符串是否在列表中
@@ -252,7 +267,8 @@ object CommonTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun strInList(str: String, arrayList: List<String>, ignoreCase: Boolean = false): Boolean = CommonUtils.strInList(str, arrayList, ignoreCase)
+    fun strInList(str: String, arrayList: List<String>, ignoreCase: Boolean = false): Boolean =
+        CommonUtils.strInList(str, arrayList, ignoreCase)
 
     /**
      * 获取指定格式的时间字符串
@@ -263,7 +279,8 @@ object CommonTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun getDateTimeString(dateTime: DateTime? = null, dateTimeFormat: String = ""): String = CommonUtils.getDateTimeString(dateTime, dateTimeFormat)
+    fun getDateTimeString(dateTime: DateTime? = null, dateTimeFormat: String = ""): String =
+        CommonUtils.getDateTimeString(dateTime, dateTimeFormat)
 
     /**
      * 获取当前时刻的 DateTime 实例
@@ -323,24 +340,6 @@ object CommonTools {
     fun numberToCn(number: Double, precision: Int = 2): String = NumberToCN.numberToCn(number, precision)
 
     /**
-     * 在线程池中执行任务
-     *
-     * @param task 线程池任务
-     * @return 协程任务
-     */
-    @JvmStatic
-    fun executeTaskAsync(task: BaseAsyncTask) = CommonUtils.executeTaskAsync(task)
-
-    /**
-     * 在线程池中执行任务
-     *
-     * @param task 线程池任务
-     * @return 协程任务
-     */
-    @JvmStatic
-    fun executeTaskLazyAsync(task: BaseAsyncTask) = CommonUtils.executeTaskLazyAsync(task)
-
-    /**
      * 字符串转JSON对象
      *
      * @param src 字符串
@@ -359,8 +358,12 @@ object CommonTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun <T> jsonToObject(jsonObj: JsonNode, cls: Class<T>, propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE): T? =
-            CommonUtils.jsonToObject(jsonObj, cls, propertyNamingStrategy)
+    fun <T> jsonToObject(
+        jsonObj: JsonNode,
+        cls: Class<T>,
+        propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
+    ): T? =
+        CommonUtils.jsonToObject(jsonObj, cls, propertyNamingStrategy)
 
     /**
      * 实体对象转换为json对象
@@ -371,8 +374,11 @@ object CommonTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun objectToJson(instance: Any, propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE): JsonNode =
-            CommonUtils.objectToJson(instance, propertyNamingStrategy)
+    fun objectToJson(
+        instance: Any,
+        propertyNamingStrategy: PropertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
+    ): JsonNode =
+        CommonUtils.objectToJson(instance, propertyNamingStrategy)
 
     /**
      * 下划线转驼峰
@@ -405,8 +411,14 @@ object CommonTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun filesToZip(fileNames: List<String>, resultFileName: String, deleteFile: Boolean = false, password: String? = null, zipParameters: ZipParameters? = null): String =
-            CommonUtils.filesToZip(fileNames, resultFileName, deleteFile, password, zipParameters)
+    fun filesToZip(
+        fileNames: List<String>,
+        resultFileName: String,
+        deleteFile: Boolean = false,
+        password: String? = null,
+        zipParameters: ZipParameters? = null
+    ): String =
+        CommonUtils.filesToZip(fileNames, resultFileName, deleteFile, password, zipParameters)
 
     /**
      * 解压缩文件
@@ -419,7 +431,7 @@ object CommonTools {
     @JvmStatic
     @JvmOverloads
     fun zipToFiles(zipFileName: String, parentFold: String, deleteFile: Boolean = false, password: String? = null) =
-            CommonUtils.zipToFiles(zipFileName, parentFold, deleteFile, password)
+        CommonUtils.zipToFiles(zipFileName, parentFold, deleteFile, password)
 
     /**
      * 删除文件
@@ -431,5 +443,5 @@ object CommonTools {
     @JvmStatic
     @JvmOverloads
     fun doDeleteFile(file: File, isAsync: Boolean = false, waitTime: Long? = null) =
-            CommonUtils.doDeleteFile(file, isAsync, waitTime)
+        CommonUtils.doDeleteFile(file, isAsync, waitTime)
 }

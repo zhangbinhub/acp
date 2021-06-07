@@ -86,16 +86,16 @@ object Iso8583Packet {
      */
     @JvmStatic
     fun make8583(filedMap: TreeMap<String, String>): ByteArray? =
-            try {
-                val bitMap128 = initBitMap()//获取初始化的128位图
-                //按照8583定义器格式化各个域的内容
-                val all = formatValueTo8583(filedMap, bitMap128)
-                // 获取上送报文内容
-                getWhole8583Packet(all)
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                null
-            }
+        try {
+            val bitMap128 = initBitMap()//获取初始化的128位图
+            //按照8583定义器格式化各个域的内容
+            val all = formatValueTo8583(filedMap, bitMap128)
+            // 获取上送报文内容
+            getWhole8583Packet(all)
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            null
+        }
 
     /**
      * 获取完整的8583报文体（128域）
@@ -152,7 +152,9 @@ object Iso8583Packet {
                     // 组二进制位图串
                     bitMap128Local = change16bitMapFlag(fieldNo, bitMap128Local)
                     // 获取域定义信息
-                    val fieldDef = map8583Definition["FIELD$fieldNo"]!!.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                    val fieldDef =
+                        map8583Definition["FIELD$fieldNo"]!!.split(",".toRegex()).dropLastWhile { it.isEmpty() }
+                            .toTypedArray()
                     var defLen = fieldDef[1]//长度定义,例20
                     var isFixLen = true//是否定长判断
                     if (defLen.startsWith("VAR")) {//变长域
@@ -179,7 +181,13 @@ object Iso8583Packet {
                             fieldValue = getFixFieldValue(fieldValue, defLen2)//定长处理
                         }
                     }
-                    log.info("组装后报文域 {" + fieldName + "}==" + fieldValue + "==,域长度:" + fieldValue!!.toByteArray(charset(packetEncoding)).size)
+                    log.info(
+                        "组装后报文域 {" + fieldName + "}==" + fieldValue + "==,域长度:" + fieldValue!!.toByteArray(
+                            charset(
+                                packetEncoding
+                            )
+                        ).size
+                    )
                 }
                 // 返回结果赋值
                 if (filedMap.containsKey(fieldName)) {
@@ -229,7 +237,8 @@ object Iso8583Packet {
                 val filedName = "FIELD" + getNumThree(i + 1)//FIELD005
                 if (bitMap128Str[i] == '1') {
                     // 获取域定义信息
-                    val fieldDef = map8583Definition[filedName]!!.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                    val fieldDef = map8583Definition[filedName]!!.split(",".toRegex()).dropLastWhile { it.isEmpty() }
+                        .toTypedArray()
                     var defLen = fieldDef[1]//长度定义,例20
                     var isFixLen = true//是否定长判断
 
@@ -413,7 +422,7 @@ object Iso8583Packet {
                 weight = 0x0080
                 j = 0
                 while (j < 8) {
-                    bytes[i] = (bytes[i].toInt() + ((tmp[w].toInt() - '0'.toInt()) * weight)).toByte()
+                    bytes[i] = (bytes[i].toInt() + ((tmp[w].toInt() - '0'.code) * weight)).toByte()
                     weight /= 2
                     w++
                     j++

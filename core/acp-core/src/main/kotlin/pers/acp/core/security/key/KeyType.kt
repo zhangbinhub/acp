@@ -24,15 +24,15 @@ enum class KeyType {
 
         init {
             for (type in values()) {
-                nameMap[type.name.toUpperCase()] = type
+                nameMap[type.name.uppercase()] = type
             }
         }
 
         @JvmStatic
         @Throws(EnumValueUndefinedException::class)
         fun getEnum(name: String): KeyType {
-            if (nameMap.containsKey(name.toLowerCase())) {
-                return nameMap.getValue(name.toLowerCase())
+            if (nameMap.containsKey(name.lowercase())) {
+                return nameMap.getValue(name.lowercase())
             }
             throw EnumValueUndefinedException(KeyType::class.java, name)
         }

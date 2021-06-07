@@ -11,6 +11,7 @@ import org.springframework.expression.spel.standard.SpelExpressionParser
 import pers.acp.core.CommonTools
 import pers.acp.core.security.Md5Encrypt
 import pers.acp.core.security.SignatureEncrypt
+import pers.acp.core.security.key.KeyManagement
 import java.io.File
 import java.math.BigDecimal
 import java.util.*
@@ -85,6 +86,12 @@ fun main(args: Array<String>) {
 //    println(int.toString())
 
     testJson()
+
+    println("生成10次随机数")
+    for(i in 1..10){
+        val str = KeyManagement.getRandomString(KeyManagement.RANDOM_NUMBER,1)
+        println(str.toInt())
+    }
 }
 
 fun testJson(){

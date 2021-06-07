@@ -1,4 +1,26 @@
 ## 版本更新记录
+##### v6.6.0
+> - Global
+>   - [Upgrade] 替换 kotlin 1.5 中废弃的代码
+> - acp-core
+>   - [Upgrade] CommonTools中去除executeTaskAsync和executeTaskLazyAsync两个方法
+> - acp-spring-cloud-starter
+>   - [Add] 新增AcpCloudLogServerEnvironmentPostProcessor，初始化环境配置
+>   - [Upgrade] 日志服务consumer和producer配置移入
+>   - [Upgrade] CommonTools中去除executeTaskAsync和executeTaskLazyAsync两个方法
+> - [Upgrade] 升级依赖
+>   - kotlin 1.5.10
+>   - Spring Boot 2.5.0
+>   - Spring Cloud 2020.0.3
+>   - kotlin coroutines 1.5.0
+>   - joda time 2.10.10
+>   - xstream 1.4.17
+>   - jackson 2.12.3
+>   - zip4j 2.8.0
+>   - hikaricp 4.0.3
+>   - netty 4.1.65.Final
+> - test
+>   - [Upgrade] 开启http2
 ##### v6.5.4
 > - Global
 >   - [Upgrade] 升级 Gradle 至 7.0

@@ -125,7 +125,7 @@ object DesEncrypt {
     @Throws(Exception::class)
     fun encrypt(plainText: String, key: Key, cryptType: String = CRYPT_TYPE_3DES_ECB): String {
         val cipher = Cipher.getInstance(cryptType)
-        if (cryptType.toUpperCase().contains("ECB")) {
+        if (cryptType.uppercase().contains("ECB")) {
             cipher.init(Cipher.ENCRYPT_MODE, key)
         } else {
             val iv = IvParameterSpec(ZERO_IVC)
@@ -146,7 +146,7 @@ object DesEncrypt {
     @Throws(Exception::class)
     fun decrypt(encryptedText: String, key: Key, cryptType: String = CRYPT_TYPE_3DES_ECB): String {
         val cipher = Cipher.getInstance(cryptType)
-        if (cryptType.toUpperCase().contains("ECB")) {
+        if (cryptType.uppercase().contains("ECB")) {
             cipher.init(Cipher.DECRYPT_MODE, key)
         } else {
             val iv = IvParameterSpec(ZERO_IVC)

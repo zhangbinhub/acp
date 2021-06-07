@@ -50,7 +50,7 @@ object KeyManagement {
     @JvmStatic
     @Throws(Exception::class)
     fun getTempAESKey(traitId: String): Key =
-            getEntity(keyType = KeyType.AES, traitId = traitId).key!!
+        getEntity(keyType = KeyType.AES, traitId = traitId).key!!
 
     /**
      * 获取临时DES密钥，过期时间内再次获取则取到相同的值，剩余时间小于延迟时间则延迟过期；过期时间之后取到新的值
@@ -61,7 +61,7 @@ object KeyManagement {
     @JvmStatic
     @Throws(Exception::class)
     fun getTempDESKey(traitId: String): Key =
-            getEntity(keyType = KeyType.DES, traitId = traitId).key!!
+        getEntity(keyType = KeyType.DES, traitId = traitId).key!!
 
     /**
      * 获取临时3DES密钥，过期时间内再次获取则取到相同的值，剩余时间小于延迟时间则延迟过期；过期时间之后取到新的值
@@ -72,7 +72,7 @@ object KeyManagement {
     @JvmStatic
     @Throws(Exception::class)
     fun getTemp3DESKey(traitId: String): Key =
-            getEntity(keyType = KeyType.DESede, traitId = traitId).key!!
+        getEntity(keyType = KeyType.DESede, traitId = traitId).key!!
 
     /**
      * 获取临时RSA公私钥对，过期时间内再次获取则取到相同的值，剩余时间小于延迟时间则延迟过期；过期时间之后取到新的值
@@ -320,7 +320,19 @@ object KeyManagement {
     @Throws(Exception::class)
     fun getRSAPublicKeyForSSH(keyStr: String): RSAPublicKey {
         val key = Base64.decode(keyStr)
-        val sshRsa = byteArrayOf(0, 0, 0, 7, 's'.toByte(), 's'.toByte(), 'h'.toByte(), '-'.toByte(), 'r'.toByte(), 's'.toByte(), 'a'.toByte())
+        val sshRsa = byteArrayOf(
+            0,
+            0,
+            0,
+            7,
+            's'.code.toByte(),
+            's'.code.toByte(),
+            'h'.code.toByte(),
+            '-'.code.toByte(),
+            'r'.code.toByte(),
+            's'.code.toByte(),
+            'a'.code.toByte()
+        )
         var startIndex = sshRsa.size
         /* Decode the public exponent */
         var len = decodeUInt32(key, startIndex)
@@ -356,7 +368,13 @@ object KeyManagement {
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class, InvalidKeySpecException::class)
     @JvmOverloads
-    fun getDSAPublicKey(publicKey: String, prime: String, subPrime: String, base: String, radix: Int = 10): DSAPublicKey {
+    fun getDSAPublicKey(
+        publicKey: String,
+        prime: String,
+        subPrime: String,
+        base: String,
+        radix: Int = 10
+    ): DSAPublicKey {
         val y = BigInteger(publicKey, radix)
         val p = BigInteger(prime, radix)
         val q = BigInteger(subPrime, radix)
@@ -379,7 +397,13 @@ object KeyManagement {
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class, InvalidKeySpecException::class)
     @JvmOverloads
-    fun getDSAPrivateKey(privateKey: String, prime: String, subPrime: String, base: String, radix: Int = 10): DSAPrivateKey {
+    fun getDSAPrivateKey(
+        privateKey: String,
+        prime: String,
+        subPrime: String,
+        base: String,
+        radix: Int = 10
+    ): DSAPrivateKey {
         val x = BigInteger(privateKey, radix)
         val p = BigInteger(prime, radix)
         val q = BigInteger(subPrime, radix)
@@ -474,7 +498,19 @@ object KeyManagement {
     @Throws(Exception::class)
     fun getDSAPublicKeyForSSH(keyStr: String): DSAPublicKey {
         val key = Base64.decode(keyStr)
-        val sshDsa = byteArrayOf(0, 0, 0, 7, 's'.toByte(), 's'.toByte(), 'h'.toByte(), '-'.toByte(), 'd'.toByte(), 's'.toByte(), 's'.toByte())
+        val sshDsa = byteArrayOf(
+            0,
+            0,
+            0,
+            7,
+            's'.code.toByte(),
+            's'.code.toByte(),
+            'h'.code.toByte(),
+            '-'.code.toByte(),
+            'd'.code.toByte(),
+            's'.code.toByte(),
+            's'.code.toByte()
+        )
         var startIndex = sshDsa.size
         /* Decode the p */
         var len = decodeUInt32(key, startIndex)
@@ -540,8 +576,13 @@ object KeyManagement {
      * @return 密钥实体
      */
     @Throws(Exception::class)
-    private fun getEntity(keyType: KeyType, cryptType: String = HmacEncrypt.CRYPT_TYPE, traitId: String, length: Int = 0): KeyEntity =
-            KeyEntity.generateEntity(keyType, cryptType, traitId, length)
+    private fun getEntity(
+        keyType: KeyType,
+        cryptType: String = HmacEncrypt.CRYPT_TYPE,
+        traitId: String,
+        length: Int = 0
+    ): KeyEntity =
+        KeyEntity.generateEntity(keyType, cryptType, traitId, length)
 
     private fun decodeUInt32(key: ByteArray, start_index: Int): Int {
         val test = key.copyOfRange(start_index, start_index + 4)

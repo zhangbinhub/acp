@@ -21,15 +21,15 @@ enum class LogLevel {
 
         init {
             for (level in values()) {
-                map[level.name.toUpperCase()] = level
+                map[level.name.uppercase()] = level
             }
         }
 
         @JvmStatic
         @Throws(EnumValueUndefinedException::class)
         fun getEnum(name: String): LogLevel {
-            return if (map.containsKey(name.toUpperCase())) {
-                map.getValue(name.toUpperCase())
+            return if (map.containsKey(name.uppercase())) {
+                map.getValue(name.uppercase())
             } else {
                 throw EnumValueUndefinedException(LogLevel::class.java, name)
             }

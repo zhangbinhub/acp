@@ -1,4 +1,6 @@
 server:
+  http2:
+    enabled: true
   tomcat:
     uri-encoding: UTF-8
     threads:
