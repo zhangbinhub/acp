@@ -10,7 +10,7 @@
 >   - [Upgrade] CommonTools中去除executeTaskAsync和executeTaskLazyAsync两个方法
 > - [Upgrade] 升级依赖
 >   - kotlin 1.5.10
->   - Spring Boot 2.5.0
+>   - Spring Boot 2.5.1
 >   - Spring Cloud 2020.0.3
 >   - kotlin coroutines 1.5.0
 >   - jupiter 5.7.2
