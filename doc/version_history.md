@@ -13,6 +13,8 @@
 >   - Spring Boot 2.5.0
 >   - Spring Cloud 2020.0.3
 >   - kotlin coroutines 1.5.0
+>   - jupiter 5.7.2
+>   - junit-platform 1.7.2
 >   - joda time 2.10.10
 >   - xstream 1.4.17
 >   - jackson 2.12.3

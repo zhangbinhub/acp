@@ -5,7 +5,7 @@
 - 使用该脚手架可快速搭建基于Kotlin或Java语言的普通应用、SpringBoot应用和SpringCloud应用。
 - 从v6.3.0开始，取消单独的jdk8分支，代码及工程配置统一，默认使用java11编译，如需编译java1.8版本，只需修改[gradle.properties](gradle.properties)中的javaVersion配置
 ## 相关组件版本及官方文档
-- [Spring Boot 2.5.0](https://projects.spring.io/spring-boot)
+- [Spring Boot 2.5.1](https://projects.spring.io/spring-boot)
 - [Spring Cloud 2020.0.3](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2021.1](https://github.com/alibaba/spring-cloud-alibaba)
 
