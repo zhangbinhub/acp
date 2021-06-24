@@ -21,7 +21,14 @@ class FileDownLoadHandle(private val logAdapter: LogAdapter) {
 
     @Throws(ServerException::class)
     @JvmOverloads
-    fun downLoadForWeb(request: HttpServletRequest, response: HttpServletResponse, path: String, allowPathRegexList: List<String>? = null, isDelete: Boolean = false, deleteWaitTime: Long? = null) {
+    fun downLoadForWeb(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        path: String,
+        allowPathRegexList: List<String>? = null,
+        isDelete: Boolean = false,
+        deleteWaitTime: Long? = null
+    ) {
         var filePath = path.replace("/", File.separator).replace("\\", File.separator)
         if (!filePath.startsWith(File.separator)) {
             filePath = File.separator + filePath
@@ -35,14 +42,24 @@ class FileDownLoadHandle(private val logAdapter: LogAdapter) {
 
     @Throws(ServerException::class)
     @JvmOverloads
-    fun downLoadFile(request: HttpServletRequest, response: HttpServletResponse, filePath: String, allowPathRegexList: List<String>? = null, isDelete: Boolean = false, deleteWaitTime: Long? = null) {
+    fun downLoadFile(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        filePath: String,
+        allowPathRegexList: List<String>? = null,
+        isDelete: Boolean = false,
+        deleteWaitTime: Long? = null
+    ) {
         val path = filePath.replace("/", File.separator).replace("\\", File.separator)
         val filterRegex: MutableList<String> = mutableListOf()
         if (allowPathRegexList == null || allowPathRegexList.isEmpty()) {
-            filterRegex.addAll(mutableListOf(
+            filterRegex.addAll(
+                mutableListOf(
                     CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}tmp${File.separator}.*",
                     CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}upload${File.separator}.*",
-                    CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}download${File.separator}.*"))
+                    CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}download${File.separator}.*"
+                )
+            )
         } else {
             filterRegex.addAll(allowPathRegexList)
         }
@@ -57,7 +74,10 @@ class FileDownLoadHandle(private val logAdapter: LogAdapter) {
                 val filename = file.name
                 response.reset()
                 response.contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE
-                response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, request.characterEncoding))
+                response.addHeader(
+                    "Content-Disposition",
+                    "attachment;filename=" + URLEncoder.encode(filename, request.characterEncoding)
+                )
                 // 解析断点续传相关信息
                 response.setHeader("Accept-Ranges", "bytes")
                 val downloadSize = file.length()
@@ -83,7 +103,7 @@ class FileDownLoadHandle(private val logAdapter: LogAdapter) {
                     response.setContentLengthLong(size)
                 }
                 toClient = BufferedOutputStream(response.outputStream)
-                fis = RandomAccessFile(file, "rw")
+                fis = RandomAccessFile(file, "r")
                 if (fromPos > 0) {
                     fis.seek(fromPos)
                 }
