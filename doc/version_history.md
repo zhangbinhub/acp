@@ -1,4 +1,7 @@
 ## 版本更新记录
+##### v6.7.0
+> - Global
+>   - [Upgrade] 升级 Gradle 至 7.1.1
 ##### v6.6.0
 > - Global
 >   - [Upgrade] 替换 kotlin 1.5 中废弃的代码
