@@ -1,5 +1,5 @@
 versions += [
-        boot_admin: "2.4.3"
+        boot_admin: "2.5.0"
 ]
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"

@@ -5,7 +5,7 @@
 > - [Upgrade] 升级依赖
 >   - kotlin 1.5.21
 >   - Spring Boot 2.5.3
->   - Spring Boot Admin 2.4.3
+>   - Spring Boot Admin 2.5.0
 >   - kotlin coroutines 1.5.1
 >   - slf4j 1.7.32
 >   - logback 1.2.4
