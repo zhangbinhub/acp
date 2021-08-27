@@ -4,15 +4,15 @@
 >   - [Upgrade] 升级 Gradle 至 7.1.1
 > - [Upgrade] 升级依赖
 >   - kotlin 1.5.21
->   - Spring Boot 2.5.3
->   - Spring Boot Admin 2.5.0
+>   - Spring Boot 2.5.4
+>   - Spring Boot Admin 2.5.1
 >   - kotlin coroutines 1.5.1
 >   - slf4j 1.7.32
->   - logback 1.2.4
+>   - logback 1.2.5
 >   - knife4j 3.0.3
 >   - jackson 2.12.4
 >   - zip4j 2.9.0
->   - netty 4.1.66.Final
+>   - netty 4.1.67.Final
 ##### v6.6.0
 > - Global
 >   - [Upgrade] 替换 kotlin 1.5 中废弃的代码

@@ -14,7 +14,7 @@ versions += [
         dom4j            : "1.6.1",
         bouncycastle     : "1.68",
         slf4j            : "1.7.32",
-        logback          : "1.2.4",
+        logback          : "1.2.5",
         xstream          : "1.4.17",
         jackson_databind : "2.12.4",
         zip4j            : "2.9.0",
