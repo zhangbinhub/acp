@@ -1,7 +1,7 @@
 ## 版本更新记录
 ##### v6.7.0
 > - Global
->   - [Upgrade] 升级 Gradle 至 7.1.1
+>   - [Upgrade] 升级 Gradle 至 7.2
 > - acp-spring-cloud-starter
 >   - [Upgrade] 优化IpTools中服务器ip和mac获取方法
 > - [Upgrade] 升级依赖
