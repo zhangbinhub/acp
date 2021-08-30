@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.experimental.and
 
 /**
  * IP 相关工具类
@@ -23,35 +21,19 @@ object IpTools {
      * @return 网卡对应IP
      */
     @JvmStatic
-    fun getServerIps(): List<String> {
-        val ips = arrayListOf<String>()
+    fun getServerIps() = mutableListOf<String>().apply {
         try {
-            val tmpIps: ArrayList<String> = arrayListOf()
             val netInterfaces = NetworkInterface.getNetworkInterfaces()
             while (netInterfaces.hasMoreElements()) {
                 val ni = netInterfaces.nextElement()
                 val addresses = ni.inetAddresses
                 while (addresses.hasMoreElements()) {
-                    val addressIp = StringBuilder()
-                    val address = addresses.nextElement().address
-                    for (i in address.indices) {
-                        if (i > 0) {
-                            addressIp.append(".")
-                        }
-                        addressIp.append(address[i] and 0xFF.toByte())
-                    }
-                    tmpIps.add(addressIp.toString())
-                }
-            }
-            tmpIps.forEach { item ->
-                run {
-                    ips.add(item)
+                    this.add(getIpFromInetAddresses(addresses.nextElement()))
                 }
             }
         } catch (e: Exception) {
             log.error(e.message, e)
         }
-        return ips
     }
 
     /**
@@ -60,18 +42,7 @@ object IpTools {
      * @return 所有网卡IP
      */
     @JvmStatic
-    fun getServerIpStr(): String {
-        var ips = ""
-        getServerIps().forEach { item ->
-            run {
-                if (!CommonTools.isNullStr(ips)) {
-                    ips += ","
-                }
-                ips += item
-            }
-        }
-        return ips
-    }
+    fun getServerIpStr(): String = getServerIps().joinToString(separator = ",")
 
     /**
      * 获取远程客户端IP
@@ -112,18 +83,15 @@ object IpTools {
         var ipAddress: String? = request.remoteAddr
         if (ipAddress == "127.0.0.1" || ipAddress == "0:0:0:0:0:0:0:1" || ipAddress == "::1") {
             // 根据网卡取本机配置的IP
-            var inet: InetAddress? = null
             try {
-                inet = InetAddress.getLocalHost()
+                ipAddress = getIpFromInetAddresses(InetAddress.getLocalHost())
             } catch (e: Exception) {
                 log.error(e.message, e)
             }
-
-            ipAddress = inet?.hostAddress
         }
         if (!CommonTools.isNullStr(ipAddress) && ipAddress!!.length > 15) {
             if (ipAddress.contains(",")) {
-                ipAddress = ipAddress.substring(0, ipAddress.indexOf(","))
+                ipAddress = ipAddress.split(",").first()
             }
         }
         return ipAddress
@@ -136,9 +104,7 @@ object IpTools {
      * @return 服务器IP
      */
     @JvmStatic
-    fun getWebServerIp(request: HttpServletRequest): String {
-        return request.localAddr
-    }
+    fun getWebServerIp(request: HttpServletRequest): String = request.localAddr
 
     /**
      * 获取WEB应用访问服务器的物理地址
@@ -148,8 +114,7 @@ object IpTools {
      */
     @JvmStatic
     fun getMACAddress(request: HttpServletRequest): String {
-        val ip = getWebServerIp(request)
-        var mac = getMACFromIp(ip)
+        var mac = getMACAddressFromIp(getWebServerIp(request))
         if (CommonTools.isNullStr(mac)) {
             mac = CommonTools.getUuid()
         }
@@ -162,24 +127,17 @@ object IpTools {
      * @param ip 服务器IP
      * @return 服务器物理地址
      */
-    private fun getMACFromIp(ip: String): String {
+    @JvmStatic
+    fun getMACAddressFromIp(ip: String): String {
         var result = ""
         try {
             val netInterfaces: Enumeration<NetworkInterface> = NetworkInterface.getNetworkInterfaces()
             while (netInterfaces.hasMoreElements()) {
                 val ni = netInterfaces.nextElement()
                 var isGet = false
-                val address = ni.inetAddresses
-                while (address.hasMoreElements()) {
-                    val addressIp = StringBuilder()
-                    val bytes = address.nextElement().address
-                    for (i in bytes.indices) {
-                        if (i > 0) {
-                            addressIp.append(".")
-                        }
-                        addressIp.append(bytes[i] and 0xFF.toByte())
-                    }
-                    if (addressIp.toString() == ip) {
+                val addresses = ni.inetAddresses
+                while (addresses.hasMoreElements()) {
+                    if (addressEqual(addresses.nextElement(), ip)) {
                         isGet = true
                         break
                     }
@@ -189,11 +147,11 @@ object IpTools {
                     ni.hardwareAddress?.let {
                         if (it.size > 1) {
                             sb.append(parseByte(it[0])).append("-")
-                                    .append(parseByte(it[1])).append("-")
-                                    .append(parseByte(it[2])).append("-")
-                                    .append(parseByte(it[3])).append("-")
-                                    .append(parseByte(it[4])).append("-")
-                                    .append(parseByte(it[5]))
+                                .append(parseByte(it[1])).append("-")
+                                .append(parseByte(it[2])).append("-")
+                                .append(parseByte(it[3])).append("-")
+                                .append(parseByte(it[4])).append("-")
+                                .append(parseByte(it[5]))
                         }
                     }
                     result = sb.toString().uppercase()
@@ -207,6 +165,17 @@ object IpTools {
         return result
     }
 
+    private fun getIpFromInetAddresses(address: InetAddress): String = address.hostAddress.let { hostAddress ->
+        if (hostAddress.contains("%")) {
+            hostAddress.split("%").first()
+        } else {
+            hostAddress
+        }
+    }
+
+    private fun addressEqual(address: InetAddress, ipAddress: String): Boolean =
+        getIpFromInetAddresses(address) == getIpFromInetAddresses(InetAddress.getByName(ipAddress))
+
     /**
      * 格式化二进制
      *
@@ -219,6 +188,6 @@ object IpTools {
         } else {
             256 + b
         }
-        return Integer.toHexString(intValue)
+        return CommonTools.strFillIn(Integer.toHexString(intValue), 2, 0, "0")
     }
 }

@@ -2,6 +2,8 @@
 ##### v6.7.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 7.1.1
+> - acp-spring-cloud-starter
+>   - [Upgrade] 优化IpTools中服务器ip和mac获取方法
 > - [Upgrade] 升级依赖
 >   - kotlin 1.5.21
 >   - Spring Boot 2.5.4
