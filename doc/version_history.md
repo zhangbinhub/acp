@@ -4,6 +4,7 @@
 >   - [Upgrade] 升级 Gradle 至 7.2
 > - acp-spring-cloud-starter
 >   - [Upgrade] 优化IpTools中服务器ip和mac获取方法
+>   - [Fix] 修复CloudLogAdapter.sendToLogServer类调用堆栈取值错误的问题
 > - [Upgrade] 升级依赖
 >   - kotlin 1.5.21
 >   - Spring Boot 2.5.4

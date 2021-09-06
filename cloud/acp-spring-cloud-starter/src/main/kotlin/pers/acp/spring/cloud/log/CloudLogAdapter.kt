@@ -51,9 +51,9 @@ class CloudLogAdapter(
                 logInfo.serverTime = CommonTools.getNowDateTime().toDate().time
                 var lineNo = 0
                 var className = ""
-                if (stacks.size >= log.stackIndex + 1) {
-                    lineNo = stacks[log.stackIndex].lineNumber
-                    className = stacks[log.stackIndex].className
+                if (stacks.size >= log.stackIndex) {
+                    lineNo = stacks[log.stackIndex - 1].lineNumber
+                    className = stacks[log.stackIndex - 1].className
                 }
                 logInfo.lineNo = lineNo
                 logInfo.className = className
