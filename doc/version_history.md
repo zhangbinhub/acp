@@ -9,6 +9,7 @@
 >   - jackson 2.12.5
 >   - netty 4.1.68.Final
 >   - joda time 2.10.11
+>   - xstream 1.4.18
 ##### v6.7.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 7.2

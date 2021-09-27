@@ -15,7 +15,7 @@ versions += [
         bouncycastle     : "1.68",
         slf4j            : "1.7.32",
         logback          : "1.2.6",
-        xstream          : "1.4.17",
+        xstream          : "1.4.18",
         jackson_databind : "2.12.5",
         zip4j            : "2.9.0",
 
