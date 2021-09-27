@@ -140,7 +140,6 @@ object XmlPacket {
     @JvmStatic
     inline fun <reified T> xmlToObject(xmlStr: String, cls: Class<T>): T? {
         val xStream = XStream(DomDriver())
-        XStream.setupDefaultSecurity(xStream)
         xStream.addPermission { type -> type == cls }
         xStream.processAnnotations(cls)
         xStream.ignoreUnknownElements()
