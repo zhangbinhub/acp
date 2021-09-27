@@ -33,28 +33,28 @@ object XmlPacket {
      */
     @JvmStatic
     fun parseXml(xml: String): MutableMap<String, String> =
-            try {
-                val result: MutableMap<String, String> = mutableMapOf()
-                val json = xmlToJson(xml)
-                val iKey = json.fields()
-                while (iKey.hasNext()) {
-                    val node = iKey.next()
-                    val info = node.value
-                    val tags = info.get("children")
-                    for (element in tags) {
-                        val items = element.fields()
-                        while (items.hasNext()) {
-                            val item = items.next()
-                            val itemInfo = item.value
-                            result[item.key] = itemInfo.get("value").textValue()
-                        }
+        try {
+            val result: MutableMap<String, String> = mutableMapOf()
+            val json = xmlToJson(xml)
+            val iKey = json.fields()
+            while (iKey.hasNext()) {
+                val node = iKey.next()
+                val info = node.value
+                val tags = info.get("children")
+                for (element in tags) {
+                    val items = element.fields()
+                    while (items.hasNext()) {
+                        val item = items.next()
+                        val itemInfo = item.value
+                        result[item.key] = itemInfo.get("value").textValue()
                     }
                 }
-                result
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                mutableMapOf()
             }
+            result
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            mutableMapOf()
+        }
 
     /**
      * json对象转换为xml字符串
@@ -66,7 +66,11 @@ object XmlPacket {
      */
     @JvmStatic
     @JvmOverloads
-    fun jsonToXml(json: JsonNode, clientCharset: String = CommonTools.getDefaultCharset(), isIndent: Boolean = false): String {
+    fun jsonToXml(
+        json: JsonNode,
+        clientCharset: String = CommonTools.getDefaultCharset(),
+        isIndent: Boolean = false
+    ): String {
         var writer: StringWriter? = null
         var output: XMLWriter? = null
         try {
@@ -119,16 +123,16 @@ object XmlPacket {
      */
     @JvmStatic
     fun xmlToJson(xml: String): JsonNode =
-            try {
-                val sax = SAXReader()
-                val document = sax.read(ByteArrayInputStream(xml.toByteArray()))
-                val root = document.rootElement
-                generateJSONByXML(root)
-            } catch (e: DocumentException) {
-                log.error(e.message, e)
-                val mapper = ObjectMapper()
-                mapper.createObjectNode()
-            }
+        try {
+            val sax = SAXReader()
+            val document = sax.read(ByteArrayInputStream(xml.toByteArray()))
+            val root = document.rootElement
+            generateJSONByXML(root)
+        } catch (e: DocumentException) {
+            log.error(e.message, e)
+            val mapper = ObjectMapper()
+            mapper.createObjectNode()
+        }
 
     /**
      * xml字符串转对象
@@ -140,7 +144,6 @@ object XmlPacket {
     @JvmStatic
     inline fun <reified T> xmlToObject(xmlStr: String, cls: Class<T>): T? {
         val xStream = XStream(DomDriver())
-        XStream.setupDefaultSecurity(xStream)
         xStream.addPermission { type -> type == cls }
         xStream.processAnnotations(cls)
         xStream.ignoreUnknownElements()
@@ -159,7 +162,6 @@ object XmlPacket {
     @JvmOverloads
     fun objectToXML(obj: Any, encoding: String = CommonTools.getDefaultCharset()): String {
         val xStream = XStream(DomDriver(encoding, NoNameCoder()))
-        XStream.setupDefaultSecurity(xStream)
         xStream.autodetectAnnotations(true)
         return xStream.toXML(obj)
     }
