@@ -10,6 +10,8 @@
 >   - netty 4.1.68.Final
 >   - joda time 2.10.11
 >   - xstream 1.4.18
+> - acp-packet
+>   - [Upgrade] 修改xstream API
 ##### v6.7.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 7.2

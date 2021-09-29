@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.naming.NoNameCoder
 import com.thoughtworks.xstream.io.xml.DomDriver
+import com.thoughtworks.xstream.security.AnyTypePermission
 import org.dom4j.*
 import org.dom4j.io.OutputFormat
 import org.dom4j.io.SAXReader
@@ -144,7 +145,7 @@ object XmlPacket {
     @JvmStatic
     inline fun <reified T> xmlToObject(xmlStr: String, cls: Class<T>): T? {
         val xStream = XStream(DomDriver())
-        xStream.addPermission { type -> type == cls }
+        xStream.addPermission(AnyTypePermission.ANY)
         xStream.processAnnotations(cls)
         xStream.ignoreUnknownElements()
         xStream.autodetectAnnotations(true)
