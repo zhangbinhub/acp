@@ -1,5 +1,6 @@
 package pers.acp.core.base;
 
+import com.thoughtworks.xstream.security.AnyTypePermission;
 import pers.acp.core.exceptions.ConfigException;
 import pers.acp.core.log.LogFactory;
 import pers.acp.core.tools.CommonUtils;
@@ -49,7 +50,7 @@ public abstract class BaseXml {
                     if (inputStreamReader != null) {
                         synchronized (instanceMap) {
                             XStream xstream = new XStream(new DomDriver());
-                            xstream.addPermission(type -> type.getName().equals(cls.getName()));
+                            xstream.addPermission(AnyTypePermission.ANY);
                             xstream.processAnnotations(cls);
                             BaseXml obj = (BaseXml) xstream.fromXML(inputStreamReader);
                             if (obj == null) {
