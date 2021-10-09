@@ -1,7 +1,6 @@
 package pers.acp.spring.boot.daemon
 
 import pers.acp.core.interfaces.IDaemonService
-import pers.acp.core.DBConTools
 import pers.acp.core.log.LogFactory
 import pers.acp.core.task.threadpool.ThreadPoolService
 
@@ -71,7 +70,6 @@ class DaemonServiceManager : ServletContextListener {
                     log.info("destroy daemon service [" + daemonService.getServiceName() + "]")
                 }
             }
-            DBConTools.destroyAllConnections()
         }
     }
 

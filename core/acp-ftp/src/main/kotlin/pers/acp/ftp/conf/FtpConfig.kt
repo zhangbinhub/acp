@@ -21,12 +21,12 @@ class FtpConfig : BaseXml() {
 
         @JvmStatic
         fun getInstance(): FtpConfig? =
-                try {
-                    Load(FtpConfig::class.java) as FtpConfig
-                } catch (e: Exception) {
-                    log.error(e.message, e)
-                    null
-                }
+            try {
+                load(FtpConfig::class.java) as FtpConfig
+            } catch (e: Exception) {
+                log.error(e.message, e)
+                null
+            }
     }
 
 }
