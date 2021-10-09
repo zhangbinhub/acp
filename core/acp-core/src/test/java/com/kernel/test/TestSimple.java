@@ -16,14 +16,14 @@ public class TestSimple {
 
     public static void main(String[] args) throws InterruptedException {
         BigInteger bigInteger1 = new BigInteger("9223372036854775807");
-        BigInteger bigInteger2 = BigInteger.valueOf(Long.valueOf("9223372036854775807"));
+        BigInteger bigInteger2 = BigInteger.valueOf(Long.parseLong("9223372036854775807"));
         System.out.println("bigInteger1=" + bigInteger1);
         System.out.println("bigInteger1=" + bigInteger1.longValue());
         System.out.println("bigInteger2=" + bigInteger2);
         System.out.println("bigInteger2=" + bigInteger2.longValue());
 
-//        testPath();
-//        testThreadPool();
+        testPath();
+        testThreadPool();
         testDateTime();
     }
 
@@ -84,9 +84,11 @@ public class TestSimple {
     }
 
     private static void testPath() {
+        CommonTools.initTools();
         System.out.println(System.getProperty("user.home"));
         System.out.println(CommonTools.getWebRootAbsPath());
         System.out.println(CommonTools.formatAbsPath("/logs"));
+        System.out.println(CommonTools.getAbsPath(""));
     }
 
 }
