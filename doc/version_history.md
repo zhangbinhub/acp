@@ -1,15 +1,16 @@
 ## 版本更新记录
 ##### v6.7.1
-- [Upgrade] 升级依赖
-  - kotlin 1.5.31
-  - Spring Boot 2.5.5
-  - Spring Cloud 2020.0.4
-  - kotlin coroutines 1.5.2
-  - logback 1.2.6
-  - jackson 2.12.5
-  - netty 4.1.68.Final
-  - joda time 2.10.11
-  - xstream 1.4.18
+- Global
+  - [Upgrade] 升级依赖
+    - kotlin 1.5.31
+    - Spring Boot 2.5.5
+    - Spring Cloud 2020.0.4
+    - kotlin coroutines 1.5.2
+    - logback 1.2.6
+    - jackson 2.12.5
+    - netty 4.1.68.Final
+    - joda time 2.10.11
+    - xstream 1.4.18
 - acp-core
   - [Upgrade] 去除DBConTools
 - acp-packet
