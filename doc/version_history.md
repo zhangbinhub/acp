@@ -1,4 +1,8 @@
 ## 版本更新记录
+##### v6.7.2
+- Global
+  - [Upgrade] 升级依赖
+    - kotlin 1.6.0
 ##### v6.7.1
 - Global
   - [Upgrade] 升级依赖
