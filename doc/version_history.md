@@ -2,8 +2,21 @@
 ##### v6.7.2
 - Global
   - [Upgrade] 升级依赖
+    - jupiter 5.8.1
+    - junit-platform 1.8.1
     - kotlin 1.6.0
     - Spring Boot 2.6.0
+>   - Spring Boot Admin 2.5.4
+    - logback 1.2.7
+    - jackson 2.13.0
+    - netty 4.1.70.Final
+    - joda time 2.10.13
+    - commons-lang3 3.12.0
+    - curator 5.2.0
+    - liquibase 4.6.1
+    - poi 5.1.0
+    - batik 1.14
+    - jsoup 1.14.3
 ##### v6.7.1
 - Global
   - [Upgrade] 升级依赖

@@ -3,24 +3,24 @@ ext {
 }
 
 versions += [
-        jupiter          : "5.7.2",
-        junit_platform   : "1.7.2",
+        jupiter          : "5.8.1",
+        junit_platform   : "1.8.1",
 
         kotlin_coroutines: "1.5.2",
-        joda_time        : "2.10.11",
+        joda_time        : "2.10.13",
         commons_codec    : "1.15",
         commons_text     : "1.9",
-        commons_lang3    : "3.11",
+        commons_lang3    : "3.12.0",
         dom4j            : "1.6.1",
         bouncycastle     : "1.68",
         slf4j            : "1.7.32",
-        logback          : "1.2.6",
+        logback          : "1.2.7",
         xstream          : "1.4.18",
-        jackson_databind : "2.12.5",
+        jackson_databind : "2.13.0",
         zip4j            : "2.9.0",
 
-        curator          : "5.1.0",
-        liquibase        : "4.3.1",
+        curator          : "5.2.0",
+        liquibase        : "4.6.1",
         hikaricp         : "4.0.3",
         knife4j          : "3.0.3"
 ]
