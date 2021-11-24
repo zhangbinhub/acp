@@ -3,6 +3,7 @@
 - Global
   - [Upgrade] 升级依赖
     - kotlin 1.6.0
+    - Spring Boot 2.6.0
 ##### v6.7.1
 - Global
   - [Upgrade] 升级依赖
