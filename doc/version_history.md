@@ -5,7 +5,7 @@
     - jupiter 5.8.1
     - junit-platform 1.8.1
     - kotlin 1.6.0
-    - Spring Boot 2.6.0
+    - Spring Boot 2.6.1
 >   - Spring Boot Admin 2.5.4
     - logback 1.2.7
     - jackson 2.13.0
