@@ -7,6 +7,7 @@
     - kotlin 1.6.0
     - Spring Boot 2.6.1
 >   - Spring Boot Admin 2.5.4
+>   - Spring Cloud 2021.0.0
     - logback 1.2.7
     - jackson 2.13.0
     - netty 4.1.70.Final
