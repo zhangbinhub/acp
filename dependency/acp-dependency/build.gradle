@@ -24,8 +24,6 @@ dependencyManagement {
         dependency "$bootGroup:acp-spring-boot-starter:${version}"
         dependency "$bootGroup:acp-spring-boot-starter-ftp:${version}"
         dependency "$cloudGroup:acp-spring-cloud-starter:${version}"
-
-        dependency "org.liquibase:liquibase-core:$versions.liquibase"
     }
 }
 publishing {

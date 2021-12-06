@@ -6,8 +6,8 @@
     - junit-platform 1.8.1
     - kotlin 1.6.0
     - Spring Boot 2.6.1
->   - Spring Boot Admin 2.5.4
->   - Spring Cloud 2021.0.0
+    - Spring Boot Admin 2.5.4
+    - Spring Cloud 2021.0.0
     - logback 1.2.7
     - jackson 2.13.0
     - netty 4.1.70.Final
@@ -18,6 +18,12 @@
     - poi 5.1.0
     - batik 1.14
     - jsoup 1.14.3
+  - [Delete] 删除版本指定
+    - curator
+    - liquibase
+- acp-dependency
+  - [Delete] 删除依赖
+    - liquibase-core
 ##### v6.7.1
 - Global
   - [Upgrade] 升级依赖
