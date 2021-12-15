@@ -19,8 +19,6 @@ versions += [
         jackson_databind : "2.13.0",
         zip4j            : "2.9.0",
 
-        curator          : "5.2.0",
-        liquibase        : "4.6.1",
         hikaricp         : "4.0.3",
         knife4j          : "3.0.3"
 ]

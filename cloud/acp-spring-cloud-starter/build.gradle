@@ -5,9 +5,7 @@ dependencyManagement {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") {
             bomProperty("kotlin.version", "${kotlinVersion}")
         }
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}") {
-            bomProperty("curator.version", "$versions.curator")
-        }
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
         mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
     }
 }

@@ -179,13 +179,36 @@ allprojects {
                 version project.version
                 //打包类型 war: components.web jar: components.java
                 from components.java
+
+                pom {
+                    name = "acp"
+                    description = "Application Construction Platform 应用构建平台，使用该脚手架可快速搭建基于Kotlin或Java语言的普通应用、SpringBoot应用和SpringCloud应用"
+                    url = "https://github.com/zhangbinhub/acp"
+                    licenses {
+                        license {
+                            name = "Apache License Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "hangbinhub"
+                            name = "zhangbin"
+                            email = "zhangbin1010@qq.com"
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:https://github.com/zhangbinhub/acp.git"
+                        developerConnection = "scm:git:https://github.com/zhangbinhub/acp.git"
+                        url = "https://github.com/zhangbinhub/acp"
+                    }
+                }
             }
         }
         repositories {
             maven {
                 apply from: "$rootDir/gradle/deploy.gradle"
-                //指定要上传的maven私服仓库
-                url = new URI("${mavenUploadUrl}")
+                url = version.endsWith('SNAPSHOT') ? new URI("${mavenUploadUrlSnapshot}") : new URI("${mavenUploadUrlRelease}")
                 allowInsecureProtocol = true
                 //认证用户和密码
                 credentials {

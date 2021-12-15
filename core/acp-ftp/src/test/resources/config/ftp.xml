@@ -5,5 +5,5 @@
     <!--<listen name="测试ftp服务器" enabled="true" port="221" pwdEncryptMode="MD5" loginFailureDelay="30" maxLoginFailures="20"-->
             <!--maxLogins="10" maxAnonymousLogins="20" maxThreads="10" defaultHomeDirectory="abs:c:\\WorkFile\\个人\\新建文件夹"-->
             <!--anonymousLoginEnabled="false" anonymousWritePermission="false"-->
-            <!--userFactoryClass="pers.acp.ftp.test.TestUserFactory"/>-->
+            <!--userFactoryClass="com.github.zhangbinhub.acp.core.ftp.test.TestUserFactory"/>-->
 </ftp-config>

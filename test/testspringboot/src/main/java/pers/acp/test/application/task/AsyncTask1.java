@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import pers.acp.spring.boot.base.BaseSpringBootScheduledAsyncTask;
-import pers.acp.spring.boot.interfaces.LogAdapter;
+import com.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask;
+import com.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 import pers.acp.test.application.repo.pg.TableTwoRepo;
 import pers.acp.test.application.repo.primary.TableRepo;
-import pers.acp.core.CommonTools;
+import com.github.zhangbinhub.acp.core.CommonTools;
 
 @Component("task1")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)

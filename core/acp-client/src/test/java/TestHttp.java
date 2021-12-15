@@ -3,11 +3,11 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import okhttp3.Call;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
-import pers.acp.client.exceptions.HttpException;
-import pers.acp.client.http.HttpCallBack;
-import pers.acp.client.http.HttpClientBuilder;
-import pers.acp.client.http.RequestParamBuilder;
-import pers.acp.client.http.ResponseResult;
+import com.github.zhangbinhub.acp.core.client.exceptions.HttpException;
+import com.github.zhangbinhub.acp.core.client.http.HttpCallBack;
+import com.github.zhangbinhub.acp.core.client.http.HttpClientBuilder;
+import com.github.zhangbinhub.acp.core.client.http.RequestParamBuilder;
+import com.github.zhangbinhub.acp.core.client.http.ResponseResult;
 
 import java.io.IOException;
 import java.util.HashMap;

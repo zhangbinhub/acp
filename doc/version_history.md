@@ -1,6 +1,8 @@
 ## 版本更新记录
-##### v6.7.2
+##### v7.0.0
 - Global
+  - [Upgrade] 项目GroupId变更为com.github.zhangbinhub.acp，各模块的GroupId变更为com.github.zhangbinhub.acp.module
+  - [Upgrade] 重构各模块包名，前缀规则：GroupId.module
   - [Upgrade] 升级依赖
     - jupiter 5.8.1
     - junit-platform 1.8.1
@@ -13,8 +15,6 @@
     - netty 4.1.70.Final
     - joda time 2.10.13
     - commons-lang3 3.12.0
-    - curator 5.2.0
-    - liquibase 4.6.1
     - poi 5.1.0
     - batik 1.14
     - jsoup 1.14.3
@@ -437,7 +437,7 @@
 ##### v6.1.1
 > - [Upgrade] 优化 gradle 脚本
 > - [Upgrade] acp-spring-cloud-starter 增加分布式锁接口
-> - [Upgrade] 增加基于分布式锁的请求防重注解 pers.acp.spring.cloud.annotation.AcpCloudDuplicateSubmission
+> - [Upgrade] 增加基于分布式锁的请求防重注解 com.github.zhangbinhub.acp.cloud.annotation.AcpCloudDuplicateSubmission
 > - [Fix] 修复压缩文件时仅有文件夹报错的问题
 ##### v6.1.0
 > - [Upgrade] 调整 gradle 脚本
@@ -477,8 +477,8 @@
 > - [Upgrade] testspringboot 增加使用 RestTemplate 进行 post 方式的 form 提交单元测试
 > - [Upgrade] 升级 Spring Boot 至 2.1.6.RELEASE
 > - [Upgrade] 升级 Spring Cloud 至 Greenwich.SR2
-> - [Upgrade] acp-spring-boot-start 模块从 core 模块中移入 boot 模块，包名更新为 pers.acp.spring.boot
-> - [Upgrade] acp-spring-boot-start-common 模块更名为 acp-spring-boot-start，包名更新为 pers.acp.spring.cloud
+> - [Upgrade] acp-spring-boot-start 模块从 core 模块中移入 boot 模块，包名更新为 com.github.zhangbinhub.acp.boot
+> - [Upgrade] acp-spring-boot-start-common 模块更名为 acp-spring-boot-start，包名更新为 com.github.zhangbinhub.acp.cloud
 > - [Upgrade] 修改 ftp、sftp、webservice 服务启动方式及配置方式，同时在使用 spring boot 的情况下去除 acp.properties 配置文件
 > - [Upgrade] 增加 acp-spring-boot-starter-ftp 模块，自动配置ftp及sftp服务
 > - [Upgrade] 增加 acp-spring-boot-starter-ws 模块，自动配置webservice服务
