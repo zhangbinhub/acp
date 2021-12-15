@@ -1,13 +1,13 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.zhangbinhub.acp.cloud.AcpCloudPropertiesAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudBusAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudFeignAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudToolsAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudComponentAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudLogServerAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudLogServerClientAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudLogAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudResourceServerAutoConfiguration,\
-  com.github.zhangbinhub.acp.cloud.AcpCloudMethodSecurityAutoConfiguration
+  io.github.zhangbinhub.acp.cloud.AcpCloudPropertiesAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudBusAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudFeignAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudToolsAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudComponentAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudLogServerAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudLogServerClientAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudLogAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudResourceServerAutoConfiguration,\
+  io.github.zhangbinhub.acp.cloud.AcpCloudMethodSecurityAutoConfiguration
 org.springframework.boot.env.EnvironmentPostProcessor=\
-  com.github.zhangbinhub.acp.cloud.AcpCloudLogServerEnvironmentPostProcessor
+  io.github.zhangbinhub.acp.cloud.AcpCloudLogServerEnvironmentPostProcessor

@@ -1,7 +1,7 @@
 package pers.acp.test
 
 import org.junit.jupiter.api.Test
-import com.github.zhangbinhub.acp.core.packet.xml.XmlPacket
+import io.github.zhangbinhub.acp.core.packet.xml.XmlPacket
 
 class TestXml {
     @Test

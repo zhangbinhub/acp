@@ -1,4 +1,3 @@
-group "${group}.core"
 dependencies {
     api project(":core:acp-core")
 }

@@ -2,9 +2,9 @@ package pers.acp.test.application.test;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import com.github.zhangbinhub.acp.core.ftp.server.FtpServerUser;
-import com.github.zhangbinhub.acp.core.ftp.server.SftpServerUser;
-import com.github.zhangbinhub.acp.core.ftp.user.UserFactory;
+import io.github.zhangbinhub.acp.core.ftp.server.FtpServerUser;
+import io.github.zhangbinhub.acp.core.ftp.server.SftpServerUser;
+import io.github.zhangbinhub.acp.core.ftp.user.UserFactory;
 
 import java.util.ArrayList;
 import java.util.List;

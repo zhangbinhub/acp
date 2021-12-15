@@ -1,11 +1,14 @@
 ## 版本更新记录
-##### v7.0.0
+##### v2021.0.0-M3
 - Global
-  - [Upgrade] 项目GroupId变更为com.github.zhangbinhub.acp，各模块的GroupId变更为com.github.zhangbinhub.acp.module
+  - [Upgrade] 删除gradle.properties，该配置文件现在用于存放敏感的隐私信息，不进行代码托管
+  - [Upgrade] 原gradle.properties中的配置信息移入project.properties
+  - [Upgrade] 所有版本号信息移入gradle/dependencies.gradle统一管理，例如之前在gradle.properties中的kotlin、springboot、springcloud等版本号
+  - [Upgrade] 项目GroupId变更为io.github.zhangbinhub，各模块的GroupId变更为io.github.zhangbinhub.module
   - [Upgrade] 重构各模块包名，前缀规则：GroupId.module
   - [Upgrade] 升级依赖
-    - jupiter 5.8.1
-    - junit-platform 1.8.1
+    - jupiter 5.8.2
+    - junit-platform 1.8.2
     - kotlin 1.6.0
     - Spring Boot 2.6.1
     - Spring Boot Admin 2.5.4
@@ -147,10 +150,10 @@
 ##### v6.5.0
 > - Global
 >   - [Upgrade] 升级 Gradle 至 6.7.1
->   - [Upgrade] gradle/dependencies.gradle 中移除 spring_boot、spring_cloud、alibaba_cloud，gradle.properties 中增加 springBootVersion、springCloudVersion、springCloudAlibabaVersion
+>   - [Upgrade] gradle/dependencies.gradle 中移除 springBoot、springCloud、alibaba_cloud，gradle.properties 中增加 springBootVersion、springCloudVersion、springCloudAlibabaVersion
 >   - [Upgrade] 修改各模块build.gradle写法
->     - $versions.spring_boot replace to ${springBootVersion}
->     - $versions.spring_cloud replace to ${springCloudVersion}
+>     - $versions.springBoot replace to ${springBootVersion}
+>     - $versions.springCloud replace to ${springCloudVersion}
 >     - $versions.alibaba_cloud replace to ${springCloudAlibabaVersion}
 >   - [Upgrade] 优化junit测试代码
 > - acp-spring-boot-starter
@@ -437,7 +440,7 @@
 ##### v6.1.1
 > - [Upgrade] 优化 gradle 脚本
 > - [Upgrade] acp-spring-cloud-starter 增加分布式锁接口
-> - [Upgrade] 增加基于分布式锁的请求防重注解 com.github.zhangbinhub.acp.cloud.annotation.AcpCloudDuplicateSubmission
+> - [Upgrade] 增加基于分布式锁的请求防重注解 io.github.zhangbinhub.acp.cloud.annotation.AcpCloudDuplicateSubmission
 > - [Fix] 修复压缩文件时仅有文件夹报错的问题
 ##### v6.1.0
 > - [Upgrade] 调整 gradle 脚本
@@ -477,8 +480,8 @@
 > - [Upgrade] testspringboot 增加使用 RestTemplate 进行 post 方式的 form 提交单元测试
 > - [Upgrade] 升级 Spring Boot 至 2.1.6.RELEASE
 > - [Upgrade] 升级 Spring Cloud 至 Greenwich.SR2
-> - [Upgrade] acp-spring-boot-start 模块从 core 模块中移入 boot 模块，包名更新为 com.github.zhangbinhub.acp.boot
-> - [Upgrade] acp-spring-boot-start-common 模块更名为 acp-spring-boot-start，包名更新为 com.github.zhangbinhub.acp.cloud
+> - [Upgrade] acp-spring-boot-start 模块从 core 模块中移入 boot 模块，包名更新为 io.github.zhangbinhub.acp.boot
+> - [Upgrade] acp-spring-boot-start-common 模块更名为 acp-spring-boot-start，包名更新为 io.github.zhangbinhub.acp.cloud
 > - [Upgrade] 修改 ftp、sftp、webservice 服务启动方式及配置方式，同时在使用 spring boot 的情况下去除 acp.properties 配置文件
 > - [Upgrade] 增加 acp-spring-boot-starter-ftp 模块，自动配置ftp及sftp服务
 > - [Upgrade] 增加 acp-spring-boot-starter-ws 模块，自动配置webservice服务
