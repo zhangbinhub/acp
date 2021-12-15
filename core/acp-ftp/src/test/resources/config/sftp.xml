@@ -9,5 +9,5 @@
     <!--<listen name="测试sftp服务器" enabled="true" port="4221" hostKeyPath="/files/resource/key/hostkey"-->
             <!--passwordAuth="false" publicKeyAuth="true" keyAuthType="pem" keyAuthMode="RSA"-->
             <!--defaultHomeDirectory="abs:c:\\WorkFile\\个人\\新建文件夹"-->
-            <!--userFactoryClass="pers.acp.ftp.test.TestUserFactory"/>-->
+            <!--userFactoryClass="com.github.zhangbinhub.acp.core.ftp.test.TestUserFactory"/>-->
 </sftp-config>

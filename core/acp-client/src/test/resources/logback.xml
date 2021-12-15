@@ -4,7 +4,7 @@
     <property name="LOG_HOME" value="logs/acp-client"/>
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <!--<logger name="pers.acp" level="DEBUG"/>-->
+    <!--<logger name="com.github.zhangbinhub.acp.core.packet" level="DEBUG"/>-->
 
     <!-- 控制台日志：输出全部日志到控制台 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

@@ -1,7 +1,7 @@
 package pers.acp.test;
 
 import org.bouncycastle.pqc.math.linearalgebra.ByteUtils;
-import pers.acp.packet.iso8583.Iso8583Packet;
+import com.github.zhangbinhub.acp.core.packet.iso8583.Iso8583Packet;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;

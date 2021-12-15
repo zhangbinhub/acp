@@ -5,7 +5,7 @@ import org.bouncycastle.bcpg.HashAlgorithmTags
 import org.bouncycastle.openpgp.PGPEncryptedData
 import org.bouncycastle.openpgp.PGPSignature
 import org.junit.jupiter.api.Test
-import pers.acp.core.security.PgpEncrypt
+import com.github.zhangbinhub.acp.core.security.PgpEncrypt
 import java.io.FileOutputStream
 
 class TestPgp {

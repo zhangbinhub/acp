@@ -9,10 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pers.acp.spring.boot.interfaces.LogAdapter;
+import com.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 import pers.acp.test.application.entity.primary.TableOne;
 import pers.acp.test.application.repo.primary.TableRepo;
-import pers.acp.core.CommonTools;
+import com.github.zhangbinhub.acp.core.CommonTools;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.constraints.NotEmpty;

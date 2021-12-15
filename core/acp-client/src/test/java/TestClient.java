@@ -1,8 +1,8 @@
 import io.netty.handler.timeout.IdleStateEvent;
 import org.jetbrains.annotations.NotNull;
-import pers.acp.client.socket.base.ISocketClientHandle;
-import pers.acp.client.socket.tcp.TcpClient;
-import pers.acp.client.socket.udp.UdpClient;
+import com.github.zhangbinhub.acp.core.client.socket.base.ISocketClientHandle;
+import com.github.zhangbinhub.acp.core.client.socket.tcp.TcpClient;
+import com.github.zhangbinhub.acp.core.client.socket.udp.UdpClient;
 
 /**
  * Created by zhang on 2016/6/1.

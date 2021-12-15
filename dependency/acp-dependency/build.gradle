@@ -7,11 +7,8 @@ dependencyManagement {
     imports {
         mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") {
             bomProperty("kotlin.version", "${kotlinVersion}")
-            bomProperty("liquibase.version", "$versions.liquibase")
         }
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}") {
-            bomProperty("curator.version", "$versions.curator")
-        }
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
         mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
     }
     dependencies {
@@ -31,9 +28,7 @@ publishing {
         maven(MavenPublication) {
             pom {
                 properties = [
-                        "kotlin.version"   : "${kotlinVersion}",
-                        "curator.version"  : "$versions.curator",
-                        "liquibase.version": "$versions.liquibase",
+                        "kotlin.version": "${kotlinVersion}"
                 ]
             }
         }

@@ -7,9 +7,9 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException
 import org.springframework.web.bind.annotation.*
-import pers.acp.spring.boot.enums.ResponseCode
-import pers.acp.spring.boot.exceptions.ServerException
-import pers.acp.spring.boot.interfaces.LogAdapter
+import com.github.zhangbinhub.acp.boot.enums.ResponseCode
+import com.github.zhangbinhub.acp.boot.exceptions.ServerException
+import com.github.zhangbinhub.acp.boot.interfaces.LogAdapter
 
 /**
  * @author zhangbin by 28/04/2018 13:06
