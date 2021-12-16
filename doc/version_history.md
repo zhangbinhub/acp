@@ -1,4 +1,7 @@
 ## 版本更新记录
+##### v2021.0.0-M4
+- acp-dependency
+  - [Fix] 修复其他模块依赖项的group
 ##### v2021.0.0-M3
 - Global
   - [Upgrade] 删除gradle.properties，该配置文件现在用于存放敏感的隐私信息，不进行代码托管
