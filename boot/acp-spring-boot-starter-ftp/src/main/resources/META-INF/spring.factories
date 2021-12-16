@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.github.zhangbinhub.acp.boot.ftp.AcpFtpAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.zhangbinhub.acp.boot.ftp.AcpFtpAutoConfiguration

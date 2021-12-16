@@ -1,13 +1,19 @@
-# acp 
-###### v7.0.0 [版本更新日志](doc/version_history.md)
+# Application Construction Platform (acp) 
+[![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
+[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+###### v2021.0.0 [版本更新日志](doc/version_history.md)
 - Application Construction Platform 应用构建平台
 - 该项目是用Kotlin和Java语言混编封装的脚手架。本人会密切关注业界最新动态，并使用最新技术持续更新优化。
 - 使用该脚手架可快速搭建基于Kotlin或Java语言的普通应用、SpringBoot应用和SpringCloud应用。
-- 从v6.3.0开始，取消单独的jdk8分支，代码及工程配置统一，默认使用java11编译，如需编译java1.8版本，只需修改[gradle.properties](gradle.properties)中的javaVersion配置
+- 从v2021.0.0开始，版本号命名规范与所使用的SpringCloud版本号一致，同时将发布至Maven Central
+- 正式版发布前，Maven Central仅提供java 11版本，可自行在[project.properties](project.properties)中修改编译时的`javaVersion`
+- 正式版发布后，默认是java 11版本，同时还会提供java 1.8版本，版本号带后缀`-jdk8`
 ## 相关组件版本及官方文档
 - [Spring Boot 2.6.1](https://projects.spring.io/spring-boot)
 - [Spring Cloud 2021.0.0](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2021.1](https://github.com/alibaba/spring-cloud-alibaba)
+
+**特别注意：v2021.0.0 目前是里程碑版本，因`Spring Cloud Alibaba 2021.1`暂未适配`Spring Boot 2.6.x`和`Spring Cloud 2021.0.x`，待SCA适配完成后将发布正式版**
 
 ## 技术栈
 - joda-time
@@ -46,24 +52,22 @@
 
 ## 二、gradle 脚本配置及使用
 ### （一）配置文件
-##### 1.gradle/dependencies.gradle
+##### 1.[gradle/dependencies.gradle](gradle/dependencies.gradle)
 定义外部依赖版本号
     
-##### 2.settings.gradle
+##### 2.[settings.gradle](settings.gradle)
 定义项目/模块结构
 
-##### 3.gradle.properties
+##### 3.[project.properties](project.properties)
 gradle全局参数：
 - gradleVersion：gradle版本号
-- group：对应打包时的groupid
-- version：工程版本号
+- group：对应打包时的最外层groupid，最终的groupid还会加上模块路径，例如`groupid.acp.core`
+- version：版本号
 - encoding：编译字符集
 - mavenCentralUrl：maven中央仓库地址
-- org.gradle.jvmargs：gradle执行时的jvm参数
 - javaVersion：jdk版本号
-- kotlinVersion：kotlin版本号
     
-##### 4.build.gradle
+##### 4.[build.gradle](project.properties)
 公共构建脚本
     
 ##### 5.模块根路径/build.gradle
@@ -76,15 +80,32 @@ gradle全局参数：
   ```
   gradlew project:release -Pactive=test
   ```
-```groovy
-ext {
-    mavenUploadUrl = "http://localhost:8081/nexus/content/repositories/thirdparty"
-    mavenUserName = "admin"
-    mavenPassword = "admin123"
-}
+### （三）发布至maven仓库
+##### 1、发布至本地仓库
+- 执行 publishToMavenLocal 任务
+##### 2、发布至私服
+- 项目根路径下创建 gradle.properties 并添加如下参数（参数值根据实际情况修改）
+```properties
+mavenUploadUrlRelease=https://maven.com/repositories/releases/
+mavenUploadUrlSnapshot=https://maven.com/repositories/snapshot/
+mavenUserName=username
+mavenPassword=password
 ```
+- 执行 publish 任务
+##### 3、发布至中央仓库
+- 项目根路径下创建 gradle.properties 并添加如下参数（参数值根据实际情况修改）
+```properties
+mavenUploadUrlRelease=https://maven.com/repositories/releases/
+mavenUploadUrlSnapshot=https://maven.com/repositories/snapshot/
+mavenUserName=username
+mavenPassword=password
+signing.keyId=shortId
+signing.password=keyPassword
+signing.secretKeyRingFile=keyFile
+```
+- 执行 publish 任务
 
-### （三）升级命令
+### （四）升级命令
 ``
     gradlew wrapper --gradle-version=7.2 --distribution-type=all
 ``
@@ -105,7 +126,7 @@ ext {
 ```groovy
 dependencyManagement {
     imports {
-        mavenBom("com.github.zhangbinhub.acp.dependency:acp-dependency:7.0.0-SNAPSHOT")
+        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:7.0.0-SNAPSHOT")
     }
 }
 ```
@@ -143,7 +164,7 @@ dependencyManagement {
 > - 扩展支持 ftp、sftp 等协议服务端自动配置
 ### （二）快速开发 springboot 应用
 ##### 全局说明
-> - 统一注入 com.github.zhangbinhub.acp.boot.interfaces.LogAdapter 进行日志记录
+> - 统一注入 io.github.zhangbinhub.acp.boot.interfaces.LogAdapter 进行日志记录
 ##### 1. 开发说明
 - （1）参考 test:testspringboot
 - （2）依赖 boot:acp-spring-boot-starter
@@ -151,10 +172,10 @@ dependencyManagement {
 - （4）yml配置文件中增加数据源配置（单数据源或多数据源），数据库操作遵循 spring-data-jpa 标准，使用 hibernate 进行实例化
 - （5）单数据源应用的话无需增加额外配置类，正常编写domain、repo、entity即可
 - （6）多数据源应用需要增加对应每个数据源的 Jpa 配置类，并创建对应数据源的 repo、entity 包，之后再在对应包中编写 repo 和 entity
-- （7）定时任务参考 test:testspringboot 模块 com.github.zhangbinhub.acp.test.application.task.Task1，继承 com.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledTask 类，并在 yml 配置文件中增加对应执行规则
-- （8）自定义系统初始化任务，新增任务类，继承 com.github.zhangbinhub.acp.boot.base.BaseInitialization 类
-- （9）自定义可控制监听器，新增监听器类，实现 com.github.zhangbinhub.acp.boot.interfaces.Listener 接口
-- （10）参考 test:testspringboot 模块,com.github.zhangbinhub.acp.test.application.test 包中有 tcp、udp 服务端开发demo，并在 application-dev.xml 中增加相应配置
+- （7）定时任务参考 test:testspringboot 模块 io.github.zhangbinhub.acp.test.application.task.Task1，继承 io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledTask 类，并在 yml 配置文件中增加对应执行规则
+- （8）自定义系统初始化任务，新增任务类，继承 io.github.zhangbinhub.acp.boot.base.BaseInitialization 类
+- （9）自定义可控制监听器，新增监听器类，实现 io.github.zhangbinhub.acp.boot.interfaces.Listener 接口
+- （10）参考 test:testspringboot 模块,io.github.zhangbinhub.acp.test.application.test 包中有 tcp、udp 服务端开发demo，并在 application-dev.xml 中增加相应配置
 - （11）如有需要，可选择引入 acp-file、acp-message、acp-spring-boot-starter-ftp 等包
 ##### 2. 配置说明
 - 定制开发的 api 接口，开启 swagger 文档
@@ -195,7 +216,7 @@ acp:
         threadNumber: 100                                                    #接收报文处理的最大线程数，为0或不设置则使用系统默认线程数；TCP服务有效
         hex: false                                                           #接收报文是否是十六进制机器码，默认false
         port: 9999                                                           #监听端口号
-        handleBean: com.github.zhangbinhub.acp.test.application.test.TestTcpHandle             #报文接收处理 Bean 的类名
+        handleBean: io.github.zhangbinhub.acp.test.application.test.TestTcpHandle             #报文接收处理 Bean 的类名
         responsable: true                                                    #报文是否需要进行原路响应，默认true
         charset: gbk                                                         #服务使用字符集，为空或不设置则系统默认字符集
 ```
@@ -209,7 +230,7 @@ acp:
         enabled: true                                                        #是否启用，默认false
         hex: false                                                           #接收报文是否是十六进制机器码，默认false
         port: 9999                                                           #监听端口号
-        handleBean: com.github.zhangbinhub.acp.test.application.test.TestTcpHandle             #报文接收处理 Bean 的类名
+        handleBean: io.github.zhangbinhub.acp.test.application.test.TestTcpHandle             #报文接收处理 Bean 的类名
         responsable: true                                                    #报文是否需要进行原路响应，默认true
         charset: gbk
 ```
@@ -231,7 +252,7 @@ acp:
         default-home-directory: "abs:D:\\个人\\测试ftp"                       #默认根路径
         anonymous-login-enabled: false                                       #可空，是否允许匿名用户登录，默认false
         anonymous-write-permission: false                                    #可空，是否允许匿名用户写操作，默认false
-        user-factory-class: com.github.zhangbinhub.acp.test.application.test.TestUserFactory   #用户工厂类
+        user-factory-class: io.github.zhangbinhub.acp.test.application.test.TestUserFactory   #用户工厂类
 ```
 
 - sftp 服务端
@@ -248,7 +269,7 @@ acp:
         key-auth-type: pem                                                   #可空，证书类型（der/pem/ssh），默认pem
         key-auth-mode: RSA                                                   #可空，证书验证模式（RSA/DSA），默认RSA
         default-home-directory: "abs:D:\\个人\\测试ftp"                       #默认根路径
-        user-factory-class: com.github.zhangbinhub.acp.test.application.test.TestUserFactory   #用户工厂类
+        user-factory-class: io.github.zhangbinhub.acp.test.application.test.TestUserFactory   #用户工厂类
 ```
 
 ### （三）启停 springboot 应用
@@ -270,7 +291,7 @@ acp:
 ```groovy
 dependencyManagement {
     imports {
-        mavenBom("com.github.zhangbinhub.acp.dependency:acp-dependency:7.0.0-SNAPSHOT")
+        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:7.0.0-SNAPSHOT")
     }
 }
 ```
@@ -298,7 +319,7 @@ dependencyManagement {
 
 [查看认证过程](doc/oauth2.0认证.md)
 
-> test:cloud:oauth-server 中增加 authorization_code 方式配置，详见 com.github.zhangbinhub.acp.cloud.oauth.conf.WebSecurityConfiguration 注释
+> test:cloud:oauth-server 中增加 authorization_code 方式配置，详见 io.github.zhangbinhub.acp.cloud.oauth.conf.WebSecurityConfiguration 注释
 
 > 注：使用 authorization_code 方式时，认证请求时需要直接访问 oauth-server 不能通过 gateway
 
@@ -346,7 +367,7 @@ http://127.0.0.1:5601
 ![Architecture diagram](doc/images/kibana.png)
 ### （三）组件开发
 ##### 全局说明
-> - 统一注入 com.github.zhangbinhub.acp.boot.interfaces.LogAdapter 进行日志记录
+> - 统一注入 io.github.zhangbinhub.acp.boot.interfaces.LogAdapter 进行日志记录
 ##### 1. 可视化监控
 > - test:cloud:admin-server
 > - （1）无需改动代码
@@ -374,7 +395,7 @@ http://127.0.0.1:5601
 ##### 4. 日志服务（依赖 kafka）
 > - （1）依赖 cloud:acp-spring-cloud-starter
 > - （2）入口类增加注解 @AcpCloudAtomApplication
-> - （3）如需自定义日志消息处理，新增Bean实现 com.github.zhangbinhub.acp.cloud.log.consumer.LogProcess 接口，并且增加 @Primary 注解
+> - （3）如需自定义日志消息处理，新增Bean实现 io.github.zhangbinhub.acp.cloud.log.consumer.LogProcess 接口，并且增加 @Primary 注解
 > - （4）根据各服务配置的日志类型（默认为"ALL"），在 logback-spring.xml 中参照 ALL 和 ALL-LOGSTASH 进行配置
 > -     a. 配置两个 appender（一个输出到本地文件，一个输出到logstash；单独配置的目的是为了将不同类型的日志写入不同名称的文件并在elasticsearch中创建不同的索引）
 > -     b. 之后再配置一个 logger （name属性为某个日志类型）,包含之前配置的两个 appender

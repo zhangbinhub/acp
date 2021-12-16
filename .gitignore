@@ -12,7 +12,7 @@ build/
 logs/
 /files/
 elasticsearch/
-gradle/deploy.gradle
+gradle.properties
 /release
 
 # OSX

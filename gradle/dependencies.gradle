@@ -3,22 +3,51 @@ ext {
 }
 
 versions += [
-        jupiter          : "5.8.1",
-        junit_platform   : "1.8.1",
+        jupiter           : "5.8.2",
+        junitPlatform     : "1.8.2",
 
-        kotlin_coroutines: "1.5.2",
-        joda_time        : "2.10.13",
-        commons_codec    : "1.15",
-        commons_text     : "1.9",
-        commons_lang3    : "3.12.0",
-        dom4j            : "1.6.1",
-        bouncycastle     : "1.68",
-        slf4j            : "1.7.32",
-        logback          : "1.2.7",
-        xstream          : "1.4.18",
-        jackson_databind : "2.13.0",
-        zip4j            : "2.9.0",
+        kotlin            : "1.6.0",
+        kotlinCoroutines  : "1.5.2",
 
-        hikaricp         : "4.0.3",
-        knife4j          : "3.0.3"
+        // acp-core
+        jodaTime          : "2.10.13",
+        commons_codec     : "1.15",
+        commons_text      : "1.9",
+        commons_lang3     : "3.12.0",
+        dom4j             : "1.6.1",
+        bouncycastle      : "1.68",
+        slf4j             : "1.7.32",
+        logback           : "1.2.7",
+        xstream           : "1.4.18",
+        jackson           : "2.13.0",
+        zip4j             : "2.9.0",
+        hikaricp          : "4.0.3",
+
+        // acp-client
+        netty             : "4.1.70.Final",
+        okhttp            : "3.14.9",
+
+        // acp-file
+        freemarker        : "2.3.31",
+        flyingSaucer      : "9.1.20",
+        jsoup             : "1.14.3",
+        batik             : "1.14",
+        poi               : "5.1.0",
+
+        // acp-ftp
+        ftpserver         : "1.1.1",
+        sftp              : "2.5.1",
+        commons_net       : "3.7.2",
+        jsch              : "0.1.55",
+
+        // acp-message
+        javaxMail         : "1.4.7",
+
+        // acp-spring-boot-starter/-ftp
+        springBoot        : "2.6.1",
+        knife4j           : "3.0.3",
+
+        // acp-spring-cloud-starter
+        springCloud       : "2021.0.0",
+        springCloudAlibaba: "2021.1"
 ]

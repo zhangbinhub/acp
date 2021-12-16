@@ -1,23 +1,17 @@
-group "${group}.core"
-test {
-    exclude '**/*nobuild**'
-}
 dependencies {
-    api "joda-time:joda-time:$versions.joda_time"
+    api "joda-time:joda-time:$versions.jodaTime"
     api "commons-codec:commons-codec:$versions.commons_codec"
     api "org.apache.commons:commons-text:$versions.commons_text"
     api "org.apache.commons:commons-lang3:$versions.commons_lang3"
     api "org.slf4j:slf4j-api:$versions.slf4j"
     api "ch.qos.logback:logback-classic:$versions.logback"
-    api "com.fasterxml.jackson.core:jackson-databind:$versions.jackson_databind"
-    api "com.fasterxml.jackson.module:jackson-module-kotlin:$versions.jackson_databind"
+    api "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
+    api "com.fasterxml.jackson.module:jackson-module-kotlin:$versions.jackson"
     api "org.bouncycastle:bcmail-jdk15on:$versions.bouncycastle"
     api "org.bouncycastle:bcpg-jdk15on:$versions.bouncycastle"
     api "org.bouncycastle:bcprov-ext-jdk15on:$versions.bouncycastle"
     api "com.thoughtworks.xstream:xstream:$versions.xstream"
     api "dom4j:dom4j:$versions.dom4j"
     api "net.lingala.zip4j:zip4j:$versions.zip4j"
-
-    // sql data base connection
     api "com.zaxxer:HikariCP:$versions.hikaricp"
 }

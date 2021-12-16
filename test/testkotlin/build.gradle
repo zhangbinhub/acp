@@ -4,18 +4,15 @@ apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") {
-            bomProperty("kotlin.version", "${kotlinVersion}")
+        mavenBom("org.springframework.boot:spring-boot-dependencies:$versions.springBoot") {
+            bomProperty("kotlin.version", "$versions.kotlin")
         }
     }
 }
 bootJar {
     manifest {
-        attributes('Version': "${project.version}", 'Provider': "Gradle ${gradleVersion}", 'JDK': "${javaVersion}", 'Kotlin': "${kotlinVersion}", 'Project': 'Acp')
+        attributes('Version': "${project.version}", 'Provider': "Gradle ${projectProperties.getProperty('gradleVersion')}", 'JDK': "${projectProperties.getProperty('javaVersion')}", 'Kotlin': "$versions.kotlin", 'Project': 'Acp')
     }
-}
-test {
-    exclude '**/*nobuild**'
 }
 dependencies {
     implementation project(":boot:acp-spring-boot-starter")
