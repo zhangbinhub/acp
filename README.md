@@ -1,6 +1,13 @@
 # Application Construction Platform (acp) 
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
-[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.0-brightgreen)](https://projects.spring.io/spring-cloud)
+[![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.1-red)](https://github.com/alibaba/spring-cloud-alibaba)
+[![Spring Boot Admin](https://img.shields.io/badge/SpringBootAdmin-2.5.4-red)](https://github.com/codecentric/spring-boot-admin)
+[![Kotlin](https://img.shields.io/badge/Kotlin->1.5-blue)](https://kotlinlang.org/)
+[![Jvm](https://img.shields.io/badge/Jvm->=1.8-blue)](http://hg.openjdk.java.net/)
+[![Gradle](https://img.shields.io/badge/Gradle->6.5-blue)](https://gradle.org/)
+[![License](http://img.shields.io/badge/license-Apache%202-brightgreen)](http://www.apache.org/licenses/LICENSE-2.0.html)
 ###### v2021.0.0 [版本更新日志](doc/version_history.md)
 - Application Construction Platform 应用构建平台
 - 该项目是用Kotlin和Java语言混编封装的脚手架。本人会密切关注业界最新动态，并使用最新技术持续更新优化。
