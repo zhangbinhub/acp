@@ -126,7 +126,7 @@ signing.secretKeyRingFile=keyFile
 ```groovy
 dependencyManagement {
     imports {
-        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:7.0.0-SNAPSHOT")
+        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:2021.0.0-M3")
     }
 }
 ```
@@ -291,7 +291,7 @@ acp:
 ```groovy
 dependencyManagement {
     imports {
-        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:7.0.0-SNAPSHOT")
+        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:2021.0.0-M3")
     }
 }
 ```
