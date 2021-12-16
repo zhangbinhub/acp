@@ -1,6 +1,6 @@
-def coreGroup = "${projectProperties.getProperty('group')}.core"
-def bootGroup = "${projectProperties.getProperty('group')}.boot"
-def cloudGroup = "${projectProperties.getProperty('group')}.cloud"
+def coreGroup = "${projectProperties.getProperty('group')}.acp.core"
+def bootGroup = "${projectProperties.getProperty('group')}.acp.boot"
+def cloudGroup = "${projectProperties.getProperty('group')}.acp.cloud"
 apply plugin: "io.spring.dependency-management"
 dependencyManagement {
     imports {
