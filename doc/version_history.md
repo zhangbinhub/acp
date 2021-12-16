@@ -2,7 +2,7 @@
 ##### v2021.0.0-M3
 - Global
   - [Upgrade] 删除gradle.properties，该配置文件现在用于存放敏感的隐私信息，不进行代码托管
-  - [Upgrade] 原gradle.properties中的配置信息移入project.properties
+  - [Upgrade] 原gradle.properties中的配置信息移入project.properties，gradle.properties只存放工程构建和发布时的隐私信息，正常使用或发布至本地仓库无需该文件
   - [Upgrade] 所有版本号信息移入gradle/dependencies.gradle统一管理，例如之前在gradle.properties中的kotlin、springboot、springcloud等版本号
   - [Upgrade] 项目GroupId变更为io.github.zhangbinhub，各模块的GroupId变更为io.github.zhangbinhub.module
   - [Upgrade] 重构各模块包名，前缀规则：GroupId.module

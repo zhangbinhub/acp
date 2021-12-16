@@ -229,6 +229,17 @@ allprojects {
         }
     }
     signing {
+        required {
+            def file = new File("$rootDir/gradle.properties")
+            if (file.exists()) {
+                def gradleProperties = new Properties()
+                gradleProperties.load(new FileInputStream(file))
+                if (!gradleProperties.getProperty('signing.keyId', '').isBlank()) {
+                    return true
+                }
+            }
+            return false
+        }
         sign publishing.publications.maven
     }
 
