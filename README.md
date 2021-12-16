@@ -1,5 +1,5 @@
 # Application Construction Platform (acp) 
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.core/acp-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.core/acp-core)
+[![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 ###### v2021.0.0 [版本更新日志](doc/version_history.md)
 - Application Construction Platform 应用构建平台
