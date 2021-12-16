@@ -74,7 +74,7 @@ gradle全局参数：
 - mavenCentralUrl：maven中央仓库地址
 - javaVersion：jdk版本号
     
-##### 4.[build.gradle](project.properties)
+##### 4.[build.gradle](build.gradle)
 公共构建脚本
     
 ##### 5.模块根路径/build.gradle
