@@ -141,12 +141,8 @@ class LogFactory {
 
     private fun setCustomerParams() {
         val stacks = Thread.currentThread().stackTrace
-        var lineno = 0
-        var className = ""
-        if (stacks.size >= stackIndex + 1) {
-            lineno = stacks[stackIndex].lineNumber
-            className = stacks[stackIndex].className
-        }
+        val lineno = stacks[stackIndex].lineNumber
+        val className = stacks[stackIndex].className
         if (isCls) {
             logger = LoggerFactory.getLogger(className)
         }

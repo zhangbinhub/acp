@@ -8,66 +8,67 @@ import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
  * @since JDK 11
  */
 class BootLogAdapter : LogAdapter {
-
-    private val log = LogFactory.getInstance(this.javaClass, 4)
+    private val stackIndex = 4
+    private fun logInstance(): LogFactory =
+        LogFactory.getInstance(Thread.currentThread().stackTrace[stackIndex - 1].className, stackIndex)
 
     override fun info(message: String?) {
-        log.info(message)
+        logInstance().info(message)
     }
 
     override fun info(message: String?, vararg variable: Any?) {
-        log.info(message, variable)
+        logInstance().info(message, variable)
     }
 
     override fun info(message: String?, t: Throwable?) {
-        log.info(message, t)
+        logInstance().info(message, t)
     }
 
     override fun debug(message: String?) {
-        log.debug(message)
+        logInstance().debug(message)
     }
 
     override fun debug(message: String?, vararg variable: Any?) {
-        log.debug(message, variable)
+        logInstance().debug(message, variable)
     }
 
     override fun debug(message: String?, t: Throwable?) {
-        log.debug(message, t)
+        logInstance().debug(message, t)
     }
 
     override fun warn(message: String?) {
-        log.warn(message)
+        logInstance().warn(message)
     }
 
     override fun warn(message: String?, vararg variable: Any?) {
-        log.warn(message, variable)
+        logInstance().warn(message, variable)
     }
 
     override fun warn(message: String?, t: Throwable?) {
-        log.warn(message, t)
+        logInstance().warn(message, t)
     }
 
     override fun error(message: String?) {
-        log.error(message)
+        logInstance().error(message)
     }
 
     override fun error(message: String?, vararg variable: Any?) {
-        log.error(message, variable)
+        logInstance().error(message, variable)
     }
 
     override fun error(message: String?, t: Throwable?) {
-        log.error(message, t)
+        logInstance().error(message, t)
     }
 
     override fun trace(message: String?) {
-        log.trace(message)
+        logInstance().trace(message)
     }
 
     override fun trace(message: String?, vararg variable: Any?) {
-        log.trace(message, variable)
+        logInstance().trace(message, variable)
     }
 
     override fun trace(message: String?, t: Throwable?) {
-        log.trace(message, t)
+        logInstance().trace(message, t)
     }
 }
