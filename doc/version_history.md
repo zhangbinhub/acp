@@ -1,4 +1,11 @@
 ## 版本更新记录
+##### v2021.0.0-M5
+- acp-core
+  - [Upgrade] 优化日志调用栈获取逻辑
+- acp-spring-boot-starter
+  - [Upgrade] 优化日志类生成方式及调用栈获取逻辑
+- acp-spring-cloud-starter
+  - [Upgrade] 优化日志类生成方式及调用栈获取逻辑
 ##### v2021.0.0-M4
 - acp-dependency
   - [Fix] 修复其他模块依赖项的group

@@ -65,6 +65,7 @@ public class TestController {
     public ResponseEntity<List<TableOne>> post1(@PathVariable String name,
                                                 @ApiParam(value = "pwd", required = true) @NotEmpty(message = "pwd不能为空") @RequestParam String pwd) {
         log.info("name1:" + name + ",pwd1:" + pwd);
+        log.debug("name1:" + name + ",pwd1:" + pwd);
         log.info(CommonTools.getWebRootAbsPath());
         List<TableOne> tableOneList = tableRepo.findAll();
         System.out.println(s1);

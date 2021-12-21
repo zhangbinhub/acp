@@ -13,6 +13,7 @@ logging:
       max-history: 30
   level:
     com.alibaba.nacos.client.naming: warn
+    pers.acp.test.application.controller: debug
 # ===============================
 # = Spring Config
 # ===============================
@@ -42,10 +43,10 @@ spring:
       #      read-only: false
       data-source-properties.scanpackage: pers.acp.test.application.entity.primary
     pg:
-      jdbc-url: jdbc:postgresql://[::1]:5432/test?autoReconnect=true&zeroDateTimeBehavior=convertToNull
-      username: postgres
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC&useSSL=false
+      username: root
       password: test
-      driver-class-name: org.postgresql.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       #      maximum-pool-size: 5
       #      minimum-idle: 5
       #      pool-name: SpringBootHikariCPPG
@@ -58,7 +59,7 @@ spring:
         bootstrap-mode: deferred
 acp:
   swagger:
-    enabled: true
+    enabled: false
   ####################################################### 定时任务 #####################################################
   # 支持：cron字符串、none、不配置
   schedule:

@@ -23,8 +23,9 @@ class CloudLogAdapter(
     private val acpCloudLogServerClientConfiguration: AcpCloudLogServerClientConfiguration,
     private val logBridge: LogBridge
 ) : LogAdapter {
-
-    private val log = LogFactory.getInstance(this.javaClass, 4)
+    private val stackIndex = 4
+    private fun logInstance(): LogFactory =
+        LogFactory.getInstance(Thread.currentThread().stackTrace[stackIndex - 1].className, stackIndex)
 
     private fun generateLogInfo(): LogInfo? {
         val logInfo = SpringBeanFactory.getBean(LogInfo::class.java)
@@ -49,20 +50,14 @@ class CloudLogAdapter(
             override fun afterExecuteFun(result: Any) {}
             override fun executeFun(): Any {
                 logInfo.serverTime = CommonTools.getNowDateTime().toDate().time
-                var lineNo = 0
-                var className = ""
-                if (stacks.size >= log.stackIndex) {
-                    lineNo = stacks[log.stackIndex - 1].lineNumber
-                    className = stacks[log.stackIndex - 1].className
-                }
-                logInfo.lineNo = lineNo
-                logInfo.className = className
+                logInfo.lineNo = stacks[stackIndex - 1].lineNumber
+                logInfo.className = stacks[stackIndex - 1].className
                 try {
                     if (acpCloudLogServerClientConfiguration.enabled) {
                         logBridge.send(logInfo)
                     }
                 } catch (e: JsonProcessingException) {
-                    log.error(e.message, e)
+                    logInstance().error(e.message, e)
                 }
                 return true
             }
@@ -70,186 +65,216 @@ class CloudLogAdapter(
     }
 
     override fun info(message: String?) {
-        log.info(message)
-        if (log.isInfoEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Info.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.info(message)
+            if (log.isInfoEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Info.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun info(message: String?, vararg variable: Any?) {
-        log.info(message, *variable)
-        if (log.isInfoEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Info.name
-                it.message = message
-                it.params = arrayListOf(*variable)
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.info(message, *variable)
+            if (log.isInfoEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Info.name
+                    it.message = message
+                    it.params = arrayListOf(*variable)
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun info(message: String?, t: Throwable?) {
-        log.info(message, t)
-        if (log.isInfoEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Info.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.info(message, t)
+            if (log.isInfoEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Info.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun debug(message: String?) {
-        log.debug(message)
-        if (log.isDebugEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Debug.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.debug(message)
+            if (log.isDebugEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Debug.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun debug(message: String?, vararg variable: Any?) {
-        log.debug(message, *variable)
-        if (log.isDebugEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Debug.name
-                it.message = message
-                it.params = arrayListOf(*variable)
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.debug(message, *variable)
+            if (log.isDebugEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Debug.name
+                    it.message = message
+                    it.params = arrayListOf(*variable)
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun debug(message: String?, t: Throwable?) {
-        log.debug(message, t)
-        if (log.isDebugEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Debug.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.debug(message, t)
+            if (log.isDebugEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Debug.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun warn(message: String?) {
-        log.warn(message)
-        if (log.isWarnEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Warn.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.warn(message)
+            if (log.isWarnEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Warn.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun warn(message: String?, vararg variable: Any?) {
-        log.warn(message, *variable)
-        if (log.isWarnEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Warn.name
-                it.message = message
-                it.params = arrayListOf(*variable)
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.warn(message, *variable)
+            if (log.isWarnEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Warn.name
+                    it.message = message
+                    it.params = arrayListOf(*variable)
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun warn(message: String?, t: Throwable?) {
-        log.warn(message, t)
-        if (log.isWarnEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Warn.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.warn(message, t)
+            if (log.isWarnEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Warn.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun error(message: String?) {
-        log.error(message)
-        if (log.isErrorEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Error.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.error(message)
+            if (log.isErrorEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Error.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun error(message: String?, vararg variable: Any?) {
-        log.error(message, *variable)
-        if (log.isErrorEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Error.name
-                it.message = message
-                it.params = arrayListOf(*variable)
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.error(message, *variable)
+            if (log.isErrorEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Error.name
+                    it.message = message
+                    it.params = arrayListOf(*variable)
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun error(message: String?, t: Throwable?) {
-        log.error(message, t)
-        if (log.isErrorEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Error.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.error(message, t)
+            if (log.isErrorEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Error.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun trace(message: String?) {
-        log.trace(message)
-        if (log.isTraceEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Trace.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.trace(message)
+            if (log.isTraceEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Trace.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun trace(message: String?, vararg variable: Any?) {
-        log.trace(message, *variable)
-        if (log.isTraceEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Trace.name
-                it.message = message
-                it.params = arrayListOf(*variable)
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.trace(message, *variable)
+            if (log.isTraceEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Trace.name
+                    it.message = message
+                    it.params = arrayListOf(*variable)
+                    sendToLogServer(it)
+                }
             }
         }
     }
 
     override fun trace(message: String?, t: Throwable?) {
-        log.trace(message, t)
-        if (log.isTraceEnabled()) {
-            val logInfo = generateLogInfo()
-            logInfo?.let {
-                it.logLevel = LogLevel.Trace.name
-                it.message = message
-                sendToLogServer(it)
+        logInstance().let { log ->
+            log.trace(message, t)
+            if (log.isTraceEnabled()) {
+                val logInfo = generateLogInfo()
+                logInfo?.let {
+                    it.logLevel = LogLevel.Trace.name
+                    it.message = message
+                    sendToLogServer(it)
+                }
             }
         }
     }
