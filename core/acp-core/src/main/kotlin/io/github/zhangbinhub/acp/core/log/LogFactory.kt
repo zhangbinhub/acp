@@ -14,7 +14,7 @@ class LogFactory {
 
     private var isCls: Boolean
 
-    val stackIndex: Int
+    private val stackIndex: Int
 
     private constructor(cls: Class<*>, stackIndex: Int = 3) {
         logger = LoggerFactory.getLogger(cls)
