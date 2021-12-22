@@ -1,4 +1,9 @@
 ## 版本更新记录
+##### v2021.0.0-M6
+- Global
+  - 增加jdk8编译版本
+- acp-core
+  - [Upgrade] 优化代码
 ##### v2021.0.0-M5
 - acp-core
   - [Upgrade] 优化日志调用栈获取逻辑
