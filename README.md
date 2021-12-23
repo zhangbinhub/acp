@@ -1,5 +1,5 @@
 # Application Construction Platform (acp) 
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
+[![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.core/acp-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.core/acp-core)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.0-brightgreen)](https://projects.spring.io/spring-cloud)
 [![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.1-red)](https://github.com/alibaba/spring-cloud-alibaba)
