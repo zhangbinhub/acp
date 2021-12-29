@@ -1,10 +1,9 @@
 server:
   http2:
     enabled: true
-  tomcat:
-    uri-encoding: UTF-8
+  undertow:
     threads:
-      max: 1000
+      worker: 1000
 spring:
   profiles:
     active: singledatasource

@@ -1,4 +1,14 @@
 ## 版本更新记录
+##### v2021.0.0-M7
+- Global
+  - [Upgrade] 升级依赖
+    - kotlin 1.6.10
+    - Spring Boot 2.6.2
+    - logback 1.2.9
+    - jackson 2.13.1
+    - netty 4.1.72.Final
+- acp-spring-boot-starter
+  - [Upgrade] 默认 tomcat 切换为 undertow
 ##### v2021.0.0-M6
 - Global
   - 增加jdk8编译版本

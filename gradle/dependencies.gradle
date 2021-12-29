@@ -6,7 +6,7 @@ versions += [
         jupiter           : "5.8.2",
         junitPlatform     : "1.8.2",
 
-        kotlin            : "1.6.0",
+        kotlin            : "1.6.10",
         kotlinCoroutines  : "1.5.2",
 
         // acp-core
@@ -17,14 +17,14 @@ versions += [
         dom4j             : "1.6.1",
         bouncycastle      : "1.68",
         slf4j             : "1.7.32",
-        logback           : "1.2.7",
+        logback           : "1.2.9",
         xstream           : "1.4.18",
-        jackson           : "2.13.0",
+        jackson           : "2.13.1",
         zip4j             : "2.9.0",
         hikaricp          : "4.0.3",
 
         // acp-client
-        netty             : "4.1.70.Final",
+        netty             : "4.1.72.Final",
         okhttp            : "3.14.9",
 
         // acp-file
@@ -44,7 +44,7 @@ versions += [
         javaxMail         : "1.4.7",
 
         // acp-spring-boot-starter/-ftp
-        springBoot        : "2.6.1",
+        springBoot        : "2.6.2",
         knife4j           : "3.0.3",
 
         // acp-spring-cloud-starter

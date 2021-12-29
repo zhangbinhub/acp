@@ -11,15 +11,15 @@ dependencyManagement {
         mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:$versions.springCloudAlibaba"
     }
     dependencies {
-        dependency "$coreGroup:acp-core:${version}"
-        dependency "$coreGroup:acp-client:${version}"
-        dependency "$coreGroup:acp-file:${version}"
-        dependency "$coreGroup:acp-ftp:${version}"
-        dependency "$coreGroup:acp-message:${version}"
-        dependency "$coreGroup:acp-packet:${version}"
-        dependency "$bootGroup:acp-spring-boot-starter:${version}"
-        dependency "$bootGroup:acp-spring-boot-starter-ftp:${version}"
-        dependency "$cloudGroup:acp-spring-cloud-starter:${version}"
+        dependency "$coreGroup:acp-core:$version"
+        dependency "$coreGroup:acp-client:$version"
+        dependency "$coreGroup:acp-file:$version"
+        dependency "$coreGroup:acp-ftp:$version"
+        dependency "$coreGroup:acp-message:$version"
+        dependency "$coreGroup:acp-packet:$version"
+        dependency "$bootGroup:acp-spring-boot-starter:$version"
+        dependency "$bootGroup:acp-spring-boot-starter-ftp:$version"
+        dependency "$cloudGroup:acp-spring-cloud-starter:$version"
     }
 }
 publishing {

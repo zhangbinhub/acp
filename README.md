@@ -16,7 +16,7 @@
 - 正式版发布前，Maven Central仅提供java 11版本，可自行在[project.properties](project.properties)中修改编译时的`javaVersion`
 - 正式版发布后，默认是java 11版本，同时还会提供java 1.8版本，版本号带后缀`-jdk8`
 ## 相关组件版本及官方文档
-- [Spring Boot 2.6.1](https://projects.spring.io/spring-boot)
+- [Spring Boot 2.6.2](https://projects.spring.io/spring-boot)
 - [Spring Cloud 2021.0.0](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2021.1](https://github.com/alibaba/spring-cloud-alibaba)
 
