@@ -1,10 +1,9 @@
 server:
   http2:
     enabled: true
-  tomcat:
-    uri-encoding: UTF-8
+  undertow:
     threads:
-      max: 1000
+      worker: 1000
 spring:
   profiles:
     active: prod
@@ -16,8 +15,6 @@ spring:
     loadbalancer:
       cache:
         ttl: 5s
-      ribbon:
-        enabled: false
     nacos:
       username: nacos
       password: nacos

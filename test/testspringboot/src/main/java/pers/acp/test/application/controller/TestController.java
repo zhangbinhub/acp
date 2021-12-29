@@ -11,10 +11,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 import pers.acp.test.application.entity.primary.TableOne;
+import pers.acp.test.application.po.TestPo;
 import pers.acp.test.application.repo.primary.TableRepo;
 import io.github.zhangbinhub.acp.core.CommonTools;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -91,6 +93,17 @@ public class TestController {
         log.info(CommonTools.getWebRootAbsPath());
         ObjectNode objectNode = mapper.createObjectNode();
         objectNode.put("result2", str);
+        return ResponseEntity.ok(objectNode.toString());
+    }
+
+    @ApiOperation(value = "测试 rest 接口3", notes = "返回字符串")
+    @RequestMapping(value = "/rest3", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> post3(@RequestBody @Valid TestPo testPo) {
+        log.info("s1:" + testPo.getS1());
+        log.info("i1:" + testPo.getI1());
+        log.info(CommonTools.getWebRootAbsPath());
+        ObjectNode objectNode = mapper.createObjectNode();
+        objectNode.put("result2", testPo.toString());
         return ResponseEntity.ok(objectNode.toString());
     }
 
