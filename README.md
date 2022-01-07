@@ -3,7 +3,7 @@
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.0-brightgreen)](https://projects.spring.io/spring-cloud)
 [![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.1-red)](https://github.com/alibaba/spring-cloud-alibaba)
-[![Spring Boot Admin](https://img.shields.io/badge/SpringBootAdmin-2.5.4-red)](https://github.com/codecentric/spring-boot-admin)
+[![Spring Boot Admin](https://img.shields.io/badge/SpringBootAdmin-2.6.0-brightgreen)](https://github.com/codecentric/spring-boot-admin)
 [![Kotlin](https://img.shields.io/badge/Kotlin->1.5-blue)](https://kotlinlang.org/)
 [![Jvm](https://img.shields.io/badge/Jvm->=1.8-blue)](http://hg.openjdk.java.net/)
 [![Gradle](https://img.shields.io/badge/Gradle->6.5-blue)](https://gradle.org/)
