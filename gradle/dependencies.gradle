@@ -16,15 +16,15 @@ versions += [
         commons_lang3     : "3.12.0",
         dom4j             : "1.6.1",
         bouncycastle      : "1.68",
-        slf4j             : "1.7.32",
-        logback           : "1.2.9",
+        slf4j             : "1.7.33",
+        logback           : "1.2.10",
         xstream           : "1.4.18",
         jackson           : "2.13.1",
         zip4j             : "2.9.0",
         hikaricp          : "4.0.3",
 
         // acp-client
-        netty             : "4.1.72.Final",
+        netty             : "4.1.73.Final",
         okhttp            : "3.14.9",
 
         // acp-file
@@ -44,7 +44,7 @@ versions += [
         javaxMail         : "1.4.7",
 
         // acp-spring-boot-starter/-ftp
-        springBoot        : "2.6.2",
+        springBoot        : "2.6.3",
         knife4j           : "3.0.3",
 
         // acp-spring-cloud-starter

@@ -1,5 +1,14 @@
 ## 版本更新记录
 
+##### v2021.0.0-M8
+
+- Global
+  - [Upgrade] 升级依赖
+    - Spring Boot 2.6.3
+    - logback 1.2.10
+    - netty 4.1.73.Final
+    - slf4j 1.7.33
+
 ##### v2021.0.0-M7
 
 - Global
