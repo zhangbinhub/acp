@@ -4,7 +4,6 @@
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.0-brightgreen)](https://projects.spring.io/spring-cloud)
 [![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.1-red)](https://github.com/alibaba/spring-cloud-alibaba)
-[![Spring Boot Admin](https://img.shields.io/badge/SpringBootAdmin-2.6.0-brightgreen)](https://github.com/codecentric/spring-boot-admin)
 [![Kotlin](https://img.shields.io/badge/Kotlin->1.5-blue)](https://kotlinlang.org/)
 [![Jvm](https://img.shields.io/badge/Jvm->=1.8-blue)](http://hg.openjdk.java.net/)
 [![Gradle](https://img.shields.io/badge/Gradle->6.5-blue)](https://gradle.org/)
@@ -21,7 +20,7 @@
 
 ## 相关组件版本及官方文档
 
-- [Spring Boot 2.6.2](https://projects.spring.io/spring-boot)
+- [Spring Boot 2.6.x](https://projects.spring.io/spring-boot)
 - [Spring Cloud 2021.0.0](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2021.1](https://github.com/alibaba/spring-cloud-alibaba)
 
@@ -296,7 +295,7 @@ acp:
 ```yaml
 acp:
   udp-server:
-    listeners: 
+    listeners:
       - name: testSocket                                                     #监听服务名称
         enabled: true                                                        #是否启用，默认false
         hex: false                                                           #接收报文是否是十六进制机器码，默认false
