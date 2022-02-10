@@ -114,7 +114,7 @@ gradle全局参数：
 
 - 项目根路径下创建 gradle.properties 并添加如下参数（参数值根据实际情况修改）
 
-```properties
+```
 mavenUploadUrlRelease=https://maven.com/repositories/releases/
 mavenUploadUrlSnapshot=https://maven.com/repositories/snapshot/
 mavenUserName=username
@@ -127,7 +127,7 @@ mavenPassword=password
 
 - 项目根路径下创建 gradle.properties 并添加如下参数（参数值根据实际情况修改）
 
-```properties
+```
 mavenUploadUrlRelease=https://maven.com/repositories/releases/
 mavenUploadUrlSnapshot=https://maven.com/repositories/snapshot/
 mavenUserName=username
@@ -142,7 +142,7 @@ signing.secretKeyRingFile=keyFile
 ### （四）升级命令
 
 ``
-gradlew wrapper --gradle-version=7.2 --distribution-type=all
+gradlew wrapper --gradle-version=7.4 --distribution-type=all
 ``
 
 ## 三、工程说明
@@ -351,13 +351,13 @@ acp:
 - [启停脚本(windows) server.bat](doc/script/server.bat)，根据实际情况修改第1行末尾需要执行的 jar 名称，和SpringBoot应用的 .jar 放在同一路径下
 - Linux 命令：
 
-|          命令         |           描述          |
-| --------------------- | ----------------------- | 
-| ./server.sh           | 查看可用参数            |
-| ./server.sh status    | 查看系统运行状态        |
-| ./server.sh start     | 启动应用                |
-| ./server.sh stop      | 停止应用                |
-| ./server.sh restart   | 重启应用                |
+| 命令                  | 描述       |
+|---------------------|----------|
+| ./server.sh         | 查看可用参数   |
+| ./server.sh status  | 查看系统运行状态 |
+| ./server.sh start   | 启动应用     |
+| ./server.sh stop    | 停止应用     |
+| ./server.sh restart | 重启应用     |
 
 ## 五、开发 SpringCloud 应用
 
@@ -394,13 +394,13 @@ dependencyManagement {
 
 统一认证服务：token 存储于 Redis，user 及 client 信息可扩展配置
 
-|          url          |  描述                   |
-| --------------------- | ----------------------- | 
-| /oauth/authorize      | 申请授权，basic认证保护      |
+| url                   | 描述                                                   |
+|-----------------------|------------------------------------------------------|
+| /oauth/authorize      | 申请授权，basic认证保护                                       |
 | /oauth/token          | 获取token的服务，url中没有client_id和client_secret的，走basic认证保护 |
-| /oauth/check_token    | 资源服务器用来校验token，basic认证保护 |
-| /oauth/confirm_access | 授权确认，basic认证保护  |
-| /oauth/error          | 认证失败，无认证保护     |
+| /oauth/check_token    | 资源服务器用来校验token，basic认证保护                             |
+| /oauth/confirm_access | 授权确认，basic认证保护                                       |
+| /oauth/error          | 认证失败，无认证保护                                           |
 
 [查看认证过程](doc/oauth2.0认证.md)
 
