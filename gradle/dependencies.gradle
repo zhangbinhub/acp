@@ -48,6 +48,6 @@ versions += [
         knife4j           : "3.0.3",
 
         // acp-spring-cloud-starter
-        springCloud       : "2021.0.0",
+        springCloud       : "2021.0.1",
         springCloudAlibaba: "2021.1"
 ]
