@@ -21,7 +21,7 @@
 ## 相关组件版本及官方文档
 
 - [Spring Boot 2.6.x](https://projects.spring.io/spring-boot)
-- [Spring Cloud 2021.0.0](http://projects.spring.io/spring-cloud)
+- [Spring Cloud 2021.0.1](http://projects.spring.io/spring-cloud)
 - [Spring Cloud Alibaba 2021.1](https://github.com/alibaba/spring-cloud-alibaba)
 
 **特别注意：v2021.0.0 目前是里程碑版本，因`Spring Cloud Alibaba 2021.1`暂未适配`Spring Boot 2.6.x`和`Spring Cloud 2021.0.x`
@@ -38,7 +38,7 @@
 - poi
 - freemarker
 - flying-saucer-pdf-itext5
-- knife4j
+- knife4j (使用时，参考[启动异常解决方案](https://gitee.com/xiaoym/knife4j/issues/I4NAV8))
 - junit5
 - nacos
 - sentinel
