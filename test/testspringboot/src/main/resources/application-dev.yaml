@@ -59,7 +59,7 @@ spring:
         bootstrap-mode: deferred
 acp:
   swagger:
-    enabled: false
+    enabled: true
   ####################################################### 定时任务 #####################################################
   # 支持：cron字符串、none、不配置
   schedule:

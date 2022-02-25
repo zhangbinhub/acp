@@ -11,9 +11,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 import pers.acp.test.application.entity.primary.TableOne;
+import pers.acp.test.application.po.TestJsonPo;
 import pers.acp.test.application.po.TestPo;
 import pers.acp.test.application.repo.primary.TableRepo;
 import io.github.zhangbinhub.acp.core.CommonTools;
+import pers.acp.test.application.vo.TestJsonVo;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
@@ -139,4 +141,12 @@ public class TestController {
         };
     }
 
+    @ApiOperation(value = "测试 rest 接口", notes = "参数为json")
+    @PostMapping(value = "/json", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TestJsonVo> testJson(@RequestBody TestJsonPo testJsonPo) {
+        TestJsonVo testJsonVo = new TestJsonVo();
+        testJsonVo.setNameResult(testJsonPo.getNameValue());
+        testJsonVo.setCodeResult(testJsonPo.getCodeValue());
+        return ResponseEntity.ok(testJsonVo);
+    }
 }
