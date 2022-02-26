@@ -6,12 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@ApiModel("测试参数")
+@ApiModel(value = "测试参数", description = "测试参数描述")
 public class TestPo {
     @ApiModelProperty(value = "字符串参数1", required = true)
     private String s1;
 
-    @ApiModelProperty(value = "整型参数1", required = true)
+    @ApiModelProperty(value = "整型参数1")
     private Integer i1;
 
     @NotBlank(message = "字符串参数1不能为空")
