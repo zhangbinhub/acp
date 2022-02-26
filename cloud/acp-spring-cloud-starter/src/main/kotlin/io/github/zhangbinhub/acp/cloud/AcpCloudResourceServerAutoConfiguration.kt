@@ -164,9 +164,11 @@ constructor(
         if (acpCloudOauthConfiguration.resourceServer) {
             log.info("resource server = true")
             permitAll.add("$contextPath/error")
+            permitAll.add("$contextPath/favicon.ico")
             permitAll.add("$contextPath/actuator")
             permitAll.add("$contextPath/actuator/**")
             permitAll.add("$contextPath/v2/api-docs")
+            permitAll.add("$contextPath/v3/api-docs")
             permitAll.add("$contextPath/configuration/ui")
             permitAll.add("$contextPath/swagger-resources/**")
             permitAll.add("$contextPath/configuration/security")

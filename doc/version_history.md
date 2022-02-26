@@ -41,6 +41,7 @@
     - [Upgrade] 默认 tomcat 切换为 undertow
 - acp-spring-cloud-starter
     - [Upgrade] 优化日志类生成方式及调用栈获取逻辑
+    - [Upgrade] 修改ResourceServer配置，放行OpenApiV3接口地址
 
 ##### v6.7.1
 

@@ -1,6 +1,5 @@
 package pers.acp.test.application.conf;
 
-import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -18,7 +17,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.spring.web.plugins.WebFluxRequestHandlerProvider;
 import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -28,8 +26,6 @@ import java.util.List;
  * @since JDK 11
  */
 @Configuration(proxyBeanMethods = false)
-@EnableSwagger2
-@EnableKnife4j
 public class CustomerSwaggerConfiguration {
 
     private final SwaggerConfiguration swaggerConfiguration;
@@ -46,7 +42,7 @@ public class CustomerSwaggerConfiguration {
 //        List<Parameter> pars = new ArrayList<>();
 //        tokenPar.name("Authorization").description("认证信息").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
 //        pars.add(tokenPar.build());
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.OAS_30)
                 .enable(swaggerConfiguration.getEnabled())
                 .apiInfo(apiInfo())
                 .select()
