@@ -1,22 +1,22 @@
 package io.github.zhangbinhub.acp.core.client.http
 
-import okhttp3.RequestBody
 import io.github.zhangbinhub.acp.core.CommonTools
+import okhttp3.RequestBody
 
 /**
  * @author zhang by 11/07/2019
  * @since JDK 11
  */
 data class RequestParam(
-        var url: String,
-        val requestHeaders: MutableMap<String, String>,
-        var clientCharset: String = CommonTools.getDefaultCharset(),
-        var basicUsername: String? = null,
-        var basicPassword: String? = null,
-        var params: MutableMap<String, String> = mutableMapOf(),
-        var bodyString: String = "",
-        var bodyBytes: ByteArray? = null,
-        var body: RequestBody? = null
+    var url: String,
+    val requestHeaders: MutableMap<String, String>,
+    var clientCharset: String = CommonTools.getDefaultCharset(),
+    var basicUsername: String? = null,
+    var basicPassword: String? = null,
+    var params: MutableMap<String, String> = mutableMapOf(),
+    var bodyString: String = "",
+    var bodyBytes: ByteArray? = null,
+    var body: RequestBody? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

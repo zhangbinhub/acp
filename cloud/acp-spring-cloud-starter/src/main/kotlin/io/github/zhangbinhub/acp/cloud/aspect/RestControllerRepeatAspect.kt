@@ -2,6 +2,10 @@ package io.github.zhangbinhub.acp.cloud.aspect
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.zhangbinhub.acp.boot.exceptions.ServerException
+import io.github.zhangbinhub.acp.cloud.annotation.AcpCloudDuplicateSubmission
+import io.github.zhangbinhub.acp.cloud.lock.DistributedLock
+import io.github.zhangbinhub.acp.core.security.Md5Encrypt
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
@@ -9,10 +13,6 @@ import org.aspectj.lang.annotation.Pointcut
 import org.aspectj.lang.reflect.MethodSignature
 import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order
-import io.github.zhangbinhub.acp.core.security.Md5Encrypt
-import io.github.zhangbinhub.acp.boot.exceptions.ServerException
-import io.github.zhangbinhub.acp.cloud.annotation.AcpCloudDuplicateSubmission
-import io.github.zhangbinhub.acp.cloud.lock.DistributedLock
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -64,8 +64,9 @@ class RestControllerRepeatAspect(private val distributedLock: DistributedLock, p
             if (arg !is HttpServletRequest && arg !is HttpServletResponse) {
                 builder.append(",")
                 if (arg is Int || arg is Long
-                        || arg is Float || arg is Double || arg is Boolean
-                        || arg is String || arg is Char || arg is Byte) {
+                    || arg is Float || arg is Double || arg is Boolean
+                    || arg is String || arg is Char || arg is Byte
+                ) {
                     builder.append(arg.toString())
                 } else {
                     try {

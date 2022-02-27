@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.cloud.log;
 
-import org.springframework.boot.SpringApplication;
 import io.github.zhangbinhub.acp.cloud.annotation.AcpCloudAtomApplication;
+import org.springframework.boot.SpringApplication;
 
 /**
  * @author zhangbin by 09/04/2018 16:11

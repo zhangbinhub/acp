@@ -1,21 +1,22 @@
 package io.github.zhangbinhub.acp.core.ftp.server
 
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.ftp.conf.SftpListener
+import io.github.zhangbinhub.acp.core.ftp.exceptions.SftpServerException
+import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import org.apache.sshd.common.file.virtualfs.VirtualFileSystemFactory
 import org.apache.sshd.server.SshServer
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider
 import org.apache.sshd.server.subsystem.sftp.SftpSubsystemFactory
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
-import io.github.zhangbinhub.acp.core.log.LogFactory
-import io.github.zhangbinhub.acp.core.ftp.conf.SftpListener
-import io.github.zhangbinhub.acp.core.ftp.exceptions.SftpServerException
 import java.nio.file.FileSystems
 
 /**
  * @author zhang by 12/07/2019
  * @since JDK 11
  */
-class SftpServer(private val userList: List<SftpServerUser>, private val listen: SftpListener) : Runnable, IDaemonService {
+class SftpServer(private val userList: List<SftpServerUser>, private val listen: SftpListener) : Runnable,
+    IDaemonService {
 
     private val log = LogFactory.getInstance(this.javaClass)
 
@@ -71,9 +72,11 @@ class SftpServer(private val userList: List<SftpServerUser>, private val listen:
             val keyPath = CommonTools.getAbsPath(listen.hostKeyPath!!)
             if (listen.publicKeyAuth) {
                 sshServer!!.properties[SshServer.AUTH_METHODS] = "publickey"
-                sshServer!!.publickeyAuthenticator = UserPublicKeyAuthenticator(userList, true, keyAuthMode, keyAuthType)
+                sshServer!!.publickeyAuthenticator =
+                    UserPublicKeyAuthenticator(userList, true, keyAuthMode, keyAuthType)
             } else {
-                sshServer!!.publickeyAuthenticator = UserPublicKeyAuthenticator(userList, false, keyAuthMode, keyAuthType)
+                sshServer!!.publickeyAuthenticator =
+                    UserPublicKeyAuthenticator(userList, false, keyAuthMode, keyAuthType)
             }
             sshServer!!.keyPairProvider = SimpleGeneratorHostKeyProvider(FileSystems.getDefault().getPath(keyPath))
 
@@ -85,20 +88,30 @@ class SftpServer(private val userList: List<SftpServerUser>, private val listen:
             } else {
                 sshServer!!.passwordAuthenticator = UserPasswordAuthenticator(userList, false)
             }
-            val virtualFileSystemFactory = VirtualFileSystemFactory(FileSystems.getDefault().getPath(defaultHomeDirectory))
+            val virtualFileSystemFactory =
+                VirtualFileSystemFactory(FileSystems.getDefault().getPath(defaultHomeDirectory))
             for (sftpServerUser in userList) {
                 var homeDirectory = sftpServerUser.homeDirectory
                 if (CommonTools.isNullStr(homeDirectory)) {
-                    virtualFileSystemFactory.setUserHomeDir(sftpServerUser.username, FileSystems.getDefault().getPath(defaultHomeDirectory))
+                    virtualFileSystemFactory.setUserHomeDir(
+                        sftpServerUser.username,
+                        FileSystems.getDefault().getPath(defaultHomeDirectory)
+                    )
                 } else {
                     homeDirectory = homeDirectory.replace("\\", "/")
                     if (!homeDirectory.startsWith("/")) {
                         homeDirectory = "/$homeDirectory"
                     }
                     if (defaultHomeDirectory == "/") {
-                        virtualFileSystemFactory.setUserHomeDir(sftpServerUser.username, FileSystems.getDefault().getPath(homeDirectory))
+                        virtualFileSystemFactory.setUserHomeDir(
+                            sftpServerUser.username,
+                            FileSystems.getDefault().getPath(homeDirectory)
+                        )
                     } else {
-                        virtualFileSystemFactory.setUserHomeDir(sftpServerUser.username, FileSystems.getDefault().getPath(defaultHomeDirectory + homeDirectory))
+                        virtualFileSystemFactory.setUserHomeDir(
+                            sftpServerUser.username,
+                            FileSystems.getDefault().getPath(defaultHomeDirectory + homeDirectory)
+                        )
                     }
                 }
             }

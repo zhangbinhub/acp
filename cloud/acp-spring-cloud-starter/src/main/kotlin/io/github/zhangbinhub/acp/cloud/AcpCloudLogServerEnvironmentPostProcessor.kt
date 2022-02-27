@@ -1,5 +1,6 @@
 package io.github.zhangbinhub.acp.cloud
 
+import io.github.zhangbinhub.acp.cloud.log.LogConstant
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.env.EnvironmentPostProcessor
 import org.springframework.cloud.function.context.FunctionProperties
@@ -7,7 +8,6 @@ import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.core.env.MapPropertySource
 import org.springframework.core.env.MutablePropertySources
 import org.springframework.util.MimeTypeUtils
-import io.github.zhangbinhub.acp.cloud.log.LogConstant
 
 /**
  * 日志服务自动配置

@@ -1,34 +1,35 @@
 package io.github.zhangbinhub.acp.core.task.timer
 
-import org.joda.time.DateTime
 import io.github.zhangbinhub.acp.core.exceptions.TimerException
 import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.task.BaseAsyncTask
 import io.github.zhangbinhub.acp.core.task.timer.rule.CircleType
 import io.github.zhangbinhub.acp.core.task.timer.rule.ExecuteType
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
+import org.joda.time.DateTime
 
 /**
  * @author zhang by 10/07/2019
  * @since JDK 11
  */
 class TimerTaskContainer(
-        /**
-         * 执行任务
-         */
-        private val task: BaseAsyncTask,
-        /**
-         * 执行周期
-         */
-        private val circleType: CircleType,
-        /**
-         * 执行时间点规则
-         */
-        private val rules: String,
-        /**
-         * 执行类型
-         */
-        private val executeType: ExecuteType) : Runnable {
+    /**
+     * 执行任务
+     */
+    private val task: BaseAsyncTask,
+    /**
+     * 执行周期
+     */
+    private val circleType: CircleType,
+    /**
+     * 执行时间点规则
+     */
+    private val rules: String,
+    /**
+     * 执行类型
+     */
+    private val executeType: ExecuteType
+) : Runnable {
 
     /**
      * 日志对象
@@ -111,14 +112,16 @@ class TimerTaskContainer(
      */
     @Throws(TimerException::class)
     private fun doExecute() {
-        log.info("begin TimerTask,taskName:["
-                + task.taskName
-                + "] className:["
-                + task.javaClass.canonicalName
-                + "] creatTime:"
-                + task.generateTime?.toString(Calculation.DATETIME_FORMAT)
-                + " submitTime:"
-                + task.submitTime?.toString(Calculation.DATETIME_FORMAT))
+        log.info(
+            "begin TimerTask,taskName:["
+                    + task.taskName
+                    + "] className:["
+                    + task.javaClass.canonicalName
+                    + "] creatTime:"
+                    + task.generateTime?.toString(Calculation.DATETIME_FORMAT)
+                    + " submitTime:"
+                    + task.submitTime?.toString(Calculation.DATETIME_FORMAT)
+        )
         lastExecuteDateTime = CommonUtils.getNowDateTime()
         if (task.doExecute() == null) {
             log.error("timerTask [" + task.taskName + "] execute failed...")

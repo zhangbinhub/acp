@@ -1,16 +1,21 @@
 package io.github.zhangbinhub.acp.core.ftp.server
 
-import org.apache.sshd.server.auth.pubkey.PublickeyAuthenticator
-import org.apache.sshd.server.session.ServerSession
 import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.security.key.KeyManagement
+import org.apache.sshd.server.auth.pubkey.PublickeyAuthenticator
+import org.apache.sshd.server.session.ServerSession
 import java.security.PublicKey
 
 /**
  * @author zhang by 12/07/2019
  * @since JDK 11
  */
-internal class UserPublicKeyAuthenticator(private val userList: List<SftpServerUser>, private val needAuth: Boolean, private val keyAuthMode: String, private val keyAuthType: String) : PublickeyAuthenticator {
+internal class UserPublicKeyAuthenticator(
+    private val userList: List<SftpServerUser>,
+    private val needAuth: Boolean,
+    private val keyAuthMode: String,
+    private val keyAuthType: String
+) : PublickeyAuthenticator {
 
     private val log = LogFactory.getInstance(this.javaClass)
 
@@ -51,23 +56,23 @@ internal class UserPublicKeyAuthenticator(private val userList: List<SftpServerU
 
     @Throws(Exception::class)
     private fun getUserPublicKey(publicKey: String?): PublicKey? =
-            when (keyAuthType) {
-                "der" -> if (keyAuthMode == "DSA") {
-                    KeyManagement.getDSAPublicKeyForDER(publicKey!!)
-                } else {
-                    KeyManagement.getRSAPublicKeyForDER(publicKey!!)
-                }
-                "pem" -> if (keyAuthMode == "DSA") {
-                    KeyManagement.getDSAPublicKeyForPEM(publicKey!!)
-                } else {
-                    KeyManagement.getRSAPublicKeyForPEM(publicKey!!)
-                }
-                "ssh" -> if (keyAuthMode == "DSA") {
-                    KeyManagement.getDSAPublicKeyForSSH(publicKey!!)
-                } else {
-                    KeyManagement.getRSAPublicKeyForSSH(publicKey!!)
-                }
-                else -> null
+        when (keyAuthType) {
+            "der" -> if (keyAuthMode == "DSA") {
+                KeyManagement.getDSAPublicKeyForDER(publicKey!!)
+            } else {
+                KeyManagement.getRSAPublicKeyForDER(publicKey!!)
             }
+            "pem" -> if (keyAuthMode == "DSA") {
+                KeyManagement.getDSAPublicKeyForPEM(publicKey!!)
+            } else {
+                KeyManagement.getRSAPublicKeyForPEM(publicKey!!)
+            }
+            "ssh" -> if (keyAuthMode == "DSA") {
+                KeyManagement.getDSAPublicKeyForSSH(publicKey!!)
+            } else {
+                KeyManagement.getRSAPublicKeyForSSH(publicKey!!)
+            }
+            else -> null
+        }
 
 }

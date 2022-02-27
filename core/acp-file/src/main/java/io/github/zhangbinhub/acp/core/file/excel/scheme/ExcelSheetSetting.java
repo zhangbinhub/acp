@@ -8,6 +8,14 @@ import java.util.List;
  * @since JDK 11
  */
 public class ExcelSheetSetting {
+    private String sheetName;
+    private ExcelPrintSetting printSetting;
+    private ExcelHeaderAndFooterSetting header;
+    private ExcelHeaderAndFooterSetting footer;
+    private ExcelDataSetting data;
+    private List<ExcelCellPointSetting> mergeCells = new ArrayList<>();
+    private ExcelFreezeSetting freeze;
+
     public String getSheetName() {
         return sheetName;
     }
@@ -63,12 +71,4 @@ public class ExcelSheetSetting {
     public void setFreeze(ExcelFreezeSetting freeze) {
         this.freeze = freeze;
     }
-
-    private String sheetName;
-    private ExcelPrintSetting printSetting;
-    private ExcelHeaderAndFooterSetting header;
-    private ExcelHeaderAndFooterSetting footer;
-    private ExcelDataSetting data;
-    private List<ExcelCellPointSetting> mergeCells = new ArrayList<>();
-    private ExcelFreezeSetting freeze;
 }

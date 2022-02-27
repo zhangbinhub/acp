@@ -20,13 +20,17 @@ class Iso8583FieldProperties : BaseProperties() {
          */
         @JvmStatic
         fun getInstance(): Iso8583FieldProperties? =
-                try {
-                    val propertiesFileName = "/iso8583.properties"
-                    getInstance(Iso8583FieldProperties::class.java, propertiesFileName, CommonTools.getWebRootAbsPath() + propertiesFileName) as Iso8583FieldProperties
-                } catch (e: Exception) {
-                    log.error(e.message, e)
-                    null
-                }
+            try {
+                val propertiesFileName = "/iso8583.properties"
+                getInstance(
+                    Iso8583FieldProperties::class.java,
+                    propertiesFileName,
+                    CommonTools.getWebRootAbsPath() + propertiesFileName
+                ) as Iso8583FieldProperties
+            } catch (e: Exception) {
+                log.error(e.message, e)
+                null
+            }
     }
 
 }

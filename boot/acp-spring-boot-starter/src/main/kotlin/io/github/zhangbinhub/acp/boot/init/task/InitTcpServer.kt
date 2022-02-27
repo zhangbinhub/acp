@@ -1,21 +1,23 @@
 package io.github.zhangbinhub.acp.boot.init.task
 
-import io.netty.handler.codec.ByteToMessageDecoder
-import io.github.zhangbinhub.acp.core.CommonTools
 import io.github.zhangbinhub.acp.boot.conf.TcpServerConfiguration
 import io.github.zhangbinhub.acp.boot.daemon.DaemonServiceManager
 import io.github.zhangbinhub.acp.boot.init.BaseInitTask
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
-import io.github.zhangbinhub.acp.boot.socket.tcp.TcpServer
 import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
+import io.github.zhangbinhub.acp.boot.socket.tcp.TcpServer
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.netty.handler.codec.ByteToMessageDecoder
 
 /**
  * 初始化TCP服务
  */
-class InitTcpServer(private val logAdapter: LogAdapter,
-                    private val tcpServerConfiguration: TcpServerConfiguration,
-                    private val socketServerHandleList: List<ISocketServerHandle>,
-                    private val byteToMessageDecoderList: List<ByteToMessageDecoder>) : BaseInitTask() {
+class InitTcpServer(
+    private val logAdapter: LogAdapter,
+    private val tcpServerConfiguration: TcpServerConfiguration,
+    private val socketServerHandleList: List<ISocketServerHandle>,
+    private val byteToMessageDecoderList: List<ByteToMessageDecoder>
+) : BaseInitTask() {
 
     fun startTcpServer() {
         logAdapter.info("start tcp listen service ...")
@@ -36,7 +38,13 @@ class InitTcpServer(private val logAdapter: LogAdapter,
                                 val handle = getSocketServerHandle(beanName)
                                 if (handle != null) {
                                     val port = listen.port
-                                    val tcpServer = TcpServer(logAdapter, port, listen, handle, getMessageDecoder(listen.messageDecoder))
+                                    val tcpServer = TcpServer(
+                                        logAdapter,
+                                        port,
+                                        listen,
+                                        handle,
+                                        getMessageDecoder(listen.messageDecoder)
+                                    )
                                     val thread = Thread(tcpServer)
                                     thread.isDaemon = true
                                     thread.start()

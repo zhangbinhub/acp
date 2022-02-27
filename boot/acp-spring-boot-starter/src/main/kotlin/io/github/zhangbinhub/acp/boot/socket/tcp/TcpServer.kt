@@ -1,16 +1,18 @@
 package io.github.zhangbinhub.acp.boot.socket.tcp
 
+import io.github.zhangbinhub.acp.boot.conf.SocketListenerConfiguration
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
+import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
 import io.netty.bootstrap.ServerBootstrap
-import io.netty.channel.*
+import io.netty.channel.Channel
+import io.netty.channel.ChannelInitializer
+import io.netty.channel.ChannelOption
+import io.netty.channel.EventLoopGroup
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import io.netty.handler.codec.ByteToMessageDecoder
 import io.netty.handler.timeout.IdleStateHandler
-import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
-import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
-import io.github.zhangbinhub.acp.boot.conf.SocketListenerConfiguration
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
-
 import java.util.concurrent.TimeUnit
 
 /**
@@ -25,11 +27,13 @@ class TcpServer
  * @param socketListenerConfiguration 监听服务配置
  * @param socketServerHandle          接收报文处理对象
  */
-(private val logAdapter: LogAdapter,
- private val port: Int,
- private val socketListenerConfiguration: SocketListenerConfiguration,
- private val socketServerHandle: ISocketServerHandle?,
- private val messageDecoder: ByteToMessageDecoder?) : IDaemonService, Runnable {
+    (
+    private val logAdapter: LogAdapter,
+    private val port: Int,
+    private val socketListenerConfiguration: SocketListenerConfiguration,
+    private val socketServerHandle: ISocketServerHandle?,
+    private val messageDecoder: ByteToMessageDecoder?
+) : IDaemonService, Runnable {
 
     private val bossGroup: EventLoopGroup
 
@@ -45,22 +49,29 @@ class TcpServer
             try {
                 //绑定端口，同步等待成功
                 ServerBootstrap().group(bossGroup, workerGroup)
-                        .channel(NioServerSocketChannel::class.java)
-                        .option(ChannelOption.SO_BACKLOG, 1024)
-                        .childOption(ChannelOption.TCP_NODELAY, true)
-                        .childOption(ChannelOption.SO_KEEPALIVE, socketListenerConfiguration.keepAlive)
-                        .childHandler(object : ChannelInitializer<Channel>() {
-                            override fun initChannel(ch: Channel) {
-                                ch.pipeline().apply {
-                                    messageDecoder?.let {
-                                        this.addLast(it)
-                                    }
-                                    if (socketListenerConfiguration.keepAlive) {
-                                        this.addLast(IdleStateHandler(socketListenerConfiguration.idletime, socketListenerConfiguration.idletime, socketListenerConfiguration.idletime, TimeUnit.MILLISECONDS))
-                                    }
-                                }.addLast(TcpServerHandle(logAdapter, socketListenerConfiguration, socketServerHandle))
-                            }
-                        }).bind(port).sync().channel().closeFuture().sync()
+                    .channel(NioServerSocketChannel::class.java)
+                    .option(ChannelOption.SO_BACKLOG, 1024)
+                    .childOption(ChannelOption.TCP_NODELAY, true)
+                    .childOption(ChannelOption.SO_KEEPALIVE, socketListenerConfiguration.keepAlive)
+                    .childHandler(object : ChannelInitializer<Channel>() {
+                        override fun initChannel(ch: Channel) {
+                            ch.pipeline().apply {
+                                messageDecoder?.let {
+                                    this.addLast(it)
+                                }
+                                if (socketListenerConfiguration.keepAlive) {
+                                    this.addLast(
+                                        IdleStateHandler(
+                                            socketListenerConfiguration.idletime,
+                                            socketListenerConfiguration.idletime,
+                                            socketListenerConfiguration.idletime,
+                                            TimeUnit.MILLISECONDS
+                                        )
+                                    )
+                                }
+                            }.addLast(TcpServerHandle(logAdapter, socketListenerConfiguration, socketServerHandle))
+                        }
+                    }).bind(port).sync().channel().closeFuture().sync()
             } catch (e: Exception) {
                 logAdapter.error(e.message, e)
             }

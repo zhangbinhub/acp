@@ -1,7 +1,5 @@
 package io.github.zhangbinhub.acp.core.base
 
-import java.lang.RuntimeException
-
 /**
  * @author zhang by 10/07/2019
  * @since JDK 11

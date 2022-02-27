@@ -1,5 +1,8 @@
 package io.github.zhangbinhub.acp.core.client.socket.tcp
 
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.client.socket.base.SocketClient
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.netty.bootstrap.Bootstrap
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.ByteBufUtil
@@ -12,9 +15,6 @@ import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioSocketChannel
 import io.netty.handler.timeout.IdleStateEvent
 import io.netty.handler.timeout.IdleStateHandler
-import io.github.zhangbinhub.acp.core.client.socket.base.SocketClient
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.log.LogFactory
 import java.nio.CharBuffer
 import java.util.concurrent.TimeUnit
 
@@ -47,24 +47,31 @@ class TcpClient(serverIp: String, port: Int, timeOut: Int, idleTime: Int) : Sock
         group = NioEventLoopGroup()
         try {
             channel = Bootstrap().group(group)
-                    .channel(NioSocketChannel::class.java)
-                    .option(ChannelOption.SO_BACKLOG, 1024)
-                    .option(ChannelOption.TCP_NODELAY, true)
-                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, timeOut)
-                    .handler(object : ChannelInitializer<SocketChannel>() {
-                        override fun initChannel(ch: SocketChannel) {
-                            ch.pipeline().apply {
-                                messageDecoder?.let {
-                                    this.addLast(it)
-                                }
-                            }.addLast(IdleStateHandler(idleTime.toLong(), idleTime.toLong(), idleTime.toLong(), TimeUnit.MILLISECONDS),
-                                    this@TcpClient)
-                        }
-                    }).apply {
-                        if (keepAlive) {
-                            this.option(ChannelOption.SO_KEEPALIVE, true)
-                        }
-                    }.connect(serverIp, port).sync().channel()
+                .channel(NioSocketChannel::class.java)
+                .option(ChannelOption.SO_BACKLOG, 1024)
+                .option(ChannelOption.TCP_NODELAY, true)
+                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, timeOut)
+                .handler(object : ChannelInitializer<SocketChannel>() {
+                    override fun initChannel(ch: SocketChannel) {
+                        ch.pipeline().apply {
+                            messageDecoder?.let {
+                                this.addLast(it)
+                            }
+                        }.addLast(
+                            IdleStateHandler(
+                                idleTime.toLong(),
+                                idleTime.toLong(),
+                                idleTime.toLong(),
+                                TimeUnit.MILLISECONDS
+                            ),
+                            this@TcpClient
+                        )
+                    }
+                }).apply {
+                    if (keepAlive) {
+                        this.option(ChannelOption.SO_KEEPALIVE, true)
+                    }
+                }.connect(serverIp, port).sync().channel()
         } catch (e: Exception) {
             log.error(e.message, e)
             group?.shutdownGracefully()
@@ -73,7 +80,7 @@ class TcpClient(serverIp: String, port: Int, timeOut: Int, idleTime: Int) : Sock
     }
 
     override fun beforeSendMessage(sendStr: String): Any =
-            ByteBufUtil.encodeString(channel!!.alloc(), CharBuffer.wrap(sendStr), charset(serverCharset))
+        ByteBufUtil.encodeString(channel!!.alloc(), CharBuffer.wrap(sendStr), charset(serverCharset))
 
     override fun afterSendMessage(channel: Channel) {
         if (!keepAlive && !needRead) {

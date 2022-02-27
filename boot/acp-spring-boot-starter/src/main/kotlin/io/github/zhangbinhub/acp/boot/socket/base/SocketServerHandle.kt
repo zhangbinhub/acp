@@ -1,13 +1,13 @@
 package io.github.zhangbinhub.acp.boot.socket.base
 
+import io.github.zhangbinhub.acp.boot.conf.SocketListenerConfiguration
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.core.CommonTools
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.ByteBufUtil
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 import io.netty.util.ReferenceCountUtil
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.boot.conf.SocketListenerConfiguration
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
 
 /**
  * Socket 报文处理基类
@@ -15,9 +15,11 @@ import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
  * @author zhang by 04/03/2019
  * @since JDK 11
  */
-abstract class SocketServerHandle(protected val logAdapter: LogAdapter,
-                                  protected var socketListenerConfiguration: SocketListenerConfiguration,
-                                  protected var socketServerHandle: ISocketServerHandle) : ChannelInboundHandlerAdapter() {
+abstract class SocketServerHandle(
+    protected val logAdapter: LogAdapter,
+    protected var socketListenerConfiguration: SocketListenerConfiguration,
+    protected var socketServerHandle: ISocketServerHandle
+) : ChannelInboundHandlerAdapter() {
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         try {

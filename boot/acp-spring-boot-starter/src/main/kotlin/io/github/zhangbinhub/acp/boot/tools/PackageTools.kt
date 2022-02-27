@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import io.github.zhangbinhub.acp.boot.enums.ResponseCode
+import io.github.zhangbinhub.acp.boot.vo.ErrorVo
+import io.github.zhangbinhub.acp.core.CommonTools
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
 import org.springframework.core.env.Environment
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.boot.vo.ErrorVo
-import io.github.zhangbinhub.acp.boot.enums.ResponseCode
 
 /**
  * Created by Shepherd on 2016-08-05.

@@ -1,10 +1,9 @@
 package io.github.zhangbinhub.acp.core.file.pdf;
 
-import io.github.zhangbinhub.acp.core.file.pdf.fonts.FontLoader;
+import io.github.zhangbinhub.acp.core.CommonTools;
 import io.github.zhangbinhub.acp.core.file.pdf.fonts.FontLoader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
-import io.github.zhangbinhub.acp.core.CommonTools;
 
 import java.util.Map;
 import java.util.Map.Entry;

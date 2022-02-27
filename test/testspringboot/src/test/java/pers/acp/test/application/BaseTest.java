@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import pers.acp.test.application.TestSpringBootApplication;
 
 /**
  * @author zhangbin by 28/04/2018 15:49

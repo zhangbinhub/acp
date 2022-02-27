@@ -9,9 +9,11 @@ import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
  * 系统初始化
  * Created by zhangbin on 2017-6-16.
  */
-class SystemInitialization(private val logAdapter: LogAdapter,
-                           private val systemControl: SystemControl,
-                           private val initServer: InitServer) : BaseInitialization() {
+class SystemInitialization(
+    private val logAdapter: LogAdapter,
+    private val systemControl: SystemControl,
+    private val initServer: InitServer
+) : BaseInitialization() {
 
     override val name: String
         get() = "System Initialization"

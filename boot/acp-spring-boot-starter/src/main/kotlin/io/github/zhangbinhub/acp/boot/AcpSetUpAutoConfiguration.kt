@@ -1,12 +1,5 @@
 package io.github.zhangbinhub.acp.boot
 
-import io.netty.handler.codec.ByteToMessageDecoder
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.config.ConfigurableBeanFactory
-import org.springframework.boot.autoconfigure.task.TaskSchedulingProperties
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Scope
 import io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask
 import io.github.zhangbinhub.acp.boot.component.SystemControl
 import io.github.zhangbinhub.acp.boot.component.TimerTaskSchedulerCtrl
@@ -23,6 +16,13 @@ import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
 import io.github.zhangbinhub.acp.boot.interfaces.TimerTaskScheduler
 import io.github.zhangbinhub.acp.boot.listener.AcpApplicationStartupListener
 import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
+import io.netty.handler.codec.ByteToMessageDecoder
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.config.ConfigurableBeanFactory
+import org.springframework.boot.autoconfigure.task.TaskSchedulingProperties
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Scope
 
 /**
  * @author zhang by 30/07/2019
@@ -34,35 +34,45 @@ class AcpSetUpAutoConfiguration {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     @Autowired(required = false)
-    fun timerTaskScheduler(logAdapter: LogAdapter,
-                           properties: TaskSchedulingProperties,
-                           scheduleConfiguration: ScheduleConfiguration,
-                           baseSpringBootScheduledTaskMap: Map<String, BaseSpringBootScheduledAsyncTask>) = TimerTaskSchedulerCtrl(logAdapter, properties, scheduleConfiguration, baseSpringBootScheduledTaskMap)
+    fun timerTaskScheduler(
+        logAdapter: LogAdapter,
+        properties: TaskSchedulingProperties,
+        scheduleConfiguration: ScheduleConfiguration,
+        baseSpringBootScheduledTaskMap: Map<String, BaseSpringBootScheduledAsyncTask>
+    ) = TimerTaskSchedulerCtrl(logAdapter, properties, scheduleConfiguration, baseSpringBootScheduledTaskMap)
 
     @Bean
     @Autowired(required = false)
-    fun initTcpServer(logAdapter: LogAdapter,
-                      tcpServerConfiguration: TcpServerConfiguration,
-                      socketServerHandleList: List<ISocketServerHandle>,
-                      byteToMessageDecoderList: List<ByteToMessageDecoder>) = InitTcpServer(logAdapter, tcpServerConfiguration, socketServerHandleList, byteToMessageDecoderList)
+    fun initTcpServer(
+        logAdapter: LogAdapter,
+        tcpServerConfiguration: TcpServerConfiguration,
+        socketServerHandleList: List<ISocketServerHandle>,
+        byteToMessageDecoderList: List<ByteToMessageDecoder>
+    ) = InitTcpServer(logAdapter, tcpServerConfiguration, socketServerHandleList, byteToMessageDecoderList)
 
     @Bean
     @Autowired(required = false)
-    fun initUdpServer(logAdapter: LogAdapter,
-                      udpServerConfiguration: UdpServerConfiguration,
-                      socketServerHandleList: List<ISocketServerHandle>) = InitUdpServer(logAdapter, udpServerConfiguration, socketServerHandleList)
+    fun initUdpServer(
+        logAdapter: LogAdapter,
+        udpServerConfiguration: UdpServerConfiguration,
+        socketServerHandleList: List<ISocketServerHandle>
+    ) = InitUdpServer(logAdapter, udpServerConfiguration, socketServerHandleList)
 
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-    fun initServer(logAdapter: LogAdapter,
-                   initTcpServer: InitTcpServer,
-                   initUdpServer: InitUdpServer,
-                   acpCoreConfiguration: AcpCoreConfiguration) = InitServer(logAdapter, initTcpServer, initUdpServer, acpCoreConfiguration)
+    fun initServer(
+        logAdapter: LogAdapter,
+        initTcpServer: InitTcpServer,
+        initUdpServer: InitUdpServer,
+        acpCoreConfiguration: AcpCoreConfiguration
+    ) = InitServer(logAdapter, initTcpServer, initUdpServer, acpCoreConfiguration)
 
     @Bean
-    fun systemInitialization(logAdapter: LogAdapter,
-                             systemControl: SystemControl,
-                             initServer: InitServer) = SystemInitialization(logAdapter, systemControl, initServer)
+    fun systemInitialization(
+        logAdapter: LogAdapter,
+        systemControl: SystemControl,
+        initServer: InitServer
+    ) = SystemInitialization(logAdapter, systemControl, initServer)
 
     @Bean
     fun acpApplicationStartupListener(logAdapter: LogAdapter) = AcpApplicationStartupListener(logAdapter)
@@ -70,8 +80,10 @@ class AcpSetUpAutoConfiguration {
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     @Autowired(required = false)
-    fun systemControl(logAdapter: LogAdapter,
-                      listenerMap: Map<String, Listener>?,
-                      timerTaskScheduler: TimerTaskScheduler) = SystemControl(logAdapter, listenerMap, timerTaskScheduler)
+    fun systemControl(
+        logAdapter: LogAdapter,
+        listenerMap: Map<String, Listener>?,
+        timerTaskScheduler: TimerTaskScheduler
+    ) = SystemControl(logAdapter, listenerMap, timerTaskScheduler)
 
 }

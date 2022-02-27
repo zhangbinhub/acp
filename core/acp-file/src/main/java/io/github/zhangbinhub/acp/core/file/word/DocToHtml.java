@@ -1,11 +1,11 @@
 package io.github.zhangbinhub.acp.core.file.word;
 
+import io.github.zhangbinhub.acp.core.CommonTools;
+import io.github.zhangbinhub.acp.core.log.LogFactory;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.converter.WordToHtmlConverter;
 import org.apache.poi.hwpf.usermodel.Picture;
 import org.w3c.dom.Document;
-import io.github.zhangbinhub.acp.core.CommonTools;
-import io.github.zhangbinhub.acp.core.log.LogFactory;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;

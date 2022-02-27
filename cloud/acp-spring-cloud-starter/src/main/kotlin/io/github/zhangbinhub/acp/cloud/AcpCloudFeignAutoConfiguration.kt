@@ -2,12 +2,14 @@ package io.github.zhangbinhub.acp.cloud
 
 import feign.Feign
 import feign.RequestInterceptor
+import io.github.zhangbinhub.acp.core.CommonTools
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
-import org.springframework.context.annotation.*
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import org.springframework.http.HttpHeaders
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
-import io.github.zhangbinhub.acp.core.CommonTools
 
 /**
  * @author zhangbin

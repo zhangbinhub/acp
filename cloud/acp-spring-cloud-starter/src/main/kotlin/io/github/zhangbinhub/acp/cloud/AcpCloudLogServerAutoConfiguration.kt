@@ -1,16 +1,16 @@
 package io.github.zhangbinhub.acp.cloud
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.zhangbinhub.acp.cloud.log.LogConstant
+import io.github.zhangbinhub.acp.cloud.log.consumer.DefaultLogProcess
+import io.github.zhangbinhub.acp.cloud.log.consumer.LogConsumer
+import io.github.zhangbinhub.acp.cloud.log.consumer.LogProcess
 import org.springframework.boot.autoconfigure.AutoConfigureBefore
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.cloud.stream.config.BindingServiceConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import io.github.zhangbinhub.acp.cloud.log.consumer.DefaultLogProcess
-import io.github.zhangbinhub.acp.cloud.log.consumer.LogConsumer
-import io.github.zhangbinhub.acp.cloud.log.consumer.LogProcess
-import io.github.zhangbinhub.acp.cloud.log.LogConstant
 
 /**
  * 日志服务自动配置

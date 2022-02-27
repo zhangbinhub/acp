@@ -2,8 +2,7 @@ package io.github.zhangbinhub.acp.core.match
 
 import io.github.zhangbinhub.acp.core.exceptions.OperateException
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
-
-import java.util.LinkedList
+import java.util.*
 import kotlin.math.pow
 
 /**

@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.boot.exceptions
 
-import io.github.zhangbinhub.acp.core.base.BaseException
 import io.github.zhangbinhub.acp.boot.enums.ResponseCode
+import io.github.zhangbinhub.acp.core.base.BaseException
 
 class ServerException : BaseException {
 

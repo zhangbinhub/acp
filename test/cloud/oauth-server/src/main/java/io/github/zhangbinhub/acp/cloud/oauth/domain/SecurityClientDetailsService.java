@@ -1,12 +1,12 @@
 package io.github.zhangbinhub.acp.cloud.oauth.domain;
 
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.config.annotation.builders.InMemoryClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.stereotype.Service;
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 
 import javax.annotation.PostConstruct;
 

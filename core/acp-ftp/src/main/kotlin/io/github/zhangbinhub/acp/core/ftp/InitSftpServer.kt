@@ -1,14 +1,13 @@
 package io.github.zhangbinhub.acp.core.ftp
 
 import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
-import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.ftp.base.InitServer
 import io.github.zhangbinhub.acp.core.ftp.conf.SftpConfig
 import io.github.zhangbinhub.acp.core.ftp.server.SftpServer
 import io.github.zhangbinhub.acp.core.ftp.user.UserFactory
+import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import java.lang.reflect.InvocationTargetException
-import java.util.ArrayList
 
 /**
  * @author zhang by 12/07/2019
@@ -23,7 +22,10 @@ object InitSftpServer : InitServer() {
 
     @JvmStatic
     @JvmOverloads
-    fun startSftpServer(sftpConfig: SftpConfig? = null, userFactoryList: List<UserFactory>? = null): List<IDaemonService> {
+    fun startSftpServer(
+        sftpConfig: SftpConfig? = null,
+        userFactoryList: List<UserFactory>? = null
+    ): List<IDaemonService> {
         log.info("start sftp servers ...")
         userFactoryList?.forEach { userFactory -> addUserFactory(userFactory) }
         var sftpServers: List<IDaemonService> = ArrayList()
@@ -36,7 +38,13 @@ object InitSftpServer : InitServer() {
         return sftpServers
     }
 
-    @Throws(ClassNotFoundException::class, NoSuchMethodException::class, IllegalAccessException::class, InvocationTargetException::class, InstantiationException::class)
+    @Throws(
+        ClassNotFoundException::class,
+        NoSuchMethodException::class,
+        IllegalAccessException::class,
+        InvocationTargetException::class,
+        InstantiationException::class
+    )
     private fun doStart(sftpConfig: SftpConfig?): List<IDaemonService> {
         val sftpServers = ArrayList<IDaemonService>()
         sftpConfig?.let {

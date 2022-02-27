@@ -23,7 +23,12 @@ class TimerDriver
  * 季度-季度内第几月|几号|时间（3|31|HH:MI:SS）, 年-第几月|几号|时间（12|31|HH:MI:SS）
  * @param executeType  执行类型:WeekDay, Weekend, All
  */
-(threadNumber: Int, private val circleType: CircleType = CircleType.Day, private val rules: String = "00:00:00", private val executeType: ExecuteType = ExecuteType.All) : ScheduledThreadPoolExecutor(threadNumber) {
+    (
+    threadNumber: Int,
+    private val circleType: CircleType = CircleType.Day,
+    private val rules: String = "00:00:00",
+    private val executeType: ExecuteType = ExecuteType.All
+) : ScheduledThreadPoolExecutor(threadNumber) {
 
     private val log = LogFactory.getInstance(javaClass)// 日志对象
 

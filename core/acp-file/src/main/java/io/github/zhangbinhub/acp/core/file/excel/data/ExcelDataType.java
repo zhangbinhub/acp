@@ -18,12 +18,12 @@ public enum ExcelDataType {
 
     private final String name;
 
-    public String getName() {
-        return name;
-    }
-
     ExcelDataType(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

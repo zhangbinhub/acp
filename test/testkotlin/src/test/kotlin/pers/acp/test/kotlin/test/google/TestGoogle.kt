@@ -20,9 +20,11 @@ fun main() {
 fun generateQRcode() {
     val secretKey = GoogleAuthenticatorUtils.generateSecretKey()
     val qrCodeData = "otpauth://totp/%s?secret=%s"
-    val qrCodeDataInfo = String.format(qrCodeData,
-            URLEncoder.encode("Xstar:zhangbin", "UTF-8").replace("+", "%20"),
-            URLEncoder.encode(secretKey, "UTF-8").replace("+", "%20"))
+    val qrCodeDataInfo = String.format(
+        qrCodeData,
+        URLEncoder.encode("Xstar:zhangbin", "UTF-8").replace("+", "%20"),
+        URLEncoder.encode(secretKey, "UTF-8").replace("+", "%20")
+    )
     println("usr=" + "Xstar:zhangbin")
     println("secretKey=$secretKey")
     println("qrCodeDataInfo=$qrCodeDataInfo")

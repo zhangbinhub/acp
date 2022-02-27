@@ -1,19 +1,15 @@
 package io.github.zhangbinhub.acp.core.file.pdf;
 
-import io.github.zhangbinhub.acp.core.file.FileOperation;
-import io.github.zhangbinhub.acp.core.file.pdf.fonts.FontLoader;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.*;
-
+import io.github.zhangbinhub.acp.core.CommonTools;
 import io.github.zhangbinhub.acp.core.file.FileOperation;
 import io.github.zhangbinhub.acp.core.file.pdf.fonts.FontLoader;
 import io.github.zhangbinhub.acp.core.file.templete.TemplateService;
-import org.xhtmlrenderer.pdf.ITextRenderer;
-import io.github.zhangbinhub.acp.core.file.templete.TemplateService;
-import io.github.zhangbinhub.acp.core.CommonTools;
 import io.github.zhangbinhub.acp.core.log.LogFactory;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,12 +18,11 @@ import java.util.Map;
 
 public final class PDFService {
 
-    private final LogFactory log = LogFactory.getInstance(this.getClass());// 日志对象
-
     /**
      * 拥有者密码
      */
     public static String PDFOWNERPASSWORD = "zb";
+    private final LogFactory log = LogFactory.getInstance(this.getClass());// 日志对象
 
     /**
      * HTML页面转为PDF

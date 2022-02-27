@@ -21,12 +21,12 @@ class SftpConfig : BaseXml() {
 
         @JvmStatic
         fun getInstance(): SftpConfig? =
-                try {
-                    load(SftpConfig::class.java) as SftpConfig
-                } catch (e: Exception) {
-                    log.error(e.message, e)
-                    null
-                }
+            try {
+                load(SftpConfig::class.java) as SftpConfig
+            } catch (e: Exception) {
+                log.error(e.message, e)
+                null
+            }
     }
 
 }

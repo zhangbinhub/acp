@@ -1,5 +1,9 @@
 package io.github.zhangbinhub.acp.boot.exceptions
 
+import io.github.zhangbinhub.acp.boot.enums.ResponseCode
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.boot.tools.PackageTools
+import io.github.zhangbinhub.acp.core.exceptions.EnumValueUndefinedException
 import org.springframework.beans.TypeMismatchException
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -11,11 +15,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
-import io.github.zhangbinhub.acp.boot.enums.ResponseCode
-import io.github.zhangbinhub.acp.boot.tools.PackageTools
-import io.github.zhangbinhub.acp.core.exceptions.EnumValueUndefinedException
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
-
 import javax.validation.ConstraintViolationException
 
 /**
@@ -35,22 +34,22 @@ class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityE
      */
     @ExceptionHandler(ServerException::class, ConstraintViolationException::class)
     fun handleServerException(ex: Exception): ResponseEntity<Any> =
-            try {
-                doLog(ex)
-                if (ex is ServerException) {
-                    ResponseCode.getEnum(ex.code ?: 99999)
-                } else if (ex is ConstraintViolationException || ex is MethodArgumentNotValidException) {
-                    ResponseCode.InvalidParameter
-                } else {
-                    ResponseCode.OtherError
-                }
-            } catch (e: EnumValueUndefinedException) {
+        try {
+            doLog(ex)
+            if (ex is ServerException) {
+                ResponseCode.getEnum(ex.code ?: 99999)
+            } else if (ex is ConstraintViolationException || ex is MethodArgumentNotValidException) {
+                ResponseCode.InvalidParameter
+            } else {
                 ResponseCode.OtherError
-            }.let {
-                ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                        .body(PackageTools.buildErrorResponsePackage(it, ex.message))
             }
+        } catch (e: EnumValueUndefinedException) {
+            ResponseCode.OtherError
+        }.let {
+            ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                .body(PackageTools.buildErrorResponsePackage(it, ex.message))
+        }
 
     /**
      * 处理 MethodArgumentNotValidException 异常，参数校验不通过
@@ -61,15 +60,20 @@ class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityE
      * @param request 请求对象
      * @return 响应对象
      */
-    override fun handleMethodArgumentNotValid(ex: MethodArgumentNotValidException, headers: HttpHeaders, status: HttpStatus, request: WebRequest): ResponseEntity<Any> =
-            ex.bindingResult.allErrors.let {
-                doLog(ex)
-                val errorMsg = StringBuilder()
-                it.forEach { error -> errorMsg.append(error.defaultMessage).append(";") }
-                ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                        .body(PackageTools.buildErrorResponsePackage(ResponseCode.InvalidParameter, errorMsg.toString()))
-            }
+    override fun handleMethodArgumentNotValid(
+        ex: MethodArgumentNotValidException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest
+    ): ResponseEntity<Any> =
+        ex.bindingResult.allErrors.let {
+            doLog(ex)
+            val errorMsg = StringBuilder()
+            it.forEach { error -> errorMsg.append(error.defaultMessage).append(";") }
+            ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                .body(PackageTools.buildErrorResponsePackage(ResponseCode.InvalidParameter, errorMsg.toString()))
+        }
 
     /**
      * 处理@RequestParam错误, 即参数不足
@@ -80,11 +84,16 @@ class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityE
      * @param request 请求对象
      * @return 响应对象
      */
-    override fun handleMissingServletRequestParameter(ex: MissingServletRequestParameterException, headers: HttpHeaders, status: HttpStatus, request: WebRequest): ResponseEntity<Any> {
+    override fun handleMissingServletRequestParameter(
+        ex: MissingServletRequestParameterException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         doLog(ex)
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .body(PackageTools.buildErrorResponsePackage(ResponseCode.InvalidParameter, ex.message))
+            .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+            .body(PackageTools.buildErrorResponsePackage(ResponseCode.InvalidParameter, ex.message))
     }
 
     /**
@@ -96,11 +105,16 @@ class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityE
      * @param request 请求对象
      * @return 响应对象
      */
-    override fun handleTypeMismatch(ex: TypeMismatchException, headers: HttpHeaders, status: HttpStatus, request: WebRequest): ResponseEntity<Any> {
+    override fun handleTypeMismatch(
+        ex: TypeMismatchException,
+        headers: HttpHeaders,
+        status: HttpStatus,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         doLog(ex)
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .body(PackageTools.buildErrorResponsePackage(ResponseCode.InvalidParameter, ex.message))
+            .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+            .body(PackageTools.buildErrorResponsePackage(ResponseCode.InvalidParameter, ex.message))
     }
 
     /**
@@ -113,11 +127,17 @@ class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityE
      * @param request 请求对象
      * @return 响应对象
      */
-    override fun handleExceptionInternal(ex: Exception, body: Any?, headers: HttpHeaders?, status: HttpStatus, request: WebRequest): ResponseEntity<Any> {
+    override fun handleExceptionInternal(
+        ex: Exception,
+        body: Any?,
+        headers: HttpHeaders?,
+        status: HttpStatus,
+        request: WebRequest
+    ): ResponseEntity<Any> {
         doLog(ex)
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .body(PackageTools.buildErrorResponsePackage(ResponseCode.OtherError, ex.message))
+            .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+            .body(PackageTools.buildErrorResponsePackage(ResponseCode.OtherError, ex.message))
     }
 
 }

@@ -4,12 +4,12 @@ package io.github.zhangbinhub.acp.core.client.http
  * @author zhang by 11/07/2019
  * @since JDK 11
  */
-import okhttp3.ConnectionPool
-import okhttp3.OkHttpClient
+
 import io.github.zhangbinhub.acp.core.client.exceptions.HttpException
 import io.github.zhangbinhub.acp.core.client.http.interfaces.CookieStore
 import io.github.zhangbinhub.acp.core.client.http.interfaces.HttpInterceptor
-
+import okhttp3.ConnectionPool
+import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
 /**
@@ -136,21 +136,21 @@ class HttpClientBuilder {
      */
     @Throws(HttpException::class)
     fun build(): AcpClient = OkHttpClient.Builder()
-            .connectTimeout(connectTimeOut.toLong(), TimeUnit.MILLISECONDS)
-            .readTimeout(readTimeOut.toLong(), TimeUnit.MILLISECONDS)
-            .writeTimeout(writeTimeOut.toLong(), TimeUnit.MILLISECONDS)
-            .followRedirects(followRedirects)
-            .followSslRedirects(followRedirects)
-            .connectionPool(ConnectionPool(maxTotalConn, timeToLive, timeToLiveTimeUnit))
-            .retryOnConnectionFailure(retryOnConnectionFailure)
-            .cookieJar(cookieStore).also {
-                httpInterceptorList.forEach { httpInterceptor ->
-                    run {
-                        it.addInterceptor(httpInterceptor)
-                    }
+        .connectTimeout(connectTimeOut.toLong(), TimeUnit.MILLISECONDS)
+        .readTimeout(readTimeOut.toLong(), TimeUnit.MILLISECONDS)
+        .writeTimeout(writeTimeOut.toLong(), TimeUnit.MILLISECONDS)
+        .followRedirects(followRedirects)
+        .followSslRedirects(followRedirects)
+        .connectionPool(ConnectionPool(maxTotalConn, timeToLive, timeToLiveTimeUnit))
+        .retryOnConnectionFailure(retryOnConnectionFailure)
+        .cookieJar(cookieStore).also {
+            httpInterceptorList.forEach { httpInterceptor ->
+                run {
+                    it.addInterceptor(httpInterceptor)
                 }
-            }.let {
-                AcpClient(it, disableSslValidation, sslProtocolVersion)
             }
+        }.let {
+            AcpClient(it, disableSslValidation, sslProtocolVersion)
+        }
 
 }

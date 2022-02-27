@@ -7,10 +7,10 @@ import io.github.zhangbinhub.acp.core.ftp.user.ServerUser
  * @since JDK 11
  */
 data class FtpServerUser(
-        var writePermission: Boolean = false,
-        var maxLoginNumber: Int = 0,
-        var maxLoginPerIp: Int = 0,
-        var idleTime: Int = 0,
-        var uploadRate: Int = 0,
-        var downloadRate: Int = 0
+    var writePermission: Boolean = false,
+    var maxLoginNumber: Int = 0,
+    var maxLoginPerIp: Int = 0,
+    var idleTime: Int = 0,
+    var uploadRate: Int = 0,
+    var downloadRate: Int = 0
 ) : ServerUser()

@@ -1,10 +1,10 @@
 package io.github.zhangbinhub.acp.cloud.server.helloworld.feign;
 
+import io.github.zhangbinhub.acp.cloud.server.helloworld.hystrix.WorldServerHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import io.github.zhangbinhub.acp.cloud.server.helloworld.hystrix.WorldServerHystrix;
 
 /**
  * @author zhangbin by 2018-3-6 15:32

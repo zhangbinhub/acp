@@ -24,7 +24,13 @@ class ThreadPoolService
  * Int.MAX_VALUE--无界队列，LinkedBlockingQueue
  * else---------------有界队列，ArrayBlockingQueue
  */
-private constructor(private val poolName: String, maxFreeTime: Long, minThreadNumber: Int, maxThreadNumber: Int, querySize: Int) {
+private constructor(
+    private val poolName: String,
+    maxFreeTime: Long,
+    minThreadNumber: Int,
+    maxThreadNumber: Int,
+    querySize: Int
+) {
 
     private var executor: ThreadPoolExecutor
 
@@ -41,7 +47,8 @@ private constructor(private val poolName: String, maxFreeTime: Long, minThreadNu
                  *    运行线程数 = maximumPoolSizes 时执行异常策略
                  * 5、当一个线程空闲时间超过 maxFreeTime 且运行线程数 > corePoolSize 时，销毁空闲线程，直至运行线程数 = corePoolSize
                  */
-                executor = ThreadPoolExecutor(0, maxThreadNumber, maxFreeTime, TimeUnit.MILLISECONDS, SynchronousQueue())
+                executor =
+                    ThreadPoolExecutor(0, maxThreadNumber, maxFreeTime, TimeUnit.MILLISECONDS, SynchronousQueue())
             querySize == Int.MAX_VALUE ->
                 /*
                  * 无界队列: LinkedBlockingQueue
@@ -51,7 +58,13 @@ private constructor(private val poolName: String, maxFreeTime: Long, minThreadNu
                  * 4、队列中的任务处理逻辑：
                  *    在队列中一直排队等待，直至有空闲线程继续处理或内存溢出
                  */
-                executor = ThreadPoolExecutor(maxThreadNumber, maxThreadNumber, 0, TimeUnit.MILLISECONDS, LinkedBlockingQueue())
+                executor = ThreadPoolExecutor(
+                    maxThreadNumber,
+                    maxThreadNumber,
+                    0,
+                    TimeUnit.MILLISECONDS,
+                    LinkedBlockingQueue()
+                )
             else ->
                 /*
                  * 有界队列: ArrayBlockingQueue
@@ -65,7 +78,13 @@ private constructor(private val poolName: String, maxFreeTime: Long, minThreadNu
                  *    运行线程数 = maximumPoolSizes 且队列已满时（新任务加入队列前），执行异常策略
                  * 5、当一个线程空闲时间超过 maxFreeTime 且运行线程数 > corePoolSize 时，销毁空闲线程，直至运行线程数 = corePoolSize
                  */
-                executor = ThreadPoolExecutor(minThreadNumber, maxThreadNumber, maxFreeTime, TimeUnit.MILLISECONDS, ArrayBlockingQueue(querySize))
+                executor = ThreadPoolExecutor(
+                    minThreadNumber,
+                    maxThreadNumber,
+                    maxFreeTime,
+                    TimeUnit.MILLISECONDS,
+                    ArrayBlockingQueue(querySize)
+                )
         }
     }
 
@@ -148,7 +167,13 @@ private constructor(private val poolName: String, maxFreeTime: Long, minThreadNu
          */
         @JvmStatic
         @JvmOverloads
-        fun getInstance(minThreadNumber: Int, maxThreadNumber: Int, querySize: Int, poolName: String = "defaultThreadPool", maxFreeTime: Long = 6000): ThreadPoolService {
+        fun getInstance(
+            minThreadNumber: Int,
+            maxThreadNumber: Int,
+            querySize: Int,
+            poolName: String = "defaultThreadPool",
+            maxFreeTime: Long = 6000
+        ): ThreadPoolService {
             val instance: ThreadPoolService
             synchronized(ThreadPoolService::class.java) {
                 if (!threadPoolInstanceMap.containsKey(poolName)) {

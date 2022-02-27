@@ -17,6 +17,24 @@ import java.math.BigDecimal;
 @ApiModel("表1")
 public class TableOne {
 
+    @Id
+    @GenericGenerator(
+            name = "testSequenceGenerator",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "test_seq"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "1")})
+    @GeneratedValue(generator = "testSequenceGenerator")
+    @ApiModelProperty("主键")
+    private Long id;
+    @Column
+    @ApiModelProperty("名称")
+    private String name;
+    @Column
+    @ApiModelProperty("值")
+    private BigDecimal value;
+
     public Long getId() {
         return id;
     }
@@ -40,25 +58,5 @@ public class TableOne {
     public void setValue(BigDecimal value) {
         this.value = value;
     }
-
-    @Id
-    @GenericGenerator(
-            name = "testSequenceGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "test_seq"),
-                    @Parameter(name = "initial_value", value = "1"),
-                    @Parameter(name = "increment_size", value = "1")})
-    @GeneratedValue(generator = "testSequenceGenerator")
-    @ApiModelProperty("主键")
-    private Long id;
-
-    @Column
-    @ApiModelProperty("名称")
-    private String name;
-
-    @Column
-    @ApiModelProperty("值")
-    private BigDecimal value;
 
 }

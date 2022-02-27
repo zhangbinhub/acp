@@ -19,13 +19,17 @@ class AcpProperties : BaseProperties() {
          * @return 数据库配置实例
          */
         fun getInstance(): AcpProperties? =
-                try {
-                    val propertiesFileName = "/acp.properties"
-                    getInstance(AcpProperties::class.java, propertiesFileName, CommonUtils.getWebRootAbsPath() + propertiesFileName) as AcpProperties
-                } catch (e: Exception) {
-                    log.error(e.message, e)
-                    null
-                }
+            try {
+                val propertiesFileName = "/acp.properties"
+                getInstance(
+                    AcpProperties::class.java,
+                    propertiesFileName,
+                    CommonUtils.getWebRootAbsPath() + propertiesFileName
+                ) as AcpProperties
+            } catch (e: Exception) {
+                log.error(e.message, e)
+                null
+            }
     }
 
 }

@@ -13,5 +13,5 @@ class AuthController @Autowired
 constructor(private val checkTokenEndpoint: CheckTokenEndpoint) {
     @RequestMapping(value = ["/open/inner/check-token"], produces = [MediaType.APPLICATION_JSON_VALUE])
     fun checkToken(@RequestParam("token") value: String): ResponseEntity<Map<String, *>> =
-            ResponseEntity.ok(checkTokenEndpoint.checkToken(value))
+        ResponseEntity.ok(checkTokenEndpoint.checkToken(value))
 }

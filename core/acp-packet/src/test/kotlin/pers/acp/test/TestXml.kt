@@ -1,7 +1,7 @@
 package pers.acp.test
 
-import org.junit.jupiter.api.Test
 import io.github.zhangbinhub.acp.core.packet.xml.XmlPacket
+import org.junit.jupiter.api.Test
 
 class TestXml {
     @Test
@@ -15,7 +15,7 @@ class TestXml {
                 </BODY>
             </root>
         """.trimIndent()
-        val obj = XmlPacket.xmlToObject(xmlStr,TestBean::class.java)
+        val obj = XmlPacket.xmlToObject(xmlStr, TestBean::class.java)
         println(obj)
         println(XmlPacket.objectToXML(obj!!))
     }

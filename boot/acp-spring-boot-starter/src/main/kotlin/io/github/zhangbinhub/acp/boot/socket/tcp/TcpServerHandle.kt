@@ -1,15 +1,14 @@
 package io.github.zhangbinhub.acp.boot.socket.tcp
 
+import io.github.zhangbinhub.acp.boot.conf.SocketListenerConfiguration
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
+import io.github.zhangbinhub.acp.boot.socket.base.SocketServerHandle
+import io.github.zhangbinhub.acp.core.CommonTools
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.ByteBufUtil
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.timeout.IdleStateEvent
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.boot.socket.base.SocketServerHandle
-import io.github.zhangbinhub.acp.boot.conf.SocketListenerConfiguration
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
-import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
-
 import java.nio.CharBuffer
 
 /**
@@ -19,9 +18,11 @@ import java.nio.CharBuffer
  * @since JDK 11
  */
 class TcpServerHandle internal
-constructor(logAdapter: LogAdapter,
-            socketListenerConfiguration: SocketListenerConfiguration,
-            socketServerHandle: ISocketServerHandle) : SocketServerHandle(logAdapter, socketListenerConfiguration, socketServerHandle) {
+constructor(
+    logAdapter: LogAdapter,
+    socketListenerConfiguration: SocketListenerConfiguration,
+    socketServerHandle: ISocketServerHandle
+) : SocketServerHandle(logAdapter, socketListenerConfiguration, socketServerHandle) {
 
     override fun beforeReadMessage(msg: Any): ByteBuf = msg as ByteBuf
 
@@ -39,7 +40,11 @@ constructor(logAdapter: LogAdapter,
 
     @Throws(Exception::class)
     override fun beforeSendMessage(ctx: ChannelHandlerContext, requestMsg: Any?, sendStr: String): Any {
-        return ByteBufUtil.encodeString(ctx.alloc(), CharBuffer.wrap(sendStr), charset(socketListenerConfiguration.charset))
+        return ByteBufUtil.encodeString(
+            ctx.alloc(),
+            CharBuffer.wrap(sendStr),
+            charset(socketListenerConfiguration.charset)
+        )
     }
 
     @Throws(Exception::class)

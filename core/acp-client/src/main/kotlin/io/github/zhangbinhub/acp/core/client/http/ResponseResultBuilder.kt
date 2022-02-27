@@ -33,10 +33,10 @@ class ResponseResultBuilder(val response: Response) {
     }
 
     fun build(): ResponseResult = ResponseResult(
-            status = this.status,
-            headers = this.headers,
-            body = this.bodyString,
-            response = this.response
+        status = this.status,
+        headers = this.headers,
+        body = this.bodyString,
+        response = this.response
     )
 
 }

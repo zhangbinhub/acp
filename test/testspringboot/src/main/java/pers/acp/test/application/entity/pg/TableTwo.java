@@ -14,6 +14,21 @@ import java.math.BigDecimal;
 @Table(name = "table2")
 public class TableTwo {
 
+    @Id
+    @GenericGenerator(
+            name = "testSequenceGenerator",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "test_seq"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "1")})
+    @GeneratedValue(generator = "testSequenceGenerator")
+    private Long id;
+    @Column
+    private String name;
+    @Column
+    private BigDecimal value;
+
     public Long getId() {
         return id;
     }
@@ -37,22 +52,5 @@ public class TableTwo {
     public void setValue(BigDecimal value) {
         this.value = value;
     }
-
-    @Id
-    @GenericGenerator(
-            name = "testSequenceGenerator",
-            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "test_seq"),
-                    @Parameter(name = "initial_value", value = "1"),
-                    @Parameter(name = "increment_size", value = "1")})
-    @GeneratedValue(generator = "testSequenceGenerator")
-    private Long id;
-
-    @Column
-    private String name;
-
-    @Column
-    private BigDecimal value;
 
 }

@@ -11,10 +11,6 @@ public enum WordType {
 
     WORD_TYPE_DOCX(".docx", 1);
 
-    private final String name;
-
-    private final Integer value;
-
     private static final Map<Integer, WordType> map;
 
     static {
@@ -24,9 +20,19 @@ public enum WordType {
         }
     }
 
+    private final String name;
+    private final Integer value;
+
     WordType(String name, Integer value) {
         this.name = name.toLowerCase();
         this.value = value;
+    }
+
+    public static WordType getEnum(Integer value) throws EnumValueUndefinedException {
+        if (map.containsKey(value)) {
+            return map.get(value);
+        }
+        throw new EnumValueUndefinedException(WordType.class, value + "");
     }
 
     public Integer getValue() {
@@ -39,13 +45,6 @@ public enum WordType {
 
     public Boolean equals(Integer value) {
         return this.value.equals(value);
-    }
-
-    public static WordType getEnum(Integer value) throws EnumValueUndefinedException {
-        if (map.containsKey(value)) {
-            return map.get(value);
-        }
-        throw new EnumValueUndefinedException(WordType.class, value + "");
     }
 
 }

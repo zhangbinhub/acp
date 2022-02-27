@@ -9,6 +9,39 @@ import java.util.Map;
  * @since JDK 11
  */
 public class ExcelDataSetting {
+    /**
+     * 内容[name:value,...]
+     */
+    private List<Map<String, String>> dataList = new ArrayList<>();
+    /**
+     * 列名，“,”分隔
+     */
+    private String names = "";
+    /**
+     * 内容[value:,row:,col:,colspan:,rowspan:,width:,height:,font:,bold:true|false,underline:true|false,align:,color:,border:no|all|top|left|right|bottom]^...
+     */
+    private List<Map<String, String>> titleCtrl = new ArrayList<>();
+    /**
+     * 内容[value:,colspan:,rowspan:,width:,height:,font:,bold:true|false,underline:true|false,align:,color:,border:no|all|top|left|right|bottom]^...
+     */
+    private List<Map<String, String>> bodyCtrl = new ArrayList<>();
+    /**
+     * 内容[value:,row:,col:,paddingRow:,colspan:,rowspan:,width:,height:,font:,bold:true|false,underline:true|false,align:,color:,border:no|all|top|left|right|bottom]^...
+     */
+    private List<Map<String, String>> footCtrl = new ArrayList<>();
+    /**
+     * 是否显示表头
+     */
+    private boolean showBodyHead = false;
+    /**
+     * 默认起始行号
+     */
+    private int defaultRowIndex = 0;
+    /**
+     * 默认起始列号
+     */
+    private int defaultCellIndex = 0;
+
     public List<Map<String, String>> getDataList() {
         return dataList;
     }
@@ -72,37 +105,4 @@ public class ExcelDataSetting {
     public void setDefaultCellIndex(int defaultCellIndex) {
         this.defaultCellIndex = defaultCellIndex;
     }
-
-    /**
-     * 内容[name:value,...]
-     */
-    private List<Map<String, String>> dataList = new ArrayList<>();
-    /**
-     * 列名，“,”分隔
-     */
-    private String names = "";
-    /**
-     * 内容[value:,row:,col:,colspan:,rowspan:,width:,height:,font:,bold:true|false,underline:true|false,align:,color:,border:no|all|top|left|right|bottom]^...
-     */
-    private List<Map<String, String>> titleCtrl = new ArrayList<>();
-    /**
-     * 内容[value:,colspan:,rowspan:,width:,height:,font:,bold:true|false,underline:true|false,align:,color:,border:no|all|top|left|right|bottom]^...
-     */
-    private List<Map<String, String>> bodyCtrl = new ArrayList<>();
-    /**
-     * 内容[value:,row:,col:,paddingRow:,colspan:,rowspan:,width:,height:,font:,bold:true|false,underline:true|false,align:,color:,border:no|all|top|left|right|bottom]^...
-     */
-    private List<Map<String, String>> footCtrl = new ArrayList<>();
-    /**
-     * 是否显示表头
-     */
-    private boolean showBodyHead = false;
-    /**
-     * 默认起始行号
-     */
-    private int defaultRowIndex = 0;
-    /**
-     * 默认起始列号
-     */
-    private int defaultCellIndex = 0;
 }

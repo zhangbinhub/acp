@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.core
 
-import org.joda.time.DateTime
 import io.github.zhangbinhub.acp.core.task.timer.Calculation
+import org.joda.time.DateTime
 
 /**
  * @author zhang by 10/07/2019
@@ -27,7 +27,8 @@ object CalendarTools {
      */
     @JvmStatic
     @JvmOverloads
-    fun getCalendar(dateTimeStr: String, dateTimeFormat: String = Calculation.DATE_FORMAT): DateTime = Calculation.getCalendar(dateTimeStr, dateTimeFormat)
+    fun getCalendar(dateTimeStr: String, dateTimeFormat: String = Calculation.DATE_FORMAT): DateTime =
+        Calculation.getCalendar(dateTimeStr, dateTimeFormat)
 
     /**
      * 获取指定日期的后一天
@@ -119,7 +120,8 @@ object CalendarTools {
      * @return 是否符合执行规则
      */
     @JvmStatic
-    fun validateDay(now: DateTime, contrast: DateTime, rule: String): Boolean = Calculation.validateDay(now, contrast, rule)
+    fun validateDay(now: DateTime, contrast: DateTime, rule: String): Boolean =
+        Calculation.validateDay(now, contrast, rule)
 
     /**
      * 以周为周期进行校验
@@ -130,7 +132,8 @@ object CalendarTools {
      * @return 是否符合执行规则
      */
     @JvmStatic
-    fun validateWeek(now: DateTime, contrast: DateTime, rule: String): Boolean = Calculation.validateWeek(now, contrast, rule)
+    fun validateWeek(now: DateTime, contrast: DateTime, rule: String): Boolean =
+        Calculation.validateWeek(now, contrast, rule)
 
     /**
      * 以月为周期进行校验
@@ -141,7 +144,8 @@ object CalendarTools {
      * @return 是否符合执行规则
      */
     @JvmStatic
-    fun validateMonth(now: DateTime, contrast: DateTime, rule: String): Boolean = Calculation.validateMonth(now, contrast, rule)
+    fun validateMonth(now: DateTime, contrast: DateTime, rule: String): Boolean =
+        Calculation.validateMonth(now, contrast, rule)
 
     /**
      * 以季度为周期进行校验
@@ -152,7 +156,8 @@ object CalendarTools {
      * @return 是否符合执行规则
      */
     @JvmStatic
-    fun validateQuarter(now: DateTime, contrast: DateTime, rule: String): Boolean = Calculation.validateQuarter(now, contrast, rule)
+    fun validateQuarter(now: DateTime, contrast: DateTime, rule: String): Boolean =
+        Calculation.validateQuarter(now, contrast, rule)
 
     /**
      * 以年为周期进行校验
@@ -163,6 +168,7 @@ object CalendarTools {
      * @return 是否符合执行规则
      */
     @JvmStatic
-    fun validateYear(now: DateTime, contrast: DateTime, rule: String): Boolean = Calculation.validateYear(now, contrast, rule)
+    fun validateYear(now: DateTime, contrast: DateTime, rule: String): Boolean =
+        Calculation.validateYear(now, contrast, rule)
 
 }

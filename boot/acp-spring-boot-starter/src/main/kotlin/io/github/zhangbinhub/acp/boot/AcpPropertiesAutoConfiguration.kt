@@ -1,11 +1,11 @@
 package io.github.zhangbinhub.acp.boot
 
+import io.github.zhangbinhub.acp.boot.conf.*
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import io.github.zhangbinhub.acp.boot.conf.*
 
 /**
  * @author zhang by 13/07/2019
@@ -13,12 +13,13 @@ import io.github.zhangbinhub.acp.boot.conf.*
  */
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(
-        AcpCoreConfiguration::class,
-        ControllerLogConfiguration::class,
-        ScheduleConfiguration::class,
-        SwaggerConfiguration::class,
-        TcpServerConfiguration::class,
-        UdpServerConfiguration::class)
+    AcpCoreConfiguration::class,
+    ControllerLogConfiguration::class,
+    ScheduleConfiguration::class,
+    SwaggerConfiguration::class,
+    TcpServerConfiguration::class,
+    UdpServerConfiguration::class
+)
 class AcpPropertiesAutoConfiguration {
 
     @Bean

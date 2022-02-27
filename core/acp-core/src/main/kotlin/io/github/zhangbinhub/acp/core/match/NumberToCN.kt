@@ -52,7 +52,7 @@ object NumberToCN {
         }
         // 这里会进行四舍五入
         var numberLong = bigDecimal.movePointRight(precision)
-                .setScale(0, RoundingMode.HALF_UP).abs().toLong()
+            .setScale(0, RoundingMode.HALF_UP).abs().toLong()
         // 得到小数点后的值
         val scale = numberLong % 10.toDouble().pow(precision).toLong()
         numberLong /= 10.toDouble().pow(precision).toLong()

@@ -1,5 +1,7 @@
 package io.github.zhangbinhub.acp.core.client.socket.base
 
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.ByteBufUtil
 import io.netty.channel.Channel
@@ -8,14 +10,13 @@ import io.netty.channel.ChannelInboundHandlerAdapter
 import io.netty.channel.EventLoopGroup
 import io.netty.handler.codec.ByteToMessageDecoder
 import io.netty.util.ReferenceCountUtil
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.log.LogFactory
 
 /**
  * @author zhang by 12/07/2019
  * @since JDK 11
  */
-abstract class SocketClient(internal var serverIp: String, internal var port: Int, timeOut: Int) : ChannelInboundHandlerAdapter() {
+abstract class SocketClient(internal var serverIp: String, internal var port: Int, timeOut: Int) :
+    ChannelInboundHandlerAdapter() {
 
     private val lock = Any()
 
@@ -50,23 +51,23 @@ abstract class SocketClient(internal var serverIp: String, internal var port: In
     }
 
     fun doSend(requestStr: String) =
-            try {
-                synchronized(lock) {
-                    if (isClosed) {
-                        connect()
-                    }
+        try {
+            synchronized(lock) {
+                if (isClosed) {
+                    connect()
                 }
-                var sendStr = requestStr
-                if (hex) {
-                    val bts = ByteBufUtil.decodeHexDump(sendStr)
-                    sendStr = String(bts, charset(serverCharset))
-                }
-                val msgPack = beforeSendMessage(sendStr)
-                channel!!.writeAndFlush(msgPack)
-                afterSendMessage(channel!!)
-            } catch (e: Exception) {
-                log.error(e.message, e)
             }
+            var sendStr = requestStr
+            if (hex) {
+                val bts = ByteBufUtil.decodeHexDump(sendStr)
+                sendStr = String(bts, charset(serverCharset))
+            }
+            val msgPack = beforeSendMessage(sendStr)
+            channel!!.writeAndFlush(msgPack)
+            afterSendMessage(channel!!)
+        } catch (e: Exception) {
+            log.error(e.message, e)
+        }
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         try {

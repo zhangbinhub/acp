@@ -1,6 +1,9 @@
 package io.github.zhangbinhub.acp.cloud
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.zhangbinhub.acp.cloud.log.LogConstant
+import io.github.zhangbinhub.acp.cloud.log.producer.LogBridge
+import io.github.zhangbinhub.acp.cloud.log.producer.StreamLogBridge
 import org.springframework.boot.autoconfigure.AutoConfigureBefore
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
@@ -8,9 +11,6 @@ import org.springframework.cloud.stream.config.BindingServiceConfiguration
 import org.springframework.cloud.stream.function.StreamBridge
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import io.github.zhangbinhub.acp.cloud.log.LogConstant
-import io.github.zhangbinhub.acp.cloud.log.producer.LogBridge
-import io.github.zhangbinhub.acp.cloud.log.producer.StreamLogBridge
 
 /**
  * 日志服务客户端自动配置

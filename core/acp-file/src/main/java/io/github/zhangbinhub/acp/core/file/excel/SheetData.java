@@ -1,26 +1,21 @@
 package io.github.zhangbinhub.acp.core.file.excel;
 
-import io.github.zhangbinhub.acp.core.file.excel.scheme.*;
+import io.github.zhangbinhub.acp.core.CommonTools;
 import io.github.zhangbinhub.acp.core.file.excel.scheme.*;
 import io.github.zhangbinhub.acp.core.log.LogFactory;
 import org.apache.commons.lang3.StringUtils;
-
 import org.apache.poi.hssf.usermodel.HSSFFooter;
 import org.apache.poi.hssf.usermodel.HSSFHeader;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import io.github.zhangbinhub.acp.core.file.excel.scheme.*;
-import io.github.zhangbinhub.acp.core.CommonTools;
-import io.github.zhangbinhub.acp.core.log.LogFactory;
 
 import java.util.List;
 import java.util.Map;
 
 final class SheetData {
 
-    private final LogFactory log = LogFactory.getInstance(this.getClass());// 日志对象
-
     private static final short FONT_SIZE = 11;
+    private final LogFactory log = LogFactory.getInstance(this.getClass());// 日志对象
 
     /**
      * 生成sheet内数据

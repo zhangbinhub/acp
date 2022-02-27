@@ -1,13 +1,13 @@
 package io.github.zhangbinhub.acp.boot.component
 
+import io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask
+import io.github.zhangbinhub.acp.boot.conf.ScheduleConfiguration
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.boot.interfaces.TimerTaskScheduler
+import io.github.zhangbinhub.acp.core.CommonTools
 import org.springframework.boot.autoconfigure.task.TaskSchedulingProperties
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
 import org.springframework.scheduling.support.CronTrigger
-import io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask
-import io.github.zhangbinhub.acp.boot.conf.ScheduleConfiguration
-import io.github.zhangbinhub.acp.boot.interfaces.TimerTaskScheduler
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ScheduledFuture
 
@@ -17,10 +17,12 @@ import java.util.concurrent.ScheduledFuture
  * @author zhangbin by 2018-1-20 21:24
  * @since JDK 11
  */
-class TimerTaskSchedulerCtrl(private val logAdapter: LogAdapter,
-                             properties: TaskSchedulingProperties,
-                             private val scheduleConfiguration: ScheduleConfiguration,
-                             private val baseSpringBootScheduledTaskMap: Map<String, BaseSpringBootScheduledAsyncTask>) : TimerTaskScheduler {
+class TimerTaskSchedulerCtrl(
+    private val logAdapter: LogAdapter,
+    properties: TaskSchedulingProperties,
+    private val scheduleConfiguration: ScheduleConfiguration,
+    private val baseSpringBootScheduledTaskMap: Map<String, BaseSpringBootScheduledAsyncTask>
+) : TimerTaskScheduler {
 
     private val threadPoolTaskScheduler: ThreadPoolTaskScheduler = ThreadPoolTaskScheduler()
 
@@ -44,7 +46,11 @@ class TimerTaskSchedulerCtrl(private val logAdapter: LogAdapter,
         }
         baseSpringBootScheduledTaskMap.forEach { (key, scheduledTask) ->
             val cronMap = scheduleConfiguration.cron
-            if (cronMap.isNotEmpty() && cronMap.containsKey(key) && !CommonTools.isNullStr(cronMap[key]) && !"none".equals(cronMap[key], ignoreCase = true)) {
+            if (cronMap.isNotEmpty() && cronMap.containsKey(key) && !CommonTools.isNullStr(cronMap[key]) && !"none".equals(
+                    cronMap[key],
+                    ignoreCase = true
+                )
+            ) {
                 cronMap[key]?.apply {
                     scheduledTaskMap[key] = scheduledTask
                     threadPoolTaskScheduler.schedule({ scheduledTask.executeScheduledTask() }, CronTrigger(this))?.let {

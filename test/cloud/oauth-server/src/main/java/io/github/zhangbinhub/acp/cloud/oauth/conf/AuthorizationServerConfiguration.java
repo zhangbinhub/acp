@@ -2,8 +2,6 @@ package io.github.zhangbinhub.acp.cloud.oauth.conf;
 
 import io.github.zhangbinhub.acp.cloud.oauth.domain.SecurityClientDetailsService;
 import io.github.zhangbinhub.acp.cloud.oauth.domain.SecurityUserDetailsService;
-import io.github.zhangbinhub.acp.cloud.oauth.domain.SecurityClientDetailsService;
-import io.github.zhangbinhub.acp.cloud.oauth.domain.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -16,8 +14,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-import io.github.zhangbinhub.acp.cloud.oauth.domain.SecurityClientDetailsService;
-import io.github.zhangbinhub.acp.cloud.oauth.domain.SecurityUserDetailsService;
 
 /**
  * @author zhangbin by 11/04/2018 14:34

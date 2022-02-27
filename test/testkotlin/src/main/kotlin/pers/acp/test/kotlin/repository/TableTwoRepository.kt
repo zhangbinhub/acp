@@ -1,10 +1,10 @@
 package pers.acp.test.kotlin.repository
 
-import pers.acp.test.kotlin.base.BaseRepository
-import pers.acp.test.kotlin.entity.TableTwo
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+import pers.acp.test.kotlin.base.BaseRepository
+import pers.acp.test.kotlin.entity.TableTwo
 import java.util.*
 
 /**

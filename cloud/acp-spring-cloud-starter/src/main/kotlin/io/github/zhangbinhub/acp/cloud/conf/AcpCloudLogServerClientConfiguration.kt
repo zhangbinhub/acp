@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.cloud.conf
 
-import org.springframework.boot.context.properties.ConfigurationProperties
 import io.github.zhangbinhub.acp.cloud.log.LogConstant
+import org.springframework.boot.context.properties.ConfigurationProperties
 
 /**
  * 日志服务客户端配置

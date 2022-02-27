@@ -1,10 +1,10 @@
 package io.github.zhangbinhub.acp.boot.tools
 
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import org.springframework.beans.BeansException
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import org.springframework.web.context.WebApplicationContext
-import io.github.zhangbinhub.acp.core.log.LogFactory
 
 /**
  * Create by zhangbin on 2017-8-11 9:45

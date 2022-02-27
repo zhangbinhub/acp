@@ -1,6 +1,13 @@
 package io.github.zhangbinhub.acp.cloud
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.zhangbinhub.acp.cloud.conf.AcpCloudOauthConfiguration
+import io.github.zhangbinhub.acp.cloud.constant.CloudConfigurationOrder
+import io.github.zhangbinhub.acp.cloud.constant.RestPrefix
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.client.exceptions.HttpException
+import io.github.zhangbinhub.acp.core.client.http.HttpClientBuilder
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
 import org.springframework.boot.autoconfigure.security.oauth2.OAuth2ClientProperties
@@ -24,14 +31,6 @@ import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.access.AccessDeniedHandler
 import org.springframework.web.client.ResponseErrorHandler
 import org.springframework.web.client.RestTemplate
-import io.github.zhangbinhub.acp.core.client.exceptions.HttpException
-import io.github.zhangbinhub.acp.core.client.http.HttpClientBuilder
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.log.LogFactory
-import io.github.zhangbinhub.acp.cloud.conf.AcpCloudOauthConfiguration
-import io.github.zhangbinhub.acp.cloud.constant.CloudConfigurationOrder
-import io.github.zhangbinhub.acp.cloud.constant.RestPrefix
-import java.util.*
 
 /**
  * Oauth2 资源服务配置

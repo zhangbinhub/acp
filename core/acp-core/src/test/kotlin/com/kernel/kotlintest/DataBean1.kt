@@ -5,7 +5,7 @@ package com.kernel.kotlintest
  * @since JDK 11
  */
 data class DataBean1(
-        val param1: String = "xx",
-        val param2: Int = 5,
-        val param3: Double = 1.0
+    val param1: String = "xx",
+    val param2: Int = 5,
+    val param3: Double = 1.0
 )

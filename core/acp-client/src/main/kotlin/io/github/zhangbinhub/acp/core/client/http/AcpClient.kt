@@ -1,15 +1,17 @@
 package io.github.zhangbinhub.acp.core.client.http
 
-import okhttp3.*
-import io.github.zhangbinhub.acp.core.client.exceptions.HttpException
 import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.client.exceptions.HttpException
 import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.packet.http.HttpPacket
+import okhttp3.*
 import java.io.IOException
 import java.security.KeyManagementException
 import java.security.NoSuchAlgorithmException
 import java.security.cert.X509Certificate
-import javax.net.ssl.*
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
 
 /**
  * @author zhang by 12/07/2019

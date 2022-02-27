@@ -1,11 +1,11 @@
 package com.kernel.kotlintest.nobuild
 
+import io.github.zhangbinhub.acp.core.security.PgpEncrypt
 import org.bouncycastle.bcpg.ArmoredOutputStream
 import org.bouncycastle.bcpg.HashAlgorithmTags
 import org.bouncycastle.openpgp.PGPEncryptedData
 import org.bouncycastle.openpgp.PGPSignature
 import org.junit.jupiter.api.Test
-import io.github.zhangbinhub.acp.core.security.PgpEncrypt
 import java.io.FileOutputStream
 
 class TestPgp {
@@ -15,8 +15,10 @@ class TestPgp {
 
     @Test
     fun generatePgpSecretKey() {
-        val secretKey = PgpEncrypt.generateSecretKey("zhangbin", "123456", 2048,
-                PGPSignature.DEFAULT_CERTIFICATION, PGPEncryptedData.CAST5, HashAlgorithmTags.SHA1)
+        val secretKey = PgpEncrypt.generateSecretKey(
+            "zhangbin", "123456", 2048,
+            PGPSignature.DEFAULT_CERTIFICATION, PGPEncryptedData.CAST5, HashAlgorithmTags.SHA1
+        )
         ArmoredOutputStream(FileOutputStream(secretKeyFileName)).use { stream ->
             secretKey.encode(stream)
         }
@@ -26,10 +28,14 @@ class TestPgp {
     fun encryptFile() {
         val srcFileName = "D:\\test\\test.txt"
         val encFileName = "D:\\test\\enc_test.txt"
-        PgpEncrypt.encryptFile(srcFileName, encFileName, PgpEncrypt.readSecretKey(secretKeyFileName).publicKey,
-                armor = true, withIntegrityCheck = true)
-        PgpEncrypt.encryptFile(srcFileName, encFileName, PgpEncrypt.readPublicKey(publicKeyFileName),
-                armor = true, withIntegrityCheck = true)
+        PgpEncrypt.encryptFile(
+            srcFileName, encFileName, PgpEncrypt.readSecretKey(secretKeyFileName).publicKey,
+            armor = true, withIntegrityCheck = true
+        )
+        PgpEncrypt.encryptFile(
+            srcFileName, encFileName, PgpEncrypt.readPublicKey(publicKeyFileName),
+            armor = true, withIntegrityCheck = true
+        )
     }
 
     @Test

@@ -1,10 +1,10 @@
 package io.github.zhangbinhub.acp.core.task.timer
 
+import io.github.zhangbinhub.acp.core.exceptions.TimerException
+import io.github.zhangbinhub.acp.core.task.timer.rule.CircleType
 import org.apache.commons.lang3.StringUtils
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
-import io.github.zhangbinhub.acp.core.exceptions.TimerException
-import io.github.zhangbinhub.acp.core.task.timer.rule.CircleType
 
 /**
  * @author zhang by 10/07/2019
@@ -45,7 +45,7 @@ object Calculation {
      * @return 日期对象
      */
     fun getCalendar(dateTimeStr: String, dateTimeFormat: String = DATE_FORMAT): DateTime =
-            DateTimeFormat.forPattern(dateTimeFormat).parseDateTime(dateTimeStr)
+        DateTimeFormat.forPattern(dateTimeFormat).parseDateTime(dateTimeStr)
 
     /**
      * 获取指定日期的后一天
@@ -311,7 +311,10 @@ object Calculation {
                 dayIndex = maxDay
             }
             // 比上次发送时间至少晚一天，符合季度内月号，符合月内日号，等于或超过配置的发送时间
-            if (now.toString(DATETIME_FORMAT) >= afterDay && getMonthNoInQuarter(now) == rules[0].toInt() && dayIndex == nowIndex && now.toString(TIME_FORMAT) >= rules[2]) {
+            if (now.toString(DATETIME_FORMAT) >= afterDay && getMonthNoInQuarter(now) == rules[0].toInt() && dayIndex == nowIndex && now.toString(
+                    TIME_FORMAT
+                ) >= rules[2]
+            ) {
                 isExecute = true
             }
         }
@@ -340,7 +343,10 @@ object Calculation {
                 dayIndex = maxDay
             }
             // 比上次发送时间至少晚一天，符合月号，符合月内日号，等于或超过配置的发送时间
-            if (now.toString(DATETIME_FORMAT) >= afterDay && getMonthNo(now) == rules[0].toInt() && dayIndex == nowIndex && now.toString(TIME_FORMAT) >= rules[2]) {
+            if (now.toString(DATETIME_FORMAT) >= afterDay && getMonthNo(now) == rules[0].toInt() && dayIndex == nowIndex && now.toString(
+                    TIME_FORMAT
+                ) >= rules[2]
+            ) {
                 isExecute = true
             }
         }
