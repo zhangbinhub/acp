@@ -2,9 +2,9 @@ package io.github.zhangbinhub.acp.boot.component
 
 import io.github.zhangbinhub.acp.boot.daemon.DaemonServiceManager
 import io.github.zhangbinhub.acp.boot.interfaces.Listener
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
 import io.github.zhangbinhub.acp.boot.interfaces.TimerTaskScheduler
 import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
 
 /**
  * 系统控制器
@@ -12,9 +12,11 @@ import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
  * @author zhangbin by 2018-1-20 21:24
  * @since JDK 11
  */
-class SystemControl(private val logAdapter: LogAdapter,
-                    private val listenerMap: Map<String, Listener>?,
-                    private val timerTaskScheduler: TimerTaskScheduler) : IDaemonService {
+class SystemControl(
+    private val logAdapter: LogAdapter,
+    private val listenerMap: Map<String, Listener>?,
+    private val timerTaskScheduler: TimerTaskScheduler
+) : IDaemonService {
 
     /**
      * 系统初始化

@@ -5,6 +5,22 @@ package io.github.zhangbinhub.acp.core.file.excel.scheme;
  * @since JDK 11
  */
 public class ExcelHeaderAndFooterSetting {
+    /**
+     * (string)***[pageNumber]***[pageTotal]***
+     * 其中[pageNumber]和[pageTotal]是两个占位符，生成Excel时自动用当前页号和总页数替换
+     */
+    private String left = "";
+    /**
+     * (string)***[pageNumber]***[pageTotal]***
+     * 其中[pageNumber]和[pageTotal]是两个占位符，生成Excel时自动用当前页号和总页数替换
+     */
+    private String center = "";
+    /**
+     * (string)***[pageNumber]***[pageTotal]***
+     * 其中[pageNumber]和[pageTotal]是两个占位符，生成Excel时自动用当前页号和总页数替换
+     */
+    private String right = "";
+
     public String getLeft() {
         return left;
     }
@@ -28,20 +44,4 @@ public class ExcelHeaderAndFooterSetting {
     public void setRight(String right) {
         this.right = right;
     }
-
-    /**
-     * (string)***[pageNumber]***[pageTotal]***
-     * 其中[pageNumber]和[pageTotal]是两个占位符，生成Excel时自动用当前页号和总页数替换
-     */
-    private String left = "";
-    /**
-     * (string)***[pageNumber]***[pageTotal]***
-     * 其中[pageNumber]和[pageTotal]是两个占位符，生成Excel时自动用当前页号和总页数替换
-     */
-    private String center = "";
-    /**
-     * (string)***[pageNumber]***[pageTotal]***
-     * 其中[pageNumber]和[pageTotal]是两个占位符，生成Excel时自动用当前页号和总页数替换
-     */
-    private String right = "";
 }

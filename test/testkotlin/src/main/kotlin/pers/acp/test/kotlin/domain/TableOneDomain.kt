@@ -1,13 +1,13 @@
 package pers.acp.test.kotlin.domain
 
+import org.springframework.data.jpa.domain.Specification
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import pers.acp.test.kotlin.entity.TableOne
 import pers.acp.test.kotlin.entity.TableTwo
 import pers.acp.test.kotlin.repository.MemberTwoRepository
 import pers.acp.test.kotlin.repository.TableOneRepository
 import pers.acp.test.kotlin.repository.TableTwoRepository
-import org.springframework.data.jpa.domain.Specification
-import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 /**
@@ -16,9 +16,11 @@ import java.util.*
  */
 @Service
 @Transactional(readOnly = true)
-class TableOneDomain(private val tableOneRepository: TableOneRepository,
-                     private val tableTwoRepository: TableTwoRepository,
-                     private val memberTwoRepository: MemberTwoRepository) {
+class TableOneDomain(
+    private val tableOneRepository: TableOneRepository,
+    private val tableTwoRepository: TableTwoRepository,
+    private val memberTwoRepository: MemberTwoRepository
+) {
 
     @Transactional
     fun create(tableOne: TableOne): TableOne = tableOneRepository.save(tableOne)

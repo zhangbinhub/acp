@@ -1,14 +1,15 @@
 package io.github.zhangbinhub.acp.core.ftp.server
 
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import org.apache.sshd.server.auth.password.PasswordAuthenticator
 import org.apache.sshd.server.session.ServerSession
-import io.github.zhangbinhub.acp.core.log.LogFactory
 
 /**
  * @author zhang by 12/07/2019
  * @since JDK 11
  */
-internal class UserPasswordAuthenticator(private val userList: List<SftpServerUser>, private val needAuth: Boolean) : PasswordAuthenticator {
+internal class UserPasswordAuthenticator(private val userList: List<SftpServerUser>, private val needAuth: Boolean) :
+    PasswordAuthenticator {
 
     private val log = LogFactory.getInstance(this.javaClass)
 

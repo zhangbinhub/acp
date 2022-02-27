@@ -1,9 +1,9 @@
 package com.kernel.kotlintest
 
+import io.github.zhangbinhub.acp.core.CommonTools
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
-import io.github.zhangbinhub.acp.core.CommonTools
 import java.io.File
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -16,7 +16,7 @@ class TestSimple {
     @Test
     fun main() {
         val dataBean1 = DataBean1(
-                "你好123", 1, 0.34
+            "你好123", 1, 0.34
         )
         val ss = CommonTools.objectToJson(dataBean1)
         println(ss.toString())
@@ -33,12 +33,16 @@ class TestSimple {
 
     @Test
     fun testDownLoad() {
-        val path = CommonTools.getWebRootAbsPath() + "/files/tmp/download".replace("/", File.separator).replace("\\", File.separator)
+        val path = CommonTools.getWebRootAbsPath() + "/files/tmp/download".replace("/", File.separator)
+            .replace("\\", File.separator)
         val filterRegex: MutableList<String> = mutableListOf()
-        filterRegex.addAll(mutableListOf(
+        filterRegex.addAll(
+            mutableListOf(
                 CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}tmp${File.separator}.*",
                 CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}upload${File.separator}.*",
-                CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}download${File.separator}.*"))
+                CommonTools.getWebRootAbsPath() + "${File.separator}files${File.separator}download${File.separator}.*"
+            )
+        )
         println(pathFilter(filterRegex, path))
     }
 
@@ -61,11 +65,11 @@ class TestSimple {
     }
 
     @Test
-    fun testRegex(){
+    fun testRegex() {
         val regex = "^1.*0$"
-        println(CommonTools.regexPattern(regex,"nifosnai"))
-        println(CommonTools.regexPattern(regex,"1nfdosa"))
-        println(CommonTools.regexPattern(regex,"1nfdosa0"))
+        println(CommonTools.regexPattern(regex, "nifosnai"))
+        println(CommonTools.regexPattern(regex, "1nfdosa"))
+        println(CommonTools.regexPattern(regex, "1nfdosa0"))
     }
 
     @Test
@@ -82,24 +86,24 @@ class TestSimple {
         val number4 = BigDecimal.valueOf(32109)
         val number5 = BigDecimal.valueOf(5109.1)
         val number6 = BigDecimal.valueOf(5000.01)
-        println("$number1 ----> ${CommonTools.numberToCn(number1.toDouble(),2)}")
-        println("$number2 ----> ${CommonTools.numberToCn(number2.toDouble(),2)}")
-        println("$number3 ----> ${CommonTools.numberToCn(number3.toDouble(),2)}")
-        println("$number4 ----> ${CommonTools.numberToCn(number4.toDouble(),2)}")
-        println("$number5 ----> ${CommonTools.numberToCn(number5.toDouble(),5)}")
-        println("$number6 ----> ${CommonTools.numberToCn(number6.toDouble(),2)}")
+        println("$number1 ----> ${CommonTools.numberToCn(number1.toDouble(), 2)}")
+        println("$number2 ----> ${CommonTools.numberToCn(number2.toDouble(), 2)}")
+        println("$number3 ----> ${CommonTools.numberToCn(number3.toDouble(), 2)}")
+        println("$number4 ----> ${CommonTools.numberToCn(number4.toDouble(), 2)}")
+        println("$number5 ----> ${CommonTools.numberToCn(number5.toDouble(), 5)}")
+        println("$number6 ----> ${CommonTools.numberToCn(number6.toDouble(), 2)}")
     }
 
     @Test
-    fun testDelete(){
-        CommonTools.doDeleteFile(File("D:\\test\\file\\新建文本文档.bat"),true,5000)
+    fun testDelete() {
+        CommonTools.doDeleteFile(File("D:\\test\\file\\新建文本文档.bat"), true, 5000)
         runBlocking {
             delay(10000)
         }
     }
 
     @Test
-    fun testByte(){
+    fun testByte() {
         println('s'.toByte())
         println('s'.code)
         println('s'.code.toByte())

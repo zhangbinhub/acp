@@ -1,9 +1,9 @@
 package io.github.zhangbinhub.acp.cloud.log.producer
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.zhangbinhub.acp.cloud.log.LogInfo
 import org.springframework.cloud.stream.function.StreamBridge
 import org.springframework.messaging.support.MessageBuilder
-import io.github.zhangbinhub.acp.cloud.log.LogInfo
 
 class StreamLogBridge(
     private val streamBridge: StreamBridge,

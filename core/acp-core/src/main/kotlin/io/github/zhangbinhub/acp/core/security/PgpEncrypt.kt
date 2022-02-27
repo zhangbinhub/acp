@@ -4,7 +4,6 @@ import org.bouncycastle.bcpg.ArmoredOutputStream
 import org.bouncycastle.bcpg.CompressionAlgorithmTags
 import org.bouncycastle.jce.provider.BouncyCastleProvider
 import org.bouncycastle.openpgp.*
-import org.bouncycastle.openpgp.PGPPublicKey
 import org.bouncycastle.openpgp.jcajce.JcaPGPObjectFactory
 import org.bouncycastle.openpgp.operator.jcajce.*
 import org.bouncycastle.util.io.Streams
@@ -38,20 +37,24 @@ object PgpEncrypt {
      */
     @JvmStatic
     @Throws(Exception::class)
-    fun generateSecretKey(identity: String, passWord: String, rsaWidth: Int,
-                          certificationLevel: Int, encAlgorithm: Int, hashAlgorithm: Int): PGPSecretKey {
+    fun generateSecretKey(
+        identity: String, passWord: String, rsaWidth: Int,
+        certificationLevel: Int, encAlgorithm: Int, hashAlgorithm: Int
+    ): PGPSecretKey {
         Security.addProvider(BouncyCastleProvider())
         val passPhrase = passWord.toCharArray() //将passWord转换成字符数组
         val keyPair = generateKeyPair(rsaWidth) //生成//生成RSA密钥对
         val hash = JcaPGPDigestCalculatorProviderBuilder().build()[hashAlgorithm] //使用SHA1作为证书的散列算法
-        return PGPSecretKey(certificationLevel,
-                keyPair,
-                identity,
-                hash,
-                null,
-                null,
-                JcaPGPContentSignerBuilder(keyPair.publicKey.algorithm, hashAlgorithm),
-                JcePBESecretKeyEncryptorBuilder(encAlgorithm, hash).setProvider("BC").build(passPhrase))
+        return PGPSecretKey(
+            certificationLevel,
+            keyPair,
+            identity,
+            hash,
+            null,
+            null,
+            JcaPGPContentSignerBuilder(keyPair.publicKey.algorithm, hashAlgorithm),
+            JcePBESecretKeyEncryptorBuilder(encAlgorithm, hash).setProvider("BC").build(passPhrase)
+        )
     }
 
     @Throws(IOException::class)
@@ -89,7 +92,7 @@ object PgpEncrypt {
     @Throws(PGPException::class, IOException::class)
     fun readPublicKey(input: InputStream): PGPPublicKey {
         val keyRingIter = PGPPublicKeyRingCollection(PGPUtil.getDecoderStream(input), JcaKeyFingerprintCalculator())
-                .keyRings
+            .keyRings
         while (keyRingIter.hasNext()) {
             val keyRing = keyRingIter.next()
             val keyIter = keyRing.publicKeys
@@ -123,7 +126,7 @@ object PgpEncrypt {
     @Throws(IOException::class, PGPException::class)
     fun readSecretKey(input: InputStream): PGPSecretKey {
         val keyRingIter = PGPSecretKeyRingCollection(PGPUtil.getDecoderStream(input), JcaKeyFingerprintCalculator())
-                .keyRings
+            .keyRings
         while (keyRingIter.hasNext()) {
             val keyRing = keyRingIter.next()
             val keyIter = keyRing.secretKeys
@@ -148,7 +151,13 @@ object PgpEncrypt {
     @JvmStatic
     @JvmOverloads
     @Throws(PGPException::class, NoSuchProviderException::class, IOException::class)
-    fun encryptFile(inputFileName: String, outputFileName: String, publicKey: PGPPublicKey, armor: Boolean = true, withIntegrityCheck: Boolean = true) {
+    fun encryptFile(
+        inputFileName: String,
+        outputFileName: String,
+        publicKey: PGPPublicKey,
+        armor: Boolean = true,
+        withIntegrityCheck: Boolean = true
+    ) {
         Security.addProvider(BouncyCastleProvider())
         val outputStream = BufferedOutputStream(FileOutputStream(outputFileName)).let {
             if (armor) {
@@ -159,8 +168,10 @@ object PgpEncrypt {
         }
         outputStream.use { stream ->
             val bytes: ByteArray = compressFile(inputFileName)
-            val encGen = PGPEncryptedDataGenerator(JcePGPDataEncryptorBuilder(PGPEncryptedData.CAST5)
-                    .setWithIntegrityPacket(withIntegrityCheck).setSecureRandom(SecureRandom()).setProvider("BC"))
+            val encGen = PGPEncryptedDataGenerator(
+                JcePGPDataEncryptorBuilder(PGPEncryptedData.CAST5)
+                    .setWithIntegrityPacket(withIntegrityCheck).setSecureRandom(SecureRandom()).setProvider("BC")
+            )
             encGen.addMethod(JcePublicKeyKeyEncryptionMethodGenerator(publicKey).setProvider("BC"))
             val cOut = encGen.open(stream, bytes.size.toLong())
             cOut.write(bytes)
@@ -201,7 +212,11 @@ object PgpEncrypt {
             if (sKey == null) {
                 throw IllegalArgumentException("Secret key for message not found.")
             }
-            val plainFact = JcaPGPObjectFactory(pbe!!.getDataStream(JcePublicKeyDataDecryptorFactoryBuilder().setProvider("BC").build(sKey)))
+            val plainFact = JcaPGPObjectFactory(
+                pbe!!.getDataStream(
+                    JcePublicKeyDataDecryptorFactoryBuilder().setProvider("BC").build(sKey)
+                )
+            )
             var message = plainFact.nextObject()
             if (message is PGPCompressedData) {
                 message = JcaPGPObjectFactory(message.dataStream).nextObject()

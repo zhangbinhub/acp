@@ -14,14 +14,14 @@ import java.security.interfaces.RSAPublicKey
  * @since JDK 11
  */
 data class KeyEntity(
-        val keyType: KeyType,
-        var traitId: String,
-        var key: Key? = null,
-        var rsaPublicKey: RSAPublicKey? = null,
-        var rsaPrivateKey: RSAPrivateKey? = null,
-        var dsaPublicKey: DSAPublicKey? = null,
-        var dsaPrivateKey: DSAPrivateKey? = null,
-        var randomString: String? = null
+    val keyType: KeyType,
+    var traitId: String,
+    var key: Key? = null,
+    var rsaPublicKey: RSAPublicKey? = null,
+    var rsaPrivateKey: RSAPrivateKey? = null,
+    var dsaPublicKey: DSAPublicKey? = null,
+    var dsaPrivateKey: DSAPrivateKey? = null,
+    var randomString: String? = null
 ) : Serializable {
     companion object {
         private const val serialVersionUID = -7223413771603126570L
@@ -36,7 +36,12 @@ data class KeyEntity(
          * @return 密钥实体
          */
         @Throws(Exception::class)
-        internal fun generateEntity(keyType: KeyType, cryptType: String = HmacEncrypt.CRYPT_TYPE, traitId: String, length: Int = 0): KeyEntity {
+        internal fun generateEntity(
+            keyType: KeyType,
+            cryptType: String = HmacEncrypt.CRYPT_TYPE,
+            traitId: String,
+            length: Int = 0
+        ): KeyEntity {
             val entity = KeyEntity(keyType, traitId)
             when (keyType) {
                 KeyType.AES -> {

@@ -6,6 +6,10 @@ package io.github.zhangbinhub.acp.cloud.gateway.vo;
  */
 public class ErrorVo {
 
+    private int code;
+    private String error;
+    private String errorDescription;
+
     public String getError() {
         return error;
     }
@@ -29,11 +33,5 @@ public class ErrorVo {
     public void setCode(int code) {
         this.code = code;
     }
-
-    private int code;
-
-    private String error;
-
-    private String errorDescription;
 
 }

@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.core.client.http
 
-import okhttp3.RequestBody
 import io.github.zhangbinhub.acp.core.CommonTools
+import okhttp3.RequestBody
 
 /**
  * @author zhang by 11/07/2019
@@ -78,15 +78,15 @@ class RequestParamBuilder(var url: String) {
     }
 
     fun build(): RequestParam = RequestParam(
-            url = this.url,
-            requestHeaders = this.requestHeaders,
-            clientCharset = this.clientCharset,
-            basicUsername = this.basicUsername,
-            basicPassword = this.basicPassword,
-            params = this.params,
-            bodyString = this.bodyString,
-            bodyBytes = this.bodyBytes,
-            body = this.body
+        url = this.url,
+        requestHeaders = this.requestHeaders,
+        clientCharset = this.clientCharset,
+        basicUsername = this.basicUsername,
+        basicPassword = this.basicPassword,
+        params = this.params,
+        bodyString = this.bodyString,
+        bodyBytes = this.bodyBytes,
+        body = this.body
     )
 
 }

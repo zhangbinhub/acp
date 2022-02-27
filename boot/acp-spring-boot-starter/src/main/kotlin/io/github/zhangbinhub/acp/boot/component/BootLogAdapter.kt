@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.boot.component
 
-import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.core.log.LogFactory
 
 /**
  * @author zhang by 30/07/2019

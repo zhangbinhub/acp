@@ -1,16 +1,11 @@
 package io.github.zhangbinhub.acp.core.ftp.test;
 
+import com.jcraft.jsch.ChannelSftp;
 import io.github.zhangbinhub.acp.core.ftp.client.FtpClient;
 import io.github.zhangbinhub.acp.core.ftp.client.SftpClient;
-import com.jcraft.jsch.ChannelSftp;
 import org.apache.commons.net.ftp.FTPFile;
 import org.junit.jupiter.api.Test;
-import io.github.zhangbinhub.acp.core.security.Md5Encrypt;
-import io.github.zhangbinhub.acp.core.ftp.client.FtpClient;
-import io.github.zhangbinhub.acp.core.ftp.client.FtpConnectMode;
-import io.github.zhangbinhub.acp.core.ftp.client.SftpClient;
 
-import java.io.File;
 import java.util.List;
 
 /**

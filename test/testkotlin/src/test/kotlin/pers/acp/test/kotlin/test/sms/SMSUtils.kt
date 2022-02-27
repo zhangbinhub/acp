@@ -47,25 +47,28 @@ object SMSUtils {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_FORM_URLENCODED
         val param = LinkedMultiValueMap<String, String>()
-        param.setAll(mapOf(
+        param.setAll(
+            mapOf(
                 "userid" to userid,
                 "password" to md5(password),
                 "phone" to phone,
                 "codetype" to charsetName,
                 "message" to Base64.encodeBase64String(content.toByteArray(Charset.forName(charsetName))),
-                "encodeway" to "base64"))
+                "encodeway" to "base64"
+            )
+        )
         return RestTemplate().postForObject(url, HttpEntity(param, headers), String::class.java)
     }
 
     private fun md5(text: String): String =
-            try {
-                val md5 = MessageDigest.getInstance("MD5")
-                val byteArray = text.toByteArray(Charset.forName(charsetName))
-                val md5Bytes = md5.digest(byteArray)
-                Hex.encodeHexString(md5Bytes).toUpperCase()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                ""
-            }
+        try {
+            val md5 = MessageDigest.getInstance("MD5")
+            val byteArray = text.toByteArray(Charset.forName(charsetName))
+            val md5Bytes = md5.digest(byteArray)
+            Hex.encodeHexString(md5Bytes).toUpperCase()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            ""
+        }
 
 }

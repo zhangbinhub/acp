@@ -1,9 +1,8 @@
 package io.github.zhangbinhub.acp.core.client.http
 
+import io.github.zhangbinhub.acp.core.client.http.interfaces.CookieStore
 import okhttp3.Cookie
 import okhttp3.HttpUrl
-import io.github.zhangbinhub.acp.core.client.http.interfaces.CookieStore
-import java.util.ArrayList
 import java.util.concurrent.ConcurrentHashMap
 
 /**

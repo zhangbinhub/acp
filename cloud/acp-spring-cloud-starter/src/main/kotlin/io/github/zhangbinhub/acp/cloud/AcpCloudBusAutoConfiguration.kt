@@ -1,5 +1,6 @@
 package io.github.zhangbinhub.acp.cloud
 
+import io.github.zhangbinhub.acp.boot.component.BootLogAdapter
 import org.springframework.boot.autoconfigure.AutoConfigureBefore
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -13,7 +14,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
 import org.springframework.util.AntPathMatcher
 import org.springframework.util.PathMatcher
-import io.github.zhangbinhub.acp.boot.component.BootLogAdapter
 
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnBusEnabled

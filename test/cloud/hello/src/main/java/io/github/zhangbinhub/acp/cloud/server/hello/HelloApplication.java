@@ -1,7 +1,7 @@
 package io.github.zhangbinhub.acp.cloud.server.hello;
 
-import org.springframework.boot.SpringApplication;
 import io.github.zhangbinhub.acp.cloud.annotation.AcpCloudAtomApplication;
+import org.springframework.boot.SpringApplication;
 
 /**
  * @author zhangbin by 2018-3-5 13:56

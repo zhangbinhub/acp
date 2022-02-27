@@ -24,10 +24,6 @@ public enum PermissionType {
 
     ALLOW_SCREENREADERS("ALLOW_SCREENREADERS", PdfWriter.ALLOW_SCREENREADERS);
 
-    private final String name;
-
-    private final Integer value;
-
     private static final Map<Integer, PermissionType> map;
 
     static {
@@ -37,9 +33,19 @@ public enum PermissionType {
         }
     }
 
+    private final String name;
+    private final Integer value;
+
     PermissionType(String name, Integer value) {
         this.name = name;
         this.value = value;
+    }
+
+    public static PermissionType getEnum(Integer value) throws EnumValueUndefinedException {
+        if (map.containsKey(value)) {
+            return map.get(value);
+        }
+        throw new EnumValueUndefinedException(PermissionType.class, value + "");
     }
 
     public Integer getValue() {
@@ -52,12 +58,5 @@ public enum PermissionType {
 
     public Boolean equals(Integer value) {
         return this.value.equals(value);
-    }
-
-    public static PermissionType getEnum(Integer value) throws EnumValueUndefinedException {
-        if (map.containsKey(value)) {
-            return map.get(value);
-        }
-        throw new EnumValueUndefinedException(PermissionType.class, value + "");
     }
 }

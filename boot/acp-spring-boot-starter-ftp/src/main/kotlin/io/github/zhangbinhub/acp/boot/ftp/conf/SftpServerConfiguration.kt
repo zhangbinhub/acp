@@ -1,9 +1,9 @@
 package io.github.zhangbinhub.acp.boot.ftp.conf
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
-import org.springframework.boot.context.properties.ConfigurationProperties
 import io.github.zhangbinhub.acp.core.ftp.InitSftpServer
 import io.github.zhangbinhub.acp.core.ftp.conf.SftpListener
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
+import org.springframework.boot.context.properties.ConfigurationProperties
 
 /**
  * Sftp 服务配置

@@ -1,13 +1,10 @@
 package io.github.zhangbinhub.acp.core.ftp.test;
 
-import io.github.zhangbinhub.acp.core.ftp.server.FtpServerUser;
-import io.github.zhangbinhub.acp.core.ftp.server.SftpServerUser;
-import io.github.zhangbinhub.acp.core.ftp.user.UserFactory;
-import org.jetbrains.annotations.NotNull;
 import io.github.zhangbinhub.acp.core.CommonTools;
 import io.github.zhangbinhub.acp.core.ftp.server.FtpServerUser;
 import io.github.zhangbinhub.acp.core.ftp.server.SftpServerUser;
 import io.github.zhangbinhub.acp.core.ftp.user.UserFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

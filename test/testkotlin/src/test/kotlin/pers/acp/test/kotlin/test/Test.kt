@@ -1,21 +1,14 @@
 package pers.acp.test.kotlin.test
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.security.key.KeyManagement
 import kotlinx.coroutines.*
 import org.apache.commons.text.CharacterPredicates
 import org.apache.commons.text.RandomStringGenerator
-import org.bouncycastle.crypto.digests.MD2Digest
-import org.bouncycastle.crypto.digests.MD4Digest
-import org.bouncycastle.util.encoders.Hex
 import org.springframework.expression.spel.standard.SpelExpressionParser
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.security.Md5Encrypt
-import io.github.zhangbinhub.acp.core.security.SignatureEncrypt
-import io.github.zhangbinhub.acp.core.security.key.KeyManagement
 import java.io.File
-import java.math.BigDecimal
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
@@ -25,9 +18,9 @@ fun main(args: Array<String>) {
     println("Hello World!")
 
     val generator: RandomStringGenerator = RandomStringGenerator.Builder()
-            .withinRange(33, 126)
-            .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
-            .build()
+        .withinRange(33, 126)
+        .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
+        .build()
     val s1 = generator.generate(32)
     val s2 = generator.generate(16)
     println(s1)
@@ -49,12 +42,12 @@ fun main(args: Array<String>) {
     println(file.length())
 
 //    testSpEL()
-    val map = mutableMapOf<String,String>()
-    map["test3"]="3yyyy"
-    map["test4"]="4xxx"
+    val map = mutableMapOf<String, String>()
+    map["test3"] = "3yyyy"
+    map["test4"] = "4xxx"
     val template = "你好\${test3}\${test4}"
     println(template)
-    println(CommonTools.replaceVar(template,map))
+    println(CommonTools.replaceVar(template, map))
 //    val now = System.currentTimeMillis()
 //    println(testKotlin())
 //    println("总耗时：" + (System.currentTimeMillis() - now))
@@ -88,13 +81,13 @@ fun main(args: Array<String>) {
     testJson()
 
     println("生成10次随机数")
-    for(i in 1..10){
-        val str = KeyManagement.getRandomString(KeyManagement.RANDOM_NUMBER,1)
+    for (i in 1..10) {
+        val str = KeyManagement.getRandomString(KeyManagement.RANDOM_NUMBER, 1)
         println(str.toInt())
     }
 }
 
-fun testJson(){
+fun testJson() {
     val testString = """
         {
             "test1":"123",
@@ -103,7 +96,7 @@ fun testJson(){
         }
     """.trimIndent()
     val mapper = ObjectMapper()
-    val testData = mapper.readValue(testString,TestData::class.java)
+    val testData = mapper.readValue(testString, TestData::class.java)
     println(testData)
     println(testData.test3 is List<*>)
     println(testData.test3 is ArrayList<*>)

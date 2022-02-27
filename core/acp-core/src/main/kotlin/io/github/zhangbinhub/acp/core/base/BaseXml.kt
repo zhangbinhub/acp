@@ -2,13 +2,12 @@ package io.github.zhangbinhub.acp.core.base
 
 import com.thoughtworks.xstream.XStream
 import com.thoughtworks.xstream.io.xml.DomDriver
-import java.util.concurrent.ConcurrentHashMap
 import com.thoughtworks.xstream.security.AnyTypePermission
 import io.github.zhangbinhub.acp.core.exceptions.ConfigException
 import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
 import java.io.*
-import java.lang.Exception
+import java.util.concurrent.ConcurrentHashMap
 
 abstract class BaseXml {
     private var fileAbsPathName: String = ""

@@ -40,7 +40,12 @@ object GoogleAuthenticatorUtils {
      * 10:10:30-10:11:00 之间生成的TOTP 能校验通过
      * 以此类推
      */
-    fun verify(secretKey: String, code: String, crypto: String = "HmacSHA1", timeExcursionConfig: String? = "1"): Boolean {
+    fun verify(
+        secretKey: String,
+        code: String,
+        crypto: String = "HmacSHA1",
+        timeExcursionConfig: String? = "1"
+    ): Boolean {
         setupParam(crypto, timeExcursionConfig)
         val time = System.currentTimeMillis() / 1000 / 30
         for (i in -timeExcursion..timeExcursion) {
@@ -71,8 +76,10 @@ object GoogleAuthenticatorUtils {
      * @param time 时间戳
      */
     private fun getTOTP(secretKey: String, time: Long): String =
-            generateTOTP(Hex.encodeHexString(Base32().decode(secretKey.toUpperCase())),
-                    java.lang.Long.toHexString(time), 6)
+        generateTOTP(
+            Hex.encodeHexString(Base32().decode(secretKey.toUpperCase())),
+            java.lang.Long.toHexString(time), 6
+        )
 
     /**
      * 生成动态随机码
@@ -114,10 +121,10 @@ object GoogleAuthenticatorUtils {
      * 计算mac
      */
     private fun dpHash(keyBytes: ByteArray, text: ByteArray): ByteArray =
-            Mac.getInstance(crypto).let {
-                it.init(SecretKeySpec(keyBytes, "RAW"))
-                it.doFinal(text)
-            }
+        Mac.getInstance(crypto).let {
+            it.init(SecretKeySpec(keyBytes, "RAW"))
+            it.doFinal(text)
+        }
 
     /**
      * 时间前后偏移量

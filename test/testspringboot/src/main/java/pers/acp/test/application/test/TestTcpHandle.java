@@ -1,11 +1,11 @@
 package pers.acp.test.application.test;
 
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
+import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle;
+import io.github.zhangbinhub.acp.core.CommonTools;
 import io.netty.handler.timeout.IdleStateEvent;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import io.github.zhangbinhub.acp.core.CommonTools;
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
-import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle;
 import pers.acp.test.application.repo.primary.TableRepo;
 
 /**

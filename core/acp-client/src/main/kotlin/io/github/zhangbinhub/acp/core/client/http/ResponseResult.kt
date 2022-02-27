@@ -7,10 +7,10 @@ import okhttp3.Response
  * @since JDK 11
  */
 data class ResponseResult(
-        var status: Int = 0,
-        var headers: MutableMap<String, List<String>>,
-        var body: String? = null,
-        var response: Response
+    var status: Int = 0,
+    var headers: MutableMap<String, List<String>>,
+    var body: String? = null,
+    var response: Response
 ) {
     override fun toString(): String {
         return "status=$status,body=$body"

@@ -1,9 +1,9 @@
 package io.github.zhangbinhub.acp.boot.listener
 
-import org.springframework.boot.context.event.ApplicationStartedEvent
-import org.springframework.context.ApplicationListener
 import io.github.zhangbinhub.acp.boot.base.BaseInitialization
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import org.springframework.boot.context.event.ApplicationStartedEvent
+import org.springframework.context.ApplicationListener
 
 /**
  * SpringBoot 应用初始化

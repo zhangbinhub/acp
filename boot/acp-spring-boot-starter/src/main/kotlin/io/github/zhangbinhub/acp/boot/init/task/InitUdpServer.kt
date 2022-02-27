@@ -1,19 +1,21 @@
 package io.github.zhangbinhub.acp.boot.init.task
 
-import io.github.zhangbinhub.acp.core.CommonTools
 import io.github.zhangbinhub.acp.boot.conf.UdpServerConfiguration
 import io.github.zhangbinhub.acp.boot.daemon.DaemonServiceManager
 import io.github.zhangbinhub.acp.boot.init.BaseInitTask
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
-import io.github.zhangbinhub.acp.boot.socket.udp.UdpServer
 import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
+import io.github.zhangbinhub.acp.boot.socket.udp.UdpServer
+import io.github.zhangbinhub.acp.core.CommonTools
 
 /**
  * 初始化UDP服务
  */
-class InitUdpServer(private val logAdapter: LogAdapter,
-                    private val udpServerConfiguration: UdpServerConfiguration,
-                    private val socketServerHandleList: List<ISocketServerHandle>) : BaseInitTask() {
+class InitUdpServer(
+    private val logAdapter: LogAdapter,
+    private val udpServerConfiguration: UdpServerConfiguration,
+    private val socketServerHandleList: List<ISocketServerHandle>
+) : BaseInitTask() {
 
     fun startUdpServer() {
         logAdapter.info("start udp listen service ...")

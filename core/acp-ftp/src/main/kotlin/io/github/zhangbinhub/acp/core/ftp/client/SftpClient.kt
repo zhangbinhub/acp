@@ -5,8 +5,8 @@ import com.jcraft.jsch.ChannelSftp
 import com.jcraft.jsch.JSch
 import com.jcraft.jsch.Session
 import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.ftp.exceptions.SftpException
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import java.io.File
 import java.util.*
 
@@ -46,7 +46,12 @@ class SftpClient : BaseClient {
      * @param username    用户名
      * @param password    密码
      */
-    constructor(hostname: String, port: Int, username: String, password: String) : super(hostname, port, username, password)
+    constructor(hostname: String, port: Int, username: String, password: String) : super(
+        hostname,
+        port,
+        username,
+        password
+    )
 
     /**
      * 构造基于秘钥认证的sftp对象
@@ -57,7 +62,13 @@ class SftpClient : BaseClient {
      * @param port        端口号
      * @param username    用户名
      */
-    constructor(keyFilePath: String, passphrase: String, hostname: String, port: Int, username: String) : super(hostname, port, username, "") {
+    constructor(
+        keyFilePath: String,
+        passphrase: String,
+        hostname: String,
+        port: Int,
+        username: String
+    ) : super(hostname, port, username, "") {
         this.keyFilePath = keyFilePath
         this.passphrase = passphrase
     }
@@ -237,52 +248,52 @@ class SftpClient : BaseClient {
      * 删除目录
      */
     fun doDeleteDirForSFTP(): Boolean =
-            try {
-                if (CommonTools.isNullStr(fileName)) {
-                    throw SftpException("fileName is null")
-                }
-                connect()
-                formatRemotePath()
-                sftp!!.cd(remotePath)
-                sftp!!.rmdir(fileName)
-                true
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                false
-            } finally {
-                finallyFunc()
+        try {
+            if (CommonTools.isNullStr(fileName)) {
+                throw SftpException("fileName is null")
             }
+            connect()
+            formatRemotePath()
+            sftp!!.cd(remotePath)
+            sftp!!.rmdir(fileName)
+            true
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            false
+        } finally {
+            finallyFunc()
+        }
 
     /**
      * 删除文件
      */
     fun doDeleteFileForSFTP(): Boolean =
-            try {
-                if (CommonTools.isNullStr(fileName)) {
-                    throw SftpException("fileName is null")
-                }
-                connect()
-                formatRemotePath()
-                sftp!!.cd(remotePath)
-                sftp!!.rm(fileName)
-                true
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                false
-            } finally {
-                finallyFunc()
+        try {
+            if (CommonTools.isNullStr(fileName)) {
+                throw SftpException("fileName is null")
             }
+            connect()
+            formatRemotePath()
+            sftp!!.cd(remotePath)
+            sftp!!.rm(fileName)
+            true
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            false
+        } finally {
+            finallyFunc()
+        }
 
     fun getFileEntityListForSFTP(): List<ChannelSftp.LsEntry> =
-            try {
-                connect()
-                formatRemotePath()
-                sftp!!.ls(remotePath).map { item -> item as ChannelSftp.LsEntry }
-                        .filter { entity -> !listOf(".", "..").contains(entity.filename) }
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                listOf()
-            } finally {
-                finallyFunc()
-            }
+        try {
+            connect()
+            formatRemotePath()
+            sftp!!.ls(remotePath).map { item -> item as ChannelSftp.LsEntry }
+                .filter { entity -> !listOf(".", "..").contains(entity.filename) }
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            listOf()
+        } finally {
+            finallyFunc()
+        }
 }

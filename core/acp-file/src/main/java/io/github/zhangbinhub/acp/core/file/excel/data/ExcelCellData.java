@@ -6,6 +6,10 @@ package io.github.zhangbinhub.acp.core.file.excel.data;
  */
 public class ExcelCellData {
 
+    private long index;
+    private ExcelDataType dataType;
+    private Object value;
+
     public long getIndex() {
         return index;
     }
@@ -29,8 +33,4 @@ public class ExcelCellData {
     public void setValue(Object value) {
         this.value = value;
     }
-
-    private long index;
-    private ExcelDataType dataType;
-    private Object value;
 }

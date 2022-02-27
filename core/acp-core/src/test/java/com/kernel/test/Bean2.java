@@ -5,6 +5,9 @@ package com.kernel.test;
  */
 public class Bean2 {
 
+    private String param1;
+    private int param2;
+
     public String getParam1() {
         return param1;
     }
@@ -20,8 +23,4 @@ public class Bean2 {
     public void setParam2(int param2) {
         this.param2 = param2;
     }
-
-    private String param1;
-
-    private int param2;
 }

@@ -7,16 +7,16 @@ import com.thoughtworks.xstream.annotations.XStreamAlias
  */
 @XStreamAlias("root")
 data class TestBean(
-        @XStreamAlias("fileFlag")
-        var fileFlag: String? = null,
-        @XStreamAlias("BODY")
-        var body: Body? = Body()
+    @XStreamAlias("fileFlag")
+    var fileFlag: String? = null,
+    @XStreamAlias("BODY")
+    var body: Body? = Body()
 ) {
     data class Body(
-            /**
-             * 手机号码
-             */
-            @XStreamAlias("mobile")
-            var mobile: String? = null
+        /**
+         * 手机号码
+         */
+        @XStreamAlias("mobile")
+        var mobile: String? = null
     )
 }

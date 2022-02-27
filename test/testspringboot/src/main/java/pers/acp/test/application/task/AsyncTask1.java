@@ -1,14 +1,14 @@
 package pers.acp.test.application.task;
 
+import io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask;
+import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
+import io.github.zhangbinhub.acp.core.CommonTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask;
-import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter;
 import pers.acp.test.application.repo.pg.TableTwoRepo;
 import pers.acp.test.application.repo.primary.TableRepo;
-import io.github.zhangbinhub.acp.core.CommonTools;
 
 @Component("task1")
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)

@@ -1,11 +1,10 @@
 package io.github.zhangbinhub.acp.core.security
 
-import org.bouncycastle.util.encoders.Base64
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
-
+import org.bouncycastle.util.encoders.Base64
+import java.security.Key
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
-import java.security.Key
 
 /**
  * @author zhang by 10/07/2019

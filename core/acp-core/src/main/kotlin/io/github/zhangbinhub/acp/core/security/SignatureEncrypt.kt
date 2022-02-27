@@ -1,9 +1,8 @@
 package io.github.zhangbinhub.acp.core.security
 
-import org.bouncycastle.pqc.math.linearalgebra.ByteUtils
 import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
-
+import org.bouncycastle.pqc.math.linearalgebra.ByteUtils
 import java.security.MessageDigest
 
 /**
@@ -30,11 +29,11 @@ object SignatureEncrypt {
      * @return 密文
      */
     fun encrypt(plainText: String, algorithm: String): String =
-            try {
-                ByteUtils.toHexString(MessageDigest.getInstance(algorithm).digest(plainText.toByteArray(charset(ENCODE))))
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                ""
-            }
+        try {
+            ByteUtils.toHexString(MessageDigest.getInstance(algorithm).digest(plainText.toByteArray(charset(ENCODE))))
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            ""
+        }
 
 }

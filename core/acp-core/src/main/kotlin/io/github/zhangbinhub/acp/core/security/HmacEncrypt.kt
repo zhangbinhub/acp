@@ -1,10 +1,9 @@
 package io.github.zhangbinhub.acp.core.security
 
-import org.bouncycastle.pqc.math.linearalgebra.ByteUtils
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
-
-import javax.crypto.Mac
+import org.bouncycastle.pqc.math.linearalgebra.ByteUtils
 import java.security.Key
+import javax.crypto.Mac
 
 /**
  * @author zhang by 10/07/2019

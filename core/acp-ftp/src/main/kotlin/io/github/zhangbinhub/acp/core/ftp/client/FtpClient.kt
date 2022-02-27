@@ -1,11 +1,11 @@
 package io.github.zhangbinhub.acp.core.ftp.client
 
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.ftp.exceptions.FtpException
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import org.apache.commons.net.ftp.FTPClient
 import org.apache.commons.net.ftp.FTPFile
 import org.apache.commons.net.ftp.FTPReply
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.log.LogFactory
-import io.github.zhangbinhub.acp.core.ftp.exceptions.FtpException
 import java.io.*
 import java.net.InetAddress
 
@@ -13,7 +13,8 @@ import java.net.InetAddress
  * @author zhang by 12/07/2019
  * @since JDK 11
  */
-class FtpClient(hostname: String, port: Int, username: String, password: String) : BaseClient(hostname, port, username, password) {
+class FtpClient(hostname: String, port: Int, username: String, password: String) :
+    BaseClient(hostname, port, username, password) {
 
     private val log = LogFactory.getInstance(this.javaClass)
 
@@ -57,7 +58,10 @@ class FtpClient(hostname: String, port: Int, username: String, password: String)
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE)
             when (connectMode) {
                 FtpConnectMode.ACTIVE_LOCAL -> ftpClient.enterLocalActiveMode()
-                FtpConnectMode.ACTIVE_REMOTE -> ftpClient.enterRemoteActiveMode(InetAddress.getByName(activeServerHost), activeServerPort)
+                FtpConnectMode.ACTIVE_REMOTE -> ftpClient.enterRemoteActiveMode(
+                    InetAddress.getByName(activeServerHost),
+                    activeServerPort
+                )
                 FtpConnectMode.PASSIVE_LOCAL -> ftpClient.enterLocalPassiveMode()
                 FtpConnectMode.PASSIVE_REMOTE -> ftpClient.enterRemotePassiveMode()
             }
@@ -254,39 +258,39 @@ class FtpClient(hostname: String, port: Int, username: String, password: String)
      * @return 成功或失败
      */
     fun doUpLoadForFTP(localFile: File?): Boolean =
-            try {
-                if (localFile == null) {
-                    throw FtpException("localFile is null")
-                }
-                if (CommonTools.isNullStr(fileName)) {
-                    throw FtpException("fileName is null")
-                }
-                if (!connect()) {
-                    throw FtpException("ftp server login failed!")
-                }
-                formatRemotePath()
-                ftpClient.controlEncoding = charset
-                remotePath = String(remotePath.toByteArray(charset(charset)), charset(serverCharset))
-                fileName = String(fileName.toByteArray(charset(charset)), charset(serverCharset))
-                if (!ftpClient.changeWorkingDirectory(remotePath)) {
-                    if (remotePath.startsWith("/")) {
-                        remotePath = remotePath.substring(1)
-                    }
-                    createDirectory(remotePath)
-                }
-                val uploadResult = uploadFile(fileName, localFile)
-                ftpClient.logout()
-                ftpClient.disconnect()
-                if (uploadResult) {
-                    log.info("ftp download successFull{" + localFile.name + "}: " + localFile.canonicalPath)
-                }
-                uploadResult
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                false
-            } finally {
-                finallyFunc()
+        try {
+            if (localFile == null) {
+                throw FtpException("localFile is null")
             }
+            if (CommonTools.isNullStr(fileName)) {
+                throw FtpException("fileName is null")
+            }
+            if (!connect()) {
+                throw FtpException("ftp server login failed!")
+            }
+            formatRemotePath()
+            ftpClient.controlEncoding = charset
+            remotePath = String(remotePath.toByteArray(charset(charset)), charset(serverCharset))
+            fileName = String(fileName.toByteArray(charset(charset)), charset(serverCharset))
+            if (!ftpClient.changeWorkingDirectory(remotePath)) {
+                if (remotePath.startsWith("/")) {
+                    remotePath = remotePath.substring(1)
+                }
+                createDirectory(remotePath)
+            }
+            val uploadResult = uploadFile(fileName, localFile)
+            ftpClient.logout()
+            ftpClient.disconnect()
+            if (uploadResult) {
+                log.info("ftp download successFull{" + localFile.name + "}: " + localFile.canonicalPath)
+            }
+            uploadResult
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            false
+        } finally {
+            finallyFunc()
+        }
 
     /**
      * 删除文件
@@ -294,49 +298,49 @@ class FtpClient(hostname: String, port: Int, username: String, password: String)
      * @return 成功或失败
      */
     fun doDeleteForFTP(): Boolean =
-            try {
-                if (CommonTools.isNullStr(fileName)) {
-                    throw FtpException("fileName is null")
-                }
-                if (!connect()) {
-                    throw FtpException("ftp server login failed!")
-                }
-                formatRemotePath()
-                remotePath = String(remotePath.toByteArray(charset(charset)), charset(serverCharset))
-                fileName = String(fileName.toByteArray(charset(charset)), charset(serverCharset))
-                ftpClient.changeWorkingDirectory(remotePath)
-                var result = true
-                val files = ftpClient.listFiles(fileName)
-                if (files.size == 1) {
-                    result = ftpClient.deleteFile(fileName)
-                }
-                ftpClient.logout()
-                ftpClient.disconnect()
-                result
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                false
-            } finally {
-                finallyFunc()
+        try {
+            if (CommonTools.isNullStr(fileName)) {
+                throw FtpException("fileName is null")
             }
+            if (!connect()) {
+                throw FtpException("ftp server login failed!")
+            }
+            formatRemotePath()
+            remotePath = String(remotePath.toByteArray(charset(charset)), charset(serverCharset))
+            fileName = String(fileName.toByteArray(charset(charset)), charset(serverCharset))
+            ftpClient.changeWorkingDirectory(remotePath)
+            var result = true
+            val files = ftpClient.listFiles(fileName)
+            if (files.size == 1) {
+                result = ftpClient.deleteFile(fileName)
+            }
+            ftpClient.logout()
+            ftpClient.disconnect()
+            result
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            false
+        } finally {
+            finallyFunc()
+        }
 
     fun getFileEntityListForFTP(): List<FTPFile> =
-            try {
-                if (!connect()) {
-                    throw FtpException("ftp server login failed!")
-                }
-                formatRemotePath()
-                remotePath = String(remotePath.toByteArray(charset(charset)), charset(serverCharset))
-                ftpClient.changeWorkingDirectory(remotePath)
-                ftpClient.listFiles()
-                val fileList = ftpClient.listFiles(remotePath).toList()
-                ftpClient.logout()
-                ftpClient.disconnect()
-                fileList
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                listOf()
-            } finally {
-                finallyFunc()
+        try {
+            if (!connect()) {
+                throw FtpException("ftp server login failed!")
             }
+            formatRemotePath()
+            remotePath = String(remotePath.toByteArray(charset(charset)), charset(serverCharset))
+            ftpClient.changeWorkingDirectory(remotePath)
+            ftpClient.listFiles()
+            val fileList = ftpClient.listFiles(remotePath).toList()
+            ftpClient.logout()
+            ftpClient.disconnect()
+            fileList
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            listOf()
+        } finally {
+            finallyFunc()
+        }
 }

@@ -1,11 +1,11 @@
 package pers.acp.test.application.conf;
 
+import io.github.zhangbinhub.acp.boot.conf.SwaggerConfiguration;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import io.github.zhangbinhub.acp.boot.conf.SwaggerConfiguration;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -36,37 +36,6 @@ public class CustomerSwaggerConfiguration {
     }
 
     @Bean
-    public Docket createRestApi() {
-        // 添加全局 header 参数信息
-//        ParameterBuilder tokenPar = new ParameterBuilder();
-//        List<Parameter> pars = new ArrayList<>();
-//        tokenPar.name("Authorization").description("认证信息").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
-//        pars.add(tokenPar.build());
-        return new Docket(DocumentationType.OAS_30)
-                .enable(swaggerConfiguration.getEnabled())
-                .apiInfo(apiInfo())
-                .select()
-                //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("pers.acp.test.application.controller"))
-                .paths(PathSelectors.any())
-                .build();
-//                .globalOperationParameters(pars);
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                //页面标题
-                .title("Test Spring Boot RESTful API")
-                //创建人
-                .contact(new Contact("ZhangBin", "https://github.com/zhangbin1010", "zhangbin1010@qq.com"))
-                //版本号
-                .version("1.0.0")
-                //描述
-                .description("API Document")
-                .build();
-    }
-
-    @Bean
     public static BeanPostProcessor springfoxHandlerProviderBeanPostProcessor() {
         return new BeanPostProcessor() {
 
@@ -93,6 +62,31 @@ public class CustomerSwaggerConfiguration {
                 }
             }
         };
+    }
+
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.OAS_30)
+                .enable(swaggerConfiguration.getEnabled())
+                .apiInfo(apiInfo())
+                .select()
+                //为当前包路径
+                .apis(RequestHandlerSelectors.basePackage("pers.acp.test.application.controller"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                //页面标题
+                .title("Test Spring Boot RESTful API")
+                //创建人
+                .contact(new Contact("ZhangBin", "https://github.com/zhangbin1010", "zhangbin1010@qq.com"))
+                //版本号
+                .version("1.0.0")
+                //描述
+                .description("API Document")
+                .build();
     }
 
 }

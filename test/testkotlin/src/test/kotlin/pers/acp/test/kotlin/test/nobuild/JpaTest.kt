@@ -1,5 +1,10 @@
 package pers.acp.test.kotlin.test.nobuild
 
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.annotation.Rollback
+import org.springframework.transaction.annotation.Transactional
+import pers.acp.test.kotlin.BaseTest
 import pers.acp.test.kotlin.domain.TableOneDomain
 import pers.acp.test.kotlin.entity.Member
 import pers.acp.test.kotlin.entity.MemberTwo
@@ -9,11 +14,6 @@ import pers.acp.test.kotlin.repository.MemberRepository
 import pers.acp.test.kotlin.repository.MemberTwoRepository
 import pers.acp.test.kotlin.repository.TableOneRepository
 import pers.acp.test.kotlin.repository.TableTwoRepository
-import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.annotation.Rollback
-import org.springframework.transaction.annotation.Transactional
-import pers.acp.test.kotlin.BaseTest
 
 
 /**

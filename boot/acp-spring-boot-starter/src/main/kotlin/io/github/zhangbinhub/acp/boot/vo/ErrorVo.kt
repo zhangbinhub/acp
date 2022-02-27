@@ -11,10 +11,10 @@ import io.swagger.annotations.ApiModelProperty
  */
 @ApiModel(value = "错误信息")
 data class ErrorVo(
-        @ApiModelProperty(value = "错误编码")
-        var code: Int = 0,
-        @ApiModelProperty(value = "信息")
-        var error: String? = null,
-        @ApiModelProperty(value = "描述")
-        var errorDescription: String? = null
+    @ApiModelProperty(value = "错误编码")
+    var code: Int = 0,
+    @ApiModelProperty(value = "信息")
+    var error: String? = null,
+    @ApiModelProperty(value = "描述")
+    var errorDescription: String? = null
 )

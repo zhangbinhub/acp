@@ -1,16 +1,17 @@
 package io.github.zhangbinhub.acp.core.message.email
 
-import io.github.zhangbinhub.acp.core.message.exceptions.EmailException
 import io.github.zhangbinhub.acp.core.CommonTools
 import io.github.zhangbinhub.acp.core.log.LogFactory
-
+import io.github.zhangbinhub.acp.core.message.exceptions.EmailException
+import java.util.*
 import javax.activation.DataHandler
 import javax.activation.FileDataSource
-import javax.mail.*
+import javax.mail.Authenticator
 import javax.mail.Message.RecipientType
+import javax.mail.PasswordAuthentication
+import javax.mail.Session
+import javax.mail.Transport
 import javax.mail.internet.*
-import java.util.ArrayList
-import java.util.Properties
 
 /**
  * @author zhang by 11/07/2019

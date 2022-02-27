@@ -7,22 +7,23 @@ import io.github.zhangbinhub.acp.core.CommonTools
  * @since JDK 11
  */
 abstract class BaseClient(
-        /**
-         * FTP 服务器地址IP地址
-         */
-        var hostname: String,
-        /**
-         * FTP 端口
-         */
-        var port: Int,
-        /**
-         * FTP 登录用户名
-         */
-        var username: String,
-        /**
-         * FTP 登录密码
-         */
-        var password: String) {
+    /**
+     * FTP 服务器地址IP地址
+     */
+    var hostname: String,
+    /**
+     * FTP 端口
+     */
+    var port: Int,
+    /**
+     * FTP 登录用户名
+     */
+    var username: String,
+    /**
+     * FTP 登录密码
+     */
+    var password: String
+) {
 
     var charset = CommonTools.getDefaultCharset()
 

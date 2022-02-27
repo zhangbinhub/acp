@@ -1,14 +1,13 @@
 package io.github.zhangbinhub.acp.core.ftp
 
 import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
-import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.ftp.base.InitServer
 import io.github.zhangbinhub.acp.core.ftp.conf.FtpConfig
 import io.github.zhangbinhub.acp.core.ftp.server.FtpServer
 import io.github.zhangbinhub.acp.core.ftp.user.UserFactory
+import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
+import io.github.zhangbinhub.acp.core.log.LogFactory
 import java.lang.reflect.InvocationTargetException
-import java.util.ArrayList
 
 /**
  * @author zhang by 12/07/2019
@@ -38,7 +37,13 @@ object InitFtpServer : InitServer() {
         return ftpServers
     }
 
-    @Throws(ClassNotFoundException::class, NoSuchMethodException::class, IllegalAccessException::class, InvocationTargetException::class, InstantiationException::class)
+    @Throws(
+        ClassNotFoundException::class,
+        NoSuchMethodException::class,
+        IllegalAccessException::class,
+        InvocationTargetException::class,
+        InstantiationException::class
+    )
     private fun doStart(ftpConfig: FtpConfig?): List<IDaemonService> {
         val ftpServers = ArrayList<IDaemonService>()
         ftpConfig?.let {

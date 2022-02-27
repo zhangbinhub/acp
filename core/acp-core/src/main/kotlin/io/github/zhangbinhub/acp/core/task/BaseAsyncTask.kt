@@ -1,9 +1,8 @@
 package io.github.zhangbinhub.acp.core.task
 
-import org.joda.time.DateTime
 import io.github.zhangbinhub.acp.core.log.LogFactory
 import io.github.zhangbinhub.acp.core.tools.CommonUtils
-
+import org.joda.time.DateTime
 import java.util.concurrent.Callable
 import java.util.concurrent.CancellationException
 
@@ -11,7 +10,8 @@ import java.util.concurrent.CancellationException
  * @author zhang by 10/07/2019
  * @since JDK 11
  */
-abstract class BaseAsyncTask(var taskName: String, var needExecuteImmediate: Boolean = false) : IBaseTask, Callable<Any> {
+abstract class BaseAsyncTask(var taskName: String, var needExecuteImmediate: Boolean = false) : IBaseTask,
+    Callable<Any> {
 
     /**
      * 日志对象

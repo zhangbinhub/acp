@@ -19,7 +19,13 @@ abstract class InitServer {
         }
 
         @JvmStatic
-        @Throws(ClassNotFoundException::class, NoSuchMethodException::class, IllegalAccessException::class, InvocationTargetException::class, InstantiationException::class)
+        @Throws(
+            ClassNotFoundException::class,
+            NoSuchMethodException::class,
+            IllegalAccessException::class,
+            InvocationTargetException::class,
+            InstantiationException::class
+        )
         internal fun getUserFactory(className: String): UserFactory {
             var userFactory = userFactoryMap[className]
             if (userFactory == null) {

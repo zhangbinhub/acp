@@ -4,6 +4,7 @@
 
 - Global
     - 增加jdk8编译版本
+    - [Upgrade] Reformat Code
     - [Upgrade] 升级 Gradle 至 7.4
     - [Upgrade] 删除gradle.properties，该配置文件现在用于存放敏感的隐私信息，不进行代码托管
     - [Upgrade] 原gradle.properties中的配置信息移入project.properties，gradle.properties只存放工程构建和发布时的隐私信息，正常使用或发布至本地仓库无需该文件

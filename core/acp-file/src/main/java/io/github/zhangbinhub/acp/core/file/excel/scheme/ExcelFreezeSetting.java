@@ -5,6 +5,9 @@ package io.github.zhangbinhub.acp.core.file.excel.scheme;
  * @since JDK 11
  */
 public class ExcelFreezeSetting {
+    private int row = 0;
+    private int col = 0;
+
     public int getRow() {
         return row;
     }
@@ -20,7 +23,4 @@ public class ExcelFreezeSetting {
     public void setCol(int col) {
         this.col = col;
     }
-
-    private int row = 0;
-    private int col = 0;
 }

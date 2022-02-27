@@ -1,5 +1,13 @@
 package io.github.zhangbinhub.acp.core.ftp.server
 
+import io.github.zhangbinhub.acp.core.CommonTools
+import io.github.zhangbinhub.acp.core.ftp.conf.FtpListener
+import io.github.zhangbinhub.acp.core.ftp.exceptions.FtpServerException
+import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
+import io.github.zhangbinhub.acp.core.log.LogFactory
+import io.github.zhangbinhub.acp.core.security.Md5Encrypt
+import io.github.zhangbinhub.acp.core.security.Sha1Encrypt
+import io.github.zhangbinhub.acp.core.security.Sha256Encrypt
 import org.apache.ftpserver.FtpServer
 import org.apache.ftpserver.FtpServerFactory
 import org.apache.ftpserver.ftplet.Authority
@@ -11,15 +19,6 @@ import org.apache.ftpserver.usermanager.impl.BaseUser
 import org.apache.ftpserver.usermanager.impl.ConcurrentLoginPermission
 import org.apache.ftpserver.usermanager.impl.TransferRatePermission
 import org.apache.ftpserver.usermanager.impl.WritePermission
-import io.github.zhangbinhub.acp.core.CommonTools
-import io.github.zhangbinhub.acp.core.interfaces.IDaemonService
-import io.github.zhangbinhub.acp.core.log.LogFactory
-import io.github.zhangbinhub.acp.core.security.Md5Encrypt
-import io.github.zhangbinhub.acp.core.security.Sha1Encrypt
-import io.github.zhangbinhub.acp.core.security.Sha256Encrypt
-import io.github.zhangbinhub.acp.core.ftp.conf.FtpListener
-import io.github.zhangbinhub.acp.core.ftp.exceptions.FtpServerException
-import java.util.ArrayList
 
 /**
  * @author zhang by 12/07/2019
@@ -49,7 +48,14 @@ class FtpServer(private val userList: List<FtpServerUser>, private val listen: F
             val factory = ListenerFactory()
             factory.port = listen.port
             serverFactory.addListener("default", factory.createListener())
-            val connectionConfig = DefaultConnectionConfig(listen.anonymousLoginEnabled, listen.loginFailureDelay, listen.maxLogins, listen.maxAnonymousLogins, listen.maxLoginFailures, listen.maxThreads)
+            val connectionConfig = DefaultConnectionConfig(
+                listen.anonymousLoginEnabled,
+                listen.loginFailureDelay,
+                listen.maxLogins,
+                listen.maxAnonymousLogins,
+                listen.maxLoginFailures,
+                listen.maxThreads
+            )
             serverFactory.connectionConfig = connectionConfig
             val pwdMode = listen.pwdEncryptMode
 
@@ -106,7 +112,12 @@ class FtpServer(private val userList: List<FtpServerUser>, private val listen: F
                         authorities.add(WritePermission())
                     }
                     authorities.add(TransferRatePermission(ftpServerUser.downloadRate, ftpServerUser.uploadRate))
-                    authorities.add(ConcurrentLoginPermission(ftpServerUser.maxLoginNumber, ftpServerUser.maxLoginPerIp))
+                    authorities.add(
+                        ConcurrentLoginPermission(
+                            ftpServerUser.maxLoginNumber,
+                            ftpServerUser.maxLoginPerIp
+                        )
+                    )
                     user.authorities = authorities
                     serverFactory.userManager.save(user)
                 }

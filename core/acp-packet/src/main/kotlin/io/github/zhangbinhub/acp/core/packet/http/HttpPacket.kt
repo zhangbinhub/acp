@@ -31,12 +31,12 @@ object HttpPacket {
     @JvmStatic
     @JvmOverloads
     fun urlEncoding(url: String, encoding: String = CommonTools.getDefaultCharset()): String =
-            try {
-                URLEncoder.encode(url, encoding)
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                url
-            }
+        try {
+            URLEncoder.encode(url, encoding)
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            url
+        }
 
     /**
      * url解码
@@ -48,12 +48,12 @@ object HttpPacket {
     @JvmStatic
     @JvmOverloads
     fun urlDecoding(url: String, encoding: String = CommonTools.getDefaultCharset()): String =
-            try {
-                URLDecoder.decode(url, encoding)
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                url
-            }
+        try {
+            URLDecoder.decode(url, encoding)
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            url
+        }
 
     /**
      * 构建GET请求参数
@@ -65,29 +65,33 @@ object HttpPacket {
      */
     @JvmStatic
     @JvmOverloads
-    fun buildGetParam(url: String, params: Map<String, String>? = null, clientCharset: String = CommonTools.getDefaultCharset()): String =
-            try {
-                var urlStr = url
-                params?.let {
-                    val urlBuilder = StringBuilder(urlStr)
-                    it.forEach { (key, value) ->
-                        run {
-                            val sepStr =
-                                    if (!urlBuilder.toString().contains("?")) {
-                                        "?"
-                                    } else {
-                                        "&"
-                                    }
-                            urlBuilder.append(sepStr).append(key).append("=").append(urlEncoding(value, clientCharset))
-                        }
+    fun buildGetParam(
+        url: String,
+        params: Map<String, String>? = null,
+        clientCharset: String = CommonTools.getDefaultCharset()
+    ): String =
+        try {
+            var urlStr = url
+            params?.let {
+                val urlBuilder = StringBuilder(urlStr)
+                it.forEach { (key, value) ->
+                    run {
+                        val sepStr =
+                            if (!urlBuilder.toString().contains("?")) {
+                                "?"
+                            } else {
+                                "&"
+                            }
+                        urlBuilder.append(sepStr).append(key).append("=").append(urlEncoding(value, clientCharset))
                     }
-                    urlStr = urlBuilder.toString()
                 }
-                urlStr
-            } catch (e: Exception) {
-                log.error(e.message, e)
-                url
+                urlStr = urlBuilder.toString()
             }
+            urlStr
+        } catch (e: Exception) {
+            log.error(e.message, e)
+            url
+        }
 
     /**
      * 构建POST请求XML
@@ -100,7 +104,12 @@ object HttpPacket {
      */
     @JvmStatic
     @JvmOverloads
-    fun buildPostXMLParam(params: Map<String, String>, rootName: String = "xml", clientCharset: String = CommonTools.getDefaultCharset(), isIndent: Boolean = false): String {
+    fun buildPostXMLParam(
+        params: Map<String, String>,
+        rootName: String = "xml",
+        clientCharset: String = CommonTools.getDefaultCharset(),
+        isIndent: Boolean = false
+    ): String {
         val mapper = ObjectMapper()
         val json = mapper.createObjectNode()
         val info = mapper.createObjectNode()

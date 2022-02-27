@@ -17,7 +17,8 @@ object MoneyToCN {
     /**
      * 汉语中货币单位大写，这样的设计类似于占位符
      */
-    private val CN_UPPER_CN = arrayOf("分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "兆", "拾", "佰", "仟")
+    private val CN_UPPER_CN =
+        arrayOf("分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟", "兆", "拾", "佰", "仟")
 
     /**
      * 特殊字符：整
@@ -58,7 +59,7 @@ object MoneyToCN {
         }
         // 这里会进行金额的四舍五入
         var number = numberOfMoney.movePointRight(MONEY_PRECISION)
-                .setScale(0, RoundingMode.HALF_UP).abs().toLong()
+            .setScale(0, RoundingMode.HALF_UP).abs().toLong()
         // 得到小数点后两位值
         val scale = number % 100
         var numUnit: Int
