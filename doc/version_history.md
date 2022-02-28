@@ -15,13 +15,13 @@
         - jupiter 5.8.2
         - junit-platform 1.8.2
         - kotlin 1.6.10
-        - Spring Boot 2.6.3
+        - Spring Boot 2.6.4
         - Spring Boot Admin 2.6.2
         - Spring Cloud 2021.0.1
         - logback 1.2.10
         - jackson 2.13.1
-        - netty 4.1.73.Final
-        - slf4j 1.7.33
+        - netty 4.1.74.Final
+        - slf4j 1.7.36
         - joda time 2.10.13
         - commons-lang3 3.12.0
         - poi 5.1.0
