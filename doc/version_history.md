@@ -20,8 +20,8 @@
         - Spring Cloud 2021.0.1
         - logback 1.2.10
         - jackson 2.13.1
-        - netty 4.1.73.Final
-        - slf4j 1.7.33
+        - netty 4.1.74.Final
+        - slf4j 1.7.36
         - joda time 2.10.13
         - commons-lang3 3.12.0
         - poi 5.1.0
