@@ -15,7 +15,7 @@
         - jupiter 5.8.2
         - junit-platform 1.8.2
         - kotlin 1.6.10
-        - Spring Boot 2.6.3
+        - Spring Boot 2.6.4
         - Spring Boot Admin 2.6.2
         - Spring Cloud 2021.0.1
         - logback 1.2.10
