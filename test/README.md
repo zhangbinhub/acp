@@ -17,4 +17,4 @@
 ## cloud
 
 - 使用 java 语言，引入脚手架开发的 spring cloud 应用群 demo
-- 使用 nacos 作为服务注册发现中心和配置中心，[配置信息](../doc/nacos_config_export_2019-10-29 18_38_28.zip)自行导入 nacos
+- 使用 nacos 作为服务注册发现中心和配置中心，[配置信息](../doc/nacos_config_export.zip)自行导入 nacos

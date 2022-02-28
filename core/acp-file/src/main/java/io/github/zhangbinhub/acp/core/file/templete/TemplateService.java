@@ -53,7 +53,7 @@ public class TemplateService {
             configuration.setDefaultEncoding(CommonTools.getDefaultCharset());
             configuration.setDirectoryForTemplateLoading(new File(templatePath[0]));
             Template tp = configuration.getTemplate(templatePath[1]);
-            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(resultFilePath))));
+            Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(resultFilePath)));
             tp.process(variables, out);
             log.info("create file \"" + resultFilePath + "\" from template \"" + templatePath[0] + File.separator + templatePath[1] + "\"");
             return resultFilePath;
