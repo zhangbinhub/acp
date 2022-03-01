@@ -1,6 +1,4 @@
 server:
-  http2:
-    enabled: true
   undertow:
     threads:
       worker: 1000
@@ -36,5 +34,8 @@ management:
   endpoint:
     health:
       show-details: always
+  info:
+    java:
+      enabled: true
 knife4j:
   enable: true

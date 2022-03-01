@@ -1,6 +1,4 @@
 server:
-  http2:
-    enabled: true
   undertow:
     threads:
       worker: 1000
@@ -24,10 +22,8 @@ spring:
         cluster-name: ${spring.profiles.active}
         group: ${spring.profiles.active}
       config:
-        file-extension: yaml
-        namespace: ${spring.cloud.nacos.discovery.namespace}
         cluster-name: ${spring.cloud.nacos.discovery.cluster-name}
-        group: ${spring.cloud.nacos.discovery.group}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
     sentinel:
       datasource:
         nacos-degrade:
@@ -40,6 +36,9 @@ spring:
             group-id: ${spring.profiles.active}
             data-type: json
             rule-type: degrade
+  config:
+    import:
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.yaml?group=${spring.cloud.nacos.discovery.group}
 logging:
   pattern:
     file: '[%date{yyyy-MM-dd HH:mm:ss.SSS}] [ %-5level] [%thread] %logger{96} [%X{lineno}] - %msg%n'
@@ -59,6 +58,9 @@ management:
   endpoint:
     health:
       show-details: always
+  info:
+    java:
+      enabled: true
 # ===============================
 # = Feign Config
 # ===============================

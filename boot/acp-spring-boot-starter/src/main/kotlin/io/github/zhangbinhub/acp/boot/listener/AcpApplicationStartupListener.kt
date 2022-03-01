@@ -11,7 +11,10 @@ import org.springframework.context.ApplicationListener
  * @author zhangbin by 2018-1-31 12:50
  * @since JDK 11
  */
-class AcpApplicationStartupListener(private val logAdapter: LogAdapter) : ApplicationListener<ApplicationStartedEvent> {
+class AcpApplicationStartupListener(
+    private val logAdapter: LogAdapter,
+    private val initializationMap: Map<String, BaseInitialization>
+) : ApplicationListener<ApplicationStartedEvent> {
 
     /**
      * 监听系统事件
@@ -19,13 +22,13 @@ class AcpApplicationStartupListener(private val logAdapter: LogAdapter) : Applic
      * @param event 事件对象
      */
     override fun onApplicationEvent(event: ApplicationStartedEvent) {
-        sortMap(event.applicationContext.getBeansOfType(BaseInitialization::class.java)).forEach { entry ->
+        sortMap(initializationMap).forEach { entry ->
             logAdapter.info("start system initialization[" + entry.value.order + "] : " + entry.value.name)
             entry.value.start()
         }
     }
 
-    private fun sortMap(srcMap: MutableMap<String, BaseInitialization>): List<MutableMap.MutableEntry<String, BaseInitialization>> {
+    private fun sortMap(srcMap: Map<String, BaseInitialization>): List<Map.Entry<String, BaseInitialization>> {
         if (srcMap.isEmpty()) {
             return listOf()
         }

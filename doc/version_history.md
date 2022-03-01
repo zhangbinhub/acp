@@ -1,5 +1,10 @@
 ## 版本更新记录
 
+##### v2021.0.1
+
+- acp-spring-boot-starter
+    - [Upgrade] AcpSetUpAutoConfiguration 中去除循环依赖
+
 ##### v2021.0.0 [milestone](milestone/2021.0.0.md)
 
 - Global
@@ -18,6 +23,7 @@
         - Spring Boot 2.6.4
         - Spring Boot Admin 2.6.2
         - Spring Cloud 2021.0.1
+        - Spring Cloud Alibaba 2021.0.1.0
         - logback 1.2.10
         - jackson 2.13.1
         - netty 4.1.74.Final
@@ -40,9 +46,14 @@
 - acp-spring-boot-starter
     - [Upgrade] 优化日志类生成方式及调用栈获取逻辑
     - [Upgrade] 默认 tomcat 切换为 undertow
+    - [Upgrade] AcpComponentAutoConfiguration 增加 springfoxHandlerProviderBeanPostProcessor 配置；修复springfox在spring boot
+      2.6.x版本下空指针异常
+    - [Upgrade] 增加 BaseSwaggerConfiguration 基类
 - acp-spring-cloud-starter
     - [Upgrade] 优化日志类生成方式及调用栈获取逻辑
     - [Upgrade] 修改ResourceServer配置，放行OpenApiV3接口地址
+    - [Upgrade] 移除```spring-cloud-starter-bootstrap```依赖
+    - [Upgrade] AcpCloudBusAutoConfiguration 监听事件由```WebServerInitializedEvent```替换为```ApplicationStartedEvent```
 
 ##### v6.7.1
 
