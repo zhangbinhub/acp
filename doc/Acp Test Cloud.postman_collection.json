@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "6d714290-370e-4fa1-83c4-69810642b961",
+		"name": "Acp Test Cloud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "helloworld-openips",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8770/api/helloworld/open/ips",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8770",
+					"path": [
+						"api",
+						"helloworld",
+						"open",
+						"ips"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "申请token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "client",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8770/oauth/2.0/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8770",
+					"path": [
+						"oauth",
+						"2.0",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "helloworld-test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "c6d605c7-2cd3-409f-a105-6f4b5f3a17fc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "test haha"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8770/api/helloworld/helloworld",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8770",
+					"path": [
+						"api",
+						"helloworld",
+						"helloworld"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

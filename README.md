@@ -3,7 +3,7 @@
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.0-brightgreen)](https://projects.spring.io/spring-cloud)
-[![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.1-red)](https://github.com/alibaba/spring-cloud-alibaba)
+[![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.0.1.0-brightgreen)](https://github.com/alibaba/spring-cloud-alibaba)
 [![Kotlin](https://img.shields.io/badge/Kotlin->1.5-blue)](https://kotlinlang.org/)
 [![Jvm](https://img.shields.io/badge/Jvm->=1.8-blue)](http://hg.openjdk.java.net/)
 [![Gradle](https://img.shields.io/badge/Gradle->6.5-blue)](https://gradle.org/)
@@ -14,7 +14,7 @@
 - Application Construction Platform 应用构建平台
 - 该项目是用Kotlin和Java语言混编封装的脚手架。本人会密切关注业界最新动态，并使用最新技术持续更新优化。
 - 使用该脚手架可快速搭建基于Kotlin或Java语言的普通应用、SpringBoot应用和SpringCloud应用。
-- 从v2021.0.0开始，版本号命名规范与所使用的SpringCloud版本号一致，同时将发布至Maven Central
+- 从v2021.0.0开始，版本号命名规范改变，前两位大版本号与所使用的SpringCloud版本号一致，第三位小版本号迭代更新，同时将发布至Maven Central
 - 正式版发布前，Maven Central仅提供java 11版本，可自行在[project.properties](project.properties)中修改编译时的`javaVersion`
 - 正式版发布后，默认是java 11版本，同时还会提供java 1.8版本，版本号带后缀`-jdk8`
 
@@ -22,10 +22,7 @@
 
 - [Spring Boot 2.6.x](https://projects.spring.io/spring-boot)
 - [Spring Cloud 2021.0.1](http://projects.spring.io/spring-cloud)
-- [Spring Cloud Alibaba 2021.1](https://github.com/alibaba/spring-cloud-alibaba)
-
-**特别注意：v2021.0.0 目前是里程碑版本，因`Spring Cloud Alibaba 2021.1`暂未适配`Spring Boot 2.6.x`和`Spring Cloud 2021.0.x`
-，待SCA适配完成后将发布正式版**
+- [Spring Cloud Alibaba 2021.0.1.0](https://github.com/alibaba/spring-cloud-alibaba)
 
 ## 技术栈
 

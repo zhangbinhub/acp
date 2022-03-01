@@ -49,5 +49,5 @@ versions += [
 
         // acp-spring-cloud-starter
         springCloud       : "2021.0.1",
-        springCloudAlibaba: "2021.1"
+        springCloudAlibaba: "2021.0.1.0"
 ]

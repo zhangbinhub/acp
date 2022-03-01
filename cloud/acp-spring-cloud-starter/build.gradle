@@ -15,7 +15,6 @@ dependencies {
 
     api "org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure"
     api "org.springframework.boot:spring-boot-starter-security"
-    api "org.springframework.cloud:spring-cloud-starter-bootstrap"
     api "org.springframework.cloud:spring-cloud-starter-stream-kafka"
     api "org.springframework.cloud:spring-cloud-stream-binder-kafka-streams"
     api "org.springframework.cloud:spring-cloud-starter-bus-kafka"
@@ -24,9 +23,7 @@ dependencies {
     api "org.springframework.cloud:spring-cloud-starter-loadbalancer"
     api "io.github.openfeign:feign-okhttp"
     // 服务注册发现
-    api("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery") {
-        exclude group: "org.springframework.cloud", module: "spring-cloud-starter-netflix-ribbon"
-    }
+    api "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery"
     // 配置中心
     api "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config"
     api "com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel"
