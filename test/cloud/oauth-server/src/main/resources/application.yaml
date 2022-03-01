@@ -49,6 +49,8 @@ management:
   info:
     java:
       enabled: true
+    env:
+      enabled: true
 # ===============================
 # = ACP Config
 # ===============================
