@@ -3,18 +3,29 @@ package io.github.zhangbinhub.acp.boot
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import io.github.zhangbinhub.acp.boot.aspect.RestControllerAspect
+import io.github.zhangbinhub.acp.boot.base.BaseSpringBootScheduledAsyncTask
 import io.github.zhangbinhub.acp.boot.component.FileDownLoadHandle
 import io.github.zhangbinhub.acp.boot.component.ServerTools
-import io.github.zhangbinhub.acp.boot.conf.ControllerLogConfiguration
+import io.github.zhangbinhub.acp.boot.component.SystemControl
+import io.github.zhangbinhub.acp.boot.component.TimerTaskSchedulerCtrl
+import io.github.zhangbinhub.acp.boot.conf.*
+import io.github.zhangbinhub.acp.boot.init.InitServer
+import io.github.zhangbinhub.acp.boot.init.SystemInitialization
+import io.github.zhangbinhub.acp.boot.init.task.InitTcpServer
+import io.github.zhangbinhub.acp.boot.init.task.InitUdpServer
+import io.github.zhangbinhub.acp.boot.interfaces.Listener
 import io.github.zhangbinhub.acp.boot.interfaces.LogAdapter
+import io.github.zhangbinhub.acp.boot.socket.base.ISocketServerHandle
 import io.github.zhangbinhub.acp.boot.tools.PackageTools
 import io.github.zhangbinhub.acp.boot.tools.SpringBeanFactory
+import io.netty.handler.codec.ByteToMessageDecoder
 import org.springframework.beans.BeansException
 import org.springframework.beans.factory.config.BeanPostProcessor
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.jackson.JacksonProperties
+import org.springframework.boot.autoconfigure.task.TaskSchedulingProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
@@ -29,6 +40,31 @@ import springfox.documentation.spring.web.plugins.WebMvcRequestHandlerProvider
  */
 @Configuration(proxyBeanMethods = false)
 class AcpComponentAutoConfiguration {
+    @Bean
+    fun systemInitialization(
+        logAdapter: LogAdapter,
+        listenerMap: Map<String, Listener>?,
+        properties: TaskSchedulingProperties,
+        scheduleConfiguration: ScheduleConfiguration,
+        baseSpringBootScheduledTaskMap: Map<String, BaseSpringBootScheduledAsyncTask>,
+        acpCoreConfiguration: AcpCoreConfiguration,
+        tcpServerConfiguration: TcpServerConfiguration,
+        udpServerConfiguration: UdpServerConfiguration,
+        socketServerHandleList: List<ISocketServerHandle>,
+        byteToMessageDecoderList: List<ByteToMessageDecoder>
+    ) = SystemInitialization(
+        logAdapter,
+        SystemControl(
+            logAdapter,
+            listenerMap,
+            TimerTaskSchedulerCtrl(logAdapter, properties, scheduleConfiguration, baseSpringBootScheduledTaskMap)
+        ), InitServer(
+            logAdapter,
+            InitTcpServer(logAdapter, tcpServerConfiguration, socketServerHandleList, byteToMessageDecoderList),
+            InitUdpServer(logAdapter, udpServerConfiguration, socketServerHandleList),
+            acpCoreConfiguration
+        )
+    )
 
     @Bean
     @ConditionalOnMissingBean(SpringBeanFactory::class)
