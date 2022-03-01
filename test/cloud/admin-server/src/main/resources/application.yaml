@@ -52,3 +52,5 @@ management:
   info:
     java:
       enabled: true
+    env:
+      enabled: true
