@@ -3,4 +3,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   io.github.zhangbinhub.acp.boot.AcpBootLogAutoConfiguration,\
   io.github.zhangbinhub.acp.boot.AcpComponentAutoConfiguration,\
   io.github.zhangbinhub.acp.boot.AcpExceptionAutoConfiguration,\
-  io.github.zhangbinhub.acp.boot.AcpSetUpAutoConfiguration
+  io.github.zhangbinhub.acp.boot.AcpSetUpAutoConfiguration,\
+  io.github.zhangbinhub.acp.boot.AcpBootInfoAutoConfiguration

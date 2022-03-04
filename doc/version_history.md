@@ -1,34 +1,41 @@
 ## 版本更新记录
 
+##### v2021.0.2
+
+- Global
+  - [Upgrade] 规范打包后 MANIFEST.MF 信息
+- acp-spring-boot-starter
+  - [Upgrade] 增加 Spring Boot 的 InfoContributor，包含版本信息
+
 ##### v2021.0.1
 
 - acp-spring-boot-starter
-    - [Upgrade] AcpSetUpAutoConfiguration 中去除循环依赖
+  - [Upgrade] AcpSetUpAutoConfiguration 中去除循环依赖
 
 ##### v2021.0.0 [milestone](milestone/2021.0.0.md)
 
 - Global
-    - 增加jdk8编译版本
-    - [Upgrade] Reformat Code
+  - 增加jdk8编译版本
+  - [Upgrade] Reformat Code
     - [Upgrade] 升级 Gradle 至 7.4
     - [Upgrade] 删除gradle.properties，该配置文件现在用于存放敏感的隐私信息，不进行代码托管
     - [Upgrade] 原gradle.properties中的配置信息移入project.properties，gradle.properties只存放工程构建和发布时的隐私信息，正常使用或发布至本地仓库无需该文件
     - [Upgrade] 所有版本号信息移入gradle/dependencies.gradle统一管理，例如之前在gradle.properties中的kotlin、springboot、springcloud等版本号
     - [Upgrade] 项目GroupId变更为io.github.zhangbinhub，各模块的GroupId变更为io.github.zhangbinhub.module
-    - [Upgrade] 重构各模块包名，前缀规则：GroupId.module
-    - [Upgrade] 升级依赖
-        - jupiter 5.8.2
-        - junit-platform 1.8.2
-        - kotlin 1.6.10
-        - Spring Boot 2.6.4
-        - Spring Boot Admin 2.6.2
-        - Spring Cloud 2021.0.1
-        - Spring Cloud Alibaba 2021.0.1.0
-        - logback 1.2.10
-        - jackson 2.13.1
-        - netty 4.1.74.Final
-        - slf4j 1.7.36
-        - joda time 2.10.13
+  - [Upgrade] 重构各模块包名，前缀规则：GroupId.module
+  - [Upgrade] 升级依赖
+    - jupiter 5.8.2
+    - junit-platform 1.8.2
+    - kotlin 1.6.10
+    - Spring Boot 2.6.4
+    - Spring Boot Admin 2.6.2
+    - Spring Cloud 2021.0.1
+    - Spring Cloud Alibaba 2021.0.1.0
+    - logback 1.2.10
+    - jackson 2.13.1
+    - netty 4.1.74.Final
+    - slf4j 1.7.36
+    - joda time 2.10.13
         - commons-lang3 3.12.0
         - poi 5.1.0
         - batik 1.14
