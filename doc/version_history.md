@@ -4,7 +4,6 @@
 
 - Global
   - [Upgrade] 规范打包后 MANIFEST.MF 信息
-  - [Upgrade] 规范打包后 MANIFEST.MF 信息
 - acp-spring-boot-starter
   - [Upgrade] 增加 Spring Boot 的 InfoContributor，包含版本信息
 
