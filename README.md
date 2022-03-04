@@ -160,9 +160,9 @@ gradlew wrapper --gradle-version=7.4 --distribution-type=all
 
 ```groovy
 dependencyManagement {
-    imports {
-        mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:2021.0.0-M4")
-    }
+  imports {
+    mavenBom("io.github.zhangbinhub.acp.dependency:acp-dependency:2021.0.2")
+  }
 }
 ```
 
@@ -208,6 +208,16 @@ dependencyManagement {
 - springboot 应用扩展组件
 - 依赖 acp-client
 - 在 springboot 基础上整合大量底层功能，扩展支持 tcp、udp 等协议服务端配置；同时封装定时任务
+- 提供一个 Spring Boot 的```InfoContributor```，例如：
+  ```curl http://localhost:8080/actuator/info```
+
+  ```json
+  {
+    "acp": {
+      "version": "2021.0.2"
+    }
+  }
+  ```
 
 ##### 8. boot:acp-spring-boot-starter-ftp
 
