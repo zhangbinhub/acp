@@ -9,7 +9,7 @@
 [![Gradle](https://img.shields.io/badge/Gradle->6.5-blue)](https://gradle.org/)
 [![License](http://img.shields.io/badge/license-Apache%202-brightgreen)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-###### v2021.0.1 [版本更新日志](doc/version_history.md)
+###### v2021.0.2 [版本更新日志](doc/version_history.md)
 
 - Application Construction Platform 应用构建平台
 - 该项目是用Kotlin和Java语言混编封装的脚手架。本人会密切关注业界最新动态，并使用最新技术持续更新优化。

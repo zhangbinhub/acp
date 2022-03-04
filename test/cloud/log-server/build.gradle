@@ -14,7 +14,7 @@ dependencyManagement {
 }
 bootJar {
     manifest {
-        attributes('Version': "${project.version}", 'Provider': "Gradle ${projectProperties.getProperty('gradleVersion')}", 'JDK': "${projectProperties.getProperty('javaVersion')}", 'Kotlin': "$versions.kotlin", 'Project': 'Acp')
+        attributes('Implementation-Vendor': "${project.group}", 'Implementation-Title': "${project.name}", 'Implementation-Version': "${project.version}", 'Build-By': "Gradle ${projectProperties.getProperty('gradleVersion')}", 'Jvm-Version': "${projectProperties.getProperty('javaVersion')}", 'Kotlin-Version': "$versions.kotlin")
     }
 }
 dependencies {

@@ -1,14 +1,19 @@
 ## 版本更新记录
 
+##### v2021.0.2
+
+- Global
+  - [Upgrade] 规范打包后 MANIFEST.MF 信息
+
 ##### v2021.0.1
 
 - acp-spring-boot-starter
-    - [Upgrade] AcpSetUpAutoConfiguration 中去除循环依赖
+  - [Upgrade] AcpSetUpAutoConfiguration 中去除循环依赖
 
 ##### v2021.0.0 [milestone](milestone/2021.0.0.md)
 
 - Global
-    - 增加jdk8编译版本
+  - 增加jdk8编译版本
     - [Upgrade] Reformat Code
     - [Upgrade] 升级 Gradle 至 7.4
     - [Upgrade] 删除gradle.properties，该配置文件现在用于存放敏感的隐私信息，不进行代码托管
@@ -17,8 +22,8 @@
     - [Upgrade] 项目GroupId变更为io.github.zhangbinhub，各模块的GroupId变更为io.github.zhangbinhub.module
     - [Upgrade] 重构各模块包名，前缀规则：GroupId.module
     - [Upgrade] 升级依赖
-        - jupiter 5.8.2
-        - junit-platform 1.8.2
+      - jupiter 5.8.2
+      - junit-platform 1.8.2
         - kotlin 1.6.10
         - Spring Boot 2.6.4
         - Spring Boot Admin 2.6.2
