@@ -12,7 +12,7 @@
 - acp-spring-boot-starter
   - [Upgrade] AcpSetUpAutoConfiguration 中去除循环依赖
 
-##### v2021.0.0 [milestone](milestone/2021.0.0.md)
+### v2021.0.0 [milestone](milestone/2021.0.0.md)
 
 - Global
   - 增加jdk8编译版本
