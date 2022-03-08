@@ -36,12 +36,16 @@ class RestExceptionHandler(private val logAdapter: LogAdapter) : ResponseEntityE
     fun handleServerException(ex: Exception): ResponseEntity<Any> =
         try {
             doLog(ex)
-            if (ex is ServerException) {
-                ResponseCode.getEnum(ex.code ?: 99999)
-            } else if (ex is ConstraintViolationException || ex is MethodArgumentNotValidException) {
-                ResponseCode.InvalidParameter
-            } else {
-                ResponseCode.OtherError
+            when (ex) {
+                is ServerException -> {
+                    ResponseCode.getEnum(ex.code ?: 99999)
+                }
+                is ConstraintViolationException, is MethodArgumentNotValidException -> {
+                    ResponseCode.InvalidParameter
+                }
+                else -> {
+                    ResponseCode.OtherError
+                }
             }
         } catch (e: EnumValueUndefinedException) {
             ResponseCode.OtherError

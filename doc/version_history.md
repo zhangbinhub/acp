@@ -1,5 +1,10 @@
 ## 版本更新记录
 
+##### release
+
+- acp-spring-boot-starter
+  - [Upgrade] 优化 RestExceptionHandler 代码
+
 ##### v2021.0.2
 
 - Global
@@ -36,17 +41,17 @@
     - netty 4.1.74.Final
     - slf4j 1.7.36
     - joda time 2.10.13
-        - commons-lang3 3.12.0
-        - poi 5.1.0
-        - batik 1.14
-        - jsoup 1.14.3
+      - commons-lang3 3.12.0
+      - poi 5.1.0
+      - batik 1.14
+      - jsoup 1.14.3
     - [Delete] 删除版本指定
-        - curator
-        - liquibase
+      - curator
+      - liquibase
 - acp-dependency
-    - [Fix] 修复其他模块依赖项的group
-    - [Delete] 删除依赖
-        - liquibase-core
+  - [Fix] 修复其他模块依赖项的group
+  - [Delete] 删除依赖
+    - liquibase-core
 - acp-core
     - [Upgrade] 优化代码
     - [Upgrade] 优化日志调用栈获取逻辑

@@ -2,7 +2,7 @@
 
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
-[![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.0-brightgreen)](https://projects.spring.io/spring-cloud)
+[![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.1-brightgreen)](https://projects.spring.io/spring-cloud)
 [![Spring Cloud Alibaba](https://img.shields.io/badge/SpringCloudAlibaba-2021.0.1.0-brightgreen)](https://github.com/alibaba/spring-cloud-alibaba)
 [![Kotlin](https://img.shields.io/badge/Kotlin->1.5-blue)](https://kotlinlang.org/)
 [![Jvm](https://img.shields.io/badge/Jvm->=1.8-blue)](http://hg.openjdk.java.net/)
