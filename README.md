@@ -1,5 +1,7 @@
 # Application Construction Platform (acp)
 
+**此项目已不再更新，由于某些不可抗因素，已转移至https://gitee.com/zhangbinhub/acp**
+
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.zhangbinhub.acp.dependency/acp-dependency)
 [![Spring Boot](https://img.shields.io/badge/SpringBoot-2.6.x-brightgreen)](https://projects.spring.io/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/SpringCloud-2021.0.1-brightgreen)](https://projects.spring.io/spring-cloud)
